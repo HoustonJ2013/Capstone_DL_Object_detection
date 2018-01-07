@@ -4,6 +4,8 @@ from PIL import Image
 from scipy.misc import toimage,imsave, imread
 from os import listdir
 import argparse
+
+
 ### Gray color conversion
 def standard_gamma_corrected(imgarray):
     if np.max(imgarray) > 200: ## If it is a RGB with channel maximum 256
@@ -12,6 +14,8 @@ def standard_gamma_corrected(imgarray):
     imgarray[:, :, 1] = imgarray[:, :, 1] ** (1 / 2.2)
     imgarray[:, :, 2] = imgarray[:, :, 2] ** (1 / 2.2)
     return imgarray
+
+
 def gleam_rgb2gray(imgpath, imgname, output_folder = "./"):
     imgarray = imread(imgpath)
     if np.ndim(imgarray) == 3:
@@ -21,6 +25,8 @@ def gleam_rgb2gray(imgpath, imgname, output_folder = "./"):
     else:
         imsave(output_folder + imgname[0:-4] + ".png", imgarray)
     pass
+
+
 def luminance_rgb2gray(imgpath, imgname, output_folder = "./"):
     imgarray = imread(imgpath)
     if np.ndim(imgarray) == 3:
@@ -30,12 +36,15 @@ def luminance_rgb2gray(imgpath, imgname, output_folder = "./"):
         imsave(output_folder + imgname[0:-4] + ".png", imgarray)
     pass
 
+
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     # Model related arguments
-    parser.add_argument('--input_folder', default='data/ADEChallengeData2016/images/training/',
+    parser.add_argument('--input_folder',
+                        default='data/ADEChallengeData2016/images/training/',
                         help="The folder has RGB pictures")
-    parser.add_argument('--output_folder', default='data/ADEChallengeData2016/images/training/',
+    parser.add_argument('--output_folder',
+                        default='data/ADEChallengeData2016/images/training/',
                         help="The folder to put PNG pictures")
     parser.add_argument('--method', default='luminance',
                         help="The method to convert RGB to gray scale")
@@ -45,6 +54,8 @@ if __name__ == '__main__':
     for i in range(n_pics):
         imgpath = args.input_folder + rgb_pics[i]
         imgname = rgb_pics[i]
+        if i%500 == 0:
+            print(str(i) + " images converted")
         if args.method == "luminance":
             luminance_rgb2gray(imgpath, imgname, args.output_folder)
         else:
