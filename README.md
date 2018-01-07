@@ -72,7 +72,7 @@ Seismic images only have one value in a pixel, compared to the RGB color scale i
   
 To convert RGB to grayscale, run the src/rgb2gray.py in this way,
 ``` 
-python rgb2gray.py  --input_folder INPUT_FOLDER --output_folder OUTPUT_FOLDER
+python src/rgb2gray.py  --input_folder INPUT_FOLDER --output_folder OUTPUT_FOLDER
 
 options: --method (“luminance”,”gleam“)
 ```
