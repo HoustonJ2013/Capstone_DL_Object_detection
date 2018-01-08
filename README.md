@@ -89,7 +89,7 @@ Converting image from RGB to grayscale loses color information, and I assessed h
 |Gray Image|0.7366	|0.359|
 
 
-Raw Image/Ground True/Predicted
+Raw Image/Annotations/Predicted
 <img src="./pics/validation_ADE_val_00000650_rgb_5iter.png" width=800 alt="Seismic interpretation" ALIGN="Middle">
 <img src="./pics/validation_gray_ADE_val_00000650_5iter.png" width=800 alt="Seismic interpretation" ALIGN="Middle">
 
