@@ -84,7 +84,9 @@ Converting image from RGB to grayscale loses color information, and I assessed h
 
 
 Raw Image           |  Ground True     |  Object detection
-<img src="./pics/validation_gray_ADE_val_00000650_5iter.png" width=350 alt="Seismic interpretation" ALIGN="Middle">
+
+
+<img src="./pics/validation_ADE_val_00000650_rgb_5iter.png" width=350 alt="Seismic interpretation" ALIGN="Middle">
 <img src="./pics/validation_gray_ADE_val_00000650_5iter.png" width=350 alt="Seismic interpretation" ALIGN="Middle">
 
 ### Train models and analysis
