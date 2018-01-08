@@ -46,6 +46,9 @@ if __name__ == '__main__':
                         help="a list for prediction results")
     parser.add_argument('--List_true',
                         default='./data/ADE20K_object150_val.txt')
+    parser.add_argument('--val_folder',
+                        default='./data/ADEChallengeData2016/annotations/')
+
     parser.add_argument('--num_class', default=150, type=int)
     args = parser.parse_args()
 
@@ -64,7 +67,7 @@ if __name__ == '__main__':
 
     for i in range(n_assess):
         pred_ = np.load(list_pred[i]) - 1
-        val_ = imread(list_val[i],"I") - 1
+        val_ = imread(args.val_folder + list_val[i][:-4] + ".png", "I") - 1
         pix_acc, weights_ = Pixel_accuracy(pred_, val_, args.num_class)
         mean_iou_, InterAreaC_, UnionAreaC_ = mean_IU(pred_, val_, args.num_class)
         mean_Accu.update(pix_acc, weights_)

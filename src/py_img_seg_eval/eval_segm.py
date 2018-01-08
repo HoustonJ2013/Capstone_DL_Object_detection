@@ -18,7 +18,7 @@ def Pixel_accuracy(y_pred, y_true, num_class=150):
     '''
     classMask_ = np.logical_and(y_true >= 0, y_true < num_class)
     return np.sum(y_true[classMask_] == y_pred[classMask_])/\
-           np.sum(classMask_), np.sum(classMask_)
+           (np.sum(classMask_) + 1e-8), np.sum(classMask_)
 
 
 def mean_IU(eval_segm, gt_segm, num_class=150):
