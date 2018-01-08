@@ -59,14 +59,14 @@ To assess performance, we use two metrics:
 (2) Mean of the standard Jaccard Index, commonly known as the PASCAL VOC intersection-over-union metric IoU=TP/TP+FP+FN, where TP, FP, and FN are the numbers of true positive, false positive, and false negative pixels, respectively, determined over the whole test set.
 
 
-To evalute your own prediction, run the code as follows. The prediction was saved to disk as numpy array for cross-platform comparison.  
+To evalute your own prediction, run the code as follows. In order to make cross-platform cross-framework comparison, we saved all the predicted images as numpy array.   
 ```
 python src/metrics_acc_iou.py --List_predict List_Prediction --List_true List_validation --num_class 10
 ```
 
 ## EDA and Image Preprocessing
 
-### Image Quality Control
+### Image Quality Check
 Image annotation quality is checked and I randomly selected 40 pictures and put the raw image and annotation image in togglable slides in a [PPT](https://github.com/HoustonJ2013/Capstone_Deep_Learning_Galvanize/blob/master/ppts/QC_Dec_12.pptx). Overall the quality of the annotation is very good for this assessement. 
 
 ### Pre-processing 
@@ -80,9 +80,11 @@ python src/rgb2gray.py  --input_folder INPUT_FOLDER --output_folder OUTPUT_FOLDE
 
 options: --method (“luminance”,”gleam“)
 ```
-I used the MIT [benchmark model](https://github.com/hangzhaomit/semantic-segmentation-pytorch) to justify the change of the color scale, and how much it impacts on the performance. 
+Converting image from RGB to grayscale loses color information, and I assessed how much impact the color information have on performance based on the MIT [benchmark model](https://github.com/hangzhaomit/semantic-segmentation-pytorch). I trained a DilatedNet on both RGB and Gray scale images for 5 iterations (~ 90 % of the performance are achieved in the first 5 iterations), and assessed their performance at predicting the 2000 validation images.  Based on the observation, the performance of gray image is roughtly 1% worse than RGB image. 
 
-The draw back is we loose some information in the original image, but we are still able to identify the objects from the images. 
+
+
+
 
 
 ### Train models and analysis
