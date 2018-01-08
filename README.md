@@ -83,9 +83,9 @@ options: --method (“luminance”,”gleam“)
 Converting image from RGB to grayscale loses color information, and I assessed how much impact the color information have on performance based on the MIT [benchmark model](https://github.com/hangzhaomit/semantic-segmentation-pytorch). I trained a DilatedNet on both RGB and Gray scale images for 5 iterations (~ 90 % of the performance are achieved in the first 5 iterations), and assessed their performance at predicting the 2000 validation images.  Based on the observation, the performance of gray image is roughtly 1% worse than RGB image. 
 
 
-
-
-
+Raw Image           |  Ground True     |  Object detection
+<img src="./pics/validation_gray_ADE_val_00000650_5iter.png" width=350 alt="Seismic interpretation" ALIGN="Middle">
+<img src="./pics/validation_gray_ADE_val_00000650_5iter.png" width=350 alt="Seismic interpretation" ALIGN="Middle">
 
 ### Train models and analysis
 
