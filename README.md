@@ -93,7 +93,12 @@ Raw Image/Annotations/Predicted
 <img src="./pics/validation_ADE_val_00000650_rgb_5iter.png" width=800 alt="Seismic interpretation" ALIGN="Middle">
 <img src="./pics/validation_gray_ADE_val_00000650_5iter.png" width=800 alt="Seismic interpretation" ALIGN="Middle">
 
-### Train models and analysis
+## Deep Learning Achitecutre and Analysis
+### A few key concepts in state-of-art algrithms for semantic segmentation
+- ImageNet
+- Full Convolutional Network
+- Encoder-Decoder Structure
+- Dilated/atrous Convolutional Layer
 
 
 
