@@ -3,3 +3,9 @@ models/
 demo/
 literatures/
 results/
+*.npy
+*.pyc
+*.prototxt
+*.h5
+*.json
+
