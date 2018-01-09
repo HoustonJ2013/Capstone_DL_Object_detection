@@ -1,5 +1,5 @@
 import numpy as np
-from scipy.misc import imread
+from scipy.misc import imread, imsave
 from py_img_seg_eval.eval_segm import *
 import argparse
 
