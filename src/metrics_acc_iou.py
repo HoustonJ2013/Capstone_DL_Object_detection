@@ -52,9 +52,6 @@ if __name__ == '__main__':
     parser.add_argument('--num_class', default=150, type=int)
     args = parser.parse_args()
 
-
-    args = parser.parse_args()
-
     list_pred = [x.rstrip() for x in open(args.List_predict, 'r')]
     list_val = [x.rstrip() for x in open(args.List_true, 'r')]
     if (len(list_pred) != len(list_val)):
