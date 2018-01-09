@@ -100,9 +100,9 @@ Raw Image/Annotations/Predicted
 - Encoder-Decoder Structure
 - Dilated/atrous Convolutional Layer
 
-### MIT Baseline Model (Pytorch)
+### MIT Baseline Model ([Pytorch](https://github.com/hangzhaomit/semantic-segmentation-pytorch))
 
-### Piramid Scence Parsing Network (Tensorflow, Caffe)
+### Piramid Scence Parsing Network ([Tensorflow](https://github.com/Vladkryvoruchko/PSPNet-Keras-tensorflow), Caffe)
 
 <img src="./pics/pspnet.png" width=800 alt="Seismic interpretation" ALIGN="Middle">
 
