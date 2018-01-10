@@ -21,20 +21,30 @@ def mean_IU(eval_segm, gt_segm, num_class=150):
 
     check_size(eval_segm, gt_segm)
 
-    cl, n_cl = union_classes(eval_segm, gt_segm)
-    _, n_cl_gt = extract_classes(gt_segm)
-    eval_mask, gt_mask = extract_both_masks(eval_segm, gt_segm, cl, n_cl)
+    # cl, n_cl = union_classes(eval_segm, gt_segm)
+    # _, n_cl_gt = extract_classes(gt_segm)
 
+## to get consistent IOU with MIT benchmark model
+    eval_segm[gt_segm < 0] = -1
+
+
+    cl, n_cl = union_classes(eval_segm, gt_segm)
+    cl_gt, n_cl_gt = extract_classes(gt_segm)
+    eval_mask, gt_mask = extract_both_masks(eval_segm, gt_segm, cl, n_cl)
     IU = list([0]) * n_cl
     InterSect = np.zeros((num_class, 1))
     Union = np.zeros((num_class, 1))
 
     cl_mask = cl[cl < num_class]
+
     for i, c in enumerate(cl_mask):
         curr_eval_mask = eval_mask[i, :, :]
         curr_gt_mask = gt_mask[i, :, :]
 
-        if (np.sum(curr_eval_mask) == 0) or (np.sum(curr_gt_mask) == 0):
+        # if (np.sum(curr_eval_mask) == 0) or (np.sum(curr_gt_mask) == 0):
+        #     continue
+        ## To make it consistent with MIT benchmark
+        if (np.sum(curr_eval_mask) == 0) and (np.sum(curr_gt_mask) == 0):
             continue
 
         n_ii = np.sum(np.logical_and(curr_eval_mask, curr_gt_mask))
@@ -66,6 +76,7 @@ def extract_both_masks(eval_segm, gt_segm, cl, n_cl):
 
 def extract_classes(segm):
     cl = np.unique(segm)
+    cl = cl[cl >=0]
     n_cl = len(cl)
 
     return cl, n_cl
@@ -184,15 +195,23 @@ if __name__ == '__main__':
     for i in range(n_assess):
         pred_ = np.load(list_pred[i]) - 1
         val_ = imread(args.val_folder + list_val[i][:-4] + ".png", "I") - 1
+        ## debug control
+        # if i == 0:
+        #     np.save("debug_pred_0", pred_)
+        #     np.save("debug_val_0", val_)
         pix_acc, weights_ = Pixel_accuracy(pred_, val_, args.num_class)
         mean_iou_, InterAreaC_, UnionAreaC_ = mean_IU(pred_, val_, args.num_class)
         mean_Accu.update(pix_acc, weights_)
+        ## debug control
+        # np.save("local_intersec" + str(i), InterAreaC_)
+        # np.save("local_union" + str(i), UnionAreaC_)
+
         InterSect_Area.update(InterAreaC_)
         Union_Area.update(UnionAreaC_)
         print("For pic %s Pixel_accuray is %f  Mean_IOU is %f" % (list_val[i], pix_acc, mean_iou_))
 
     iou_final = InterSect_Area.sum / (Union_Area.sum + 1e-10)
-    np.save("iou_final.npy", iou_final)
+    # np.save("iou_final.npy", iou_final)
     print("For all the %i pictures"%(n_assess))
     print("Mean Accuracy is %f"%(mean_Accu.avg))
     print("Mean IOU is %f" % (iou_final.mean()))
