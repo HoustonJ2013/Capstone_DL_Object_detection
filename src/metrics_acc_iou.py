@@ -1,5 +1,5 @@
 import numpy as np
-from scipy.misc import imread
+from scipy.misc import imread, imsave
 from py_img_seg_eval.eval_segm import *
 import argparse
 
@@ -50,9 +50,6 @@ if __name__ == '__main__':
                         default='./data/ADEChallengeData2016/annotations/')
 
     parser.add_argument('--num_class', default=150, type=int)
-    args = parser.parse_args()
-
-
     args = parser.parse_args()
 
     list_pred = [x.rstrip() for x in open(args.List_predict, 'r')]
