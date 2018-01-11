@@ -66,8 +66,9 @@ class PSPNet(object):
             img = misc.imresize(img, self.input_shape)
         input_data = self.preprocess_image(img)
         # utils.debug(self.model, input_data)
-
+        np.save("input_data.npy", input_data)
         regular_prediction = self.model.predict(input_data)[0]
+        np.save("regular_pred.npy", regular_prediction)
         if flip_evaluation:
             print("Predict flipped")
             flipped_prediction = np.fliplr(self.model.predict(np.flip(input_data, axis=2))[0])
@@ -290,6 +291,8 @@ if __name__ == "__main__":
             img = misc.imread(input_name, mode="RGB")
             class_scores = predict_multi_scale(img, pspnet, EVALUATION_SCALES, args.sliding, args.flip)
 
+            print(pspnet.model.summary())
+            print(pspnet.get_weights())
             print("Predicting for ", input_name)
             class_image = np.argmax(class_scores, axis=2)
             output_name = input_name.split("/")[-1].replace(".jpg", "").replace(".png", "")
