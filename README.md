@@ -1,4 +1,4 @@
-# Deep Learning Pixel-level Object Dectection: One Step Toward Automatic Seismic Interpretation:  
+# Deep Learning Pixel-level Object Dectection: One Step Toward Automatic Seismic Interpretation (In Work)
 
 ## Motivations: Bussiness Value 
 ### 1. Oil and Gas E&P : Automatic Seismic [Fault](https://en.wikipedia.org/wiki/Fault_(geology))/[Horizon](http://subsurfwiki.org/wiki/Horizon) picking and interpretation 
