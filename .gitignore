@@ -1,8 +1,8 @@
 data/
-models/
 demo/
 literatures/
 results/
+weights/
 *.pyc
 *.prototxt
 *.h5
