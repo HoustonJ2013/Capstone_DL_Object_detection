@@ -291,6 +291,7 @@ if __name__ == "__main__":
             class_scores = predict_multi_scale(img, pspnet, EVALUATION_SCALES, args.sliding, args.flip)
 
             print(pspnet.model.summary())
+            print(pspnet.get_weights())
             print("Predicting for ", input_name)
             class_image = np.argmax(class_scores, axis=2)
             output_name = input_name.split("/")[-1].replace(".jpg", "").replace(".png", "")
