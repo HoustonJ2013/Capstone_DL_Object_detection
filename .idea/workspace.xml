@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
+<<<<<<< HEAD
     <list default="true" id="4dac1ae4-f4df-4dec-b8b3-545d8c544b21" name="Default" comment="">
 <<<<<<< HEAD
       <change type="DELETED" beforePath="$PROJECT_DIR$/logs/log_mit_gray_5iter" afterPath="" />
@@ -20,6 +21,9 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/metrics_acc_iou.py" afterPath="$PROJECT_DIR$/src/metrics_acc_iou.py" />
 >>>>>>> 9dadfe5ef165e76382fcc0f58c8d07472307abda
     </list>
+=======
+    <list default="true" id="4dac1ae4-f4df-4dec-b8b3-545d8c544b21" name="Default" comment="" />
+>>>>>>> b05a286ae22ae7cae7ac5dc982d4901d5068b2ee
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -28,6 +32,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
+<<<<<<< HEAD
 <<<<<<< HEAD
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file leaf-file-name="metrics_acc_iou.py" pinned="false" current-in-tab="false">
@@ -80,6 +85,9 @@
 =======
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
 >>>>>>> 9dadfe5ef165e76382fcc0f58c8d07472307abda
+=======
+    <leaf />
+>>>>>>> b05a286ae22ae7cae7ac5dc982d4901d5068b2ee
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
@@ -225,8 +233,12 @@
 =======
     <frame x="65" y="24" width="1535" height="876" extended-state="6" />
     <layout>
+<<<<<<< HEAD
       <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2495114" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
 >>>>>>> 9dadfe5ef165e76382fcc0f58c8d07472307abda
+=======
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2495114" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+>>>>>>> b05a286ae22ae7cae7ac5dc982d4901d5068b2ee
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2283871" sideWeight="0.5022801" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -234,9 +246,13 @@
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
 <<<<<<< HEAD
+<<<<<<< HEAD
       <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22801636" sideWeight="0.49771988" order="7" side_tool="false" content_ui="tabs" />
 =======
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.4619355" sideWeight="0.49771988" order="7" side_tool="false" content_ui="tabs" />
+=======
+      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.4619355" sideWeight="0.49771988" order="7" side_tool="false" content_ui="tabs" />
+>>>>>>> b05a286ae22ae7cae7ac5dc982d4901d5068b2ee
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
 >>>>>>> 9dadfe5ef165e76382fcc0f58c8d07472307abda
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -272,10 +288,13 @@
             <marker date="1515551621266" expanded="true" signature="1896:2395" ph="..." />
 =======
           <caret line="16" column="22" lean-forward="false" selection-start-line="16" selection-start-column="22" selection-end-line="16" selection-end-column="22" />
+<<<<<<< HEAD
           <folding>
             <element signature="e#0#18#0" expanded="true" />
 >>>>>>> 9dadfe5ef165e76382fcc0f58c8d07472307abda
           </folding>
+=======
+>>>>>>> b05a286ae22ae7cae7ac5dc982d4901d5068b2ee
         </state>
       </provider>
     </entry>
@@ -283,9 +302,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="270">
           <caret line="19" column="0" lean-forward="true" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -293,11 +309,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1080">
           <caret line="63" column="30" lean-forward="false" selection-start-line="63" selection-start-column="30" selection-end-line="63" selection-end-column="30" />
+<<<<<<< HEAD
           <folding>
             <element signature="e#0#18#0" expanded="true" />
             <marker date="1515551621266" expanded="true" signature="1450:2604" ph="..." />
             <marker date="1515551621266" expanded="true" signature="1896:2395" ph="..." />
           </folding>
+=======
+>>>>>>> b05a286ae22ae7cae7ac5dc982d4901d5068b2ee
         </state>
       </provider>
     </entry>
@@ -305,6 +324,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1818">
           <caret line="102" column="0" lean-forward="false" selection-start-line="102" selection-start-column="0" selection-end-line="102" selection-end-column="0" />
+<<<<<<< HEAD
         </state>
       </provider>
     </entry>
@@ -322,9 +342,13 @@
             <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           </first_editor>
           <second_editor />
+=======
+>>>>>>> b05a286ae22ae7cae7ac5dc982d4901d5068b2ee
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/py_img_seg_eval/eval_segm.py" />
+    <entry file="file://$PROJECT_DIR$/src/py_img_seg_eval/README.md" />
     <entry file="file://$PROJECT_DIR$/models/semantic-segmentation-pytorch/models.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1116">
@@ -350,11 +374,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1080">
           <caret line="63" column="30" lean-forward="false" selection-start-line="63" selection-start-column="30" selection-end-line="63" selection-end-column="30" />
+<<<<<<< HEAD
           <folding>
             <element signature="e#0#18#0" expanded="true" />
             <marker date="1515551621266" expanded="true" signature="1450:2604" ph="..." />
             <marker date="1515551621266" expanded="true" signature="1896:2395" ph="..." />
           </folding>
+=======
+>>>>>>> b05a286ae22ae7cae7ac5dc982d4901d5068b2ee
         </state>
       </provider>
     </entry>
@@ -363,6 +390,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1818">
           <caret line="102" column="0" lean-forward="false" selection-start-line="102" selection-start-column="0" selection-end-line="102" selection-end-column="0" />
+<<<<<<< HEAD
         </state>
       </provider>
     </entry>
@@ -380,9 +408,13 @@
             <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           </first_editor>
           <second_editor />
+=======
+>>>>>>> b05a286ae22ae7cae7ac5dc982d4901d5068b2ee
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/py_img_seg_eval/eval_segm.py" />
+    <entry file="file://$PROJECT_DIR$/src/py_img_seg_eval/README.md" />
     <entry file="file://$PROJECT_DIR$/models/semantic-segmentation-pytorch/train.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="5328">
@@ -404,16 +436,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/py_img_seg_eval/README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SECOND">
-          <first_editor relative-caret-position="0">
-            <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/py_img_seg_eval/README.md" />
     <entry file="file://$PROJECT_DIR$/models/semantic-segmentation-pytorch/predict.py" />
     <entry file="file://$PROJECT_DIR$/models/semantic-segmentation-pytorch/models.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -437,6 +460,7 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Contantenate_image.py" />
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/src/py_img_seg_eval/eval_segm.py">
       <provider selected="true" editor-type-id="text-editor">
 <<<<<<< HEAD
@@ -449,14 +473,20 @@
         </state>
       </provider>
     </entry>
+=======
+    <entry file="file://$PROJECT_DIR$/src/py_img_seg_eval/eval_segm.py" />
+>>>>>>> b05a286ae22ae7cae7ac5dc982d4901d5068b2ee
     <entry file="file://$PROJECT_DIR$/src/metrics_acc_iou.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3888">
           <caret line="216" column="48" lean-forward="true" selection-start-line="216" selection-start-column="48" selection-end-line="216" selection-end-column="48" />
+<<<<<<< HEAD
           <folding>
             <element signature="e#0#18#0" expanded="true" />
           </folding>
 >>>>>>> 9dadfe5ef165e76382fcc0f58c8d07472307abda
+=======
+>>>>>>> b05a286ae22ae7cae7ac5dc982d4901d5068b2ee
         </state>
       </provider>
     </entry>
@@ -469,10 +499,13 @@
 =======
         <state relative-caret-position="75">
           <caret line="97" column="27" lean-forward="false" selection-start-line="97" selection-start-column="22" selection-end-line="97" selection-end-column="27" />
+<<<<<<< HEAD
           <folding>
             <element signature="e#14#23#0" expanded="true" />
           </folding>
 >>>>>>> 9dadfe5ef165e76382fcc0f58c8d07472307abda
+=======
+>>>>>>> b05a286ae22ae7cae7ac5dc982d4901d5068b2ee
         </state>
       </provider>
     </entry>
@@ -484,10 +517,13 @@
 =======
         <state relative-caret-position="171">
           <caret line="116" column="25" lean-forward="false" selection-start-line="116" selection-start-column="25" selection-end-line="116" selection-end-column="25" />
+<<<<<<< HEAD
           <folding>
             <element signature="e#0#12#0" expanded="true" />
           </folding>
 >>>>>>> 9dadfe5ef165e76382fcc0f58c8d07472307abda
+=======
+>>>>>>> b05a286ae22ae7cae7ac5dc982d4901d5068b2ee
         </state>
       </provider>
     </entry>
@@ -504,8 +540,11 @@
 =======
         <state relative-caret-position="-2313">
           <caret line="20" column="0" lean-forward="false" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="30" />
+<<<<<<< HEAD
           <folding />
 >>>>>>> 9dadfe5ef165e76382fcc0f58c8d07472307abda
+=======
+>>>>>>> b05a286ae22ae7cae7ac5dc982d4901d5068b2ee
         </state>
       </provider>
     </entry>
@@ -513,9 +552,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="234">
           <caret line="19" column="0" lean-forward="false" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
