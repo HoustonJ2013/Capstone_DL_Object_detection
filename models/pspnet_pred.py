@@ -1,10 +1,16 @@
 #!/usr/bin/env python
 """
-The same as pspnet.py, but change the input to a list of images to be assessed
-
 This module is a Keras/Tensorflow based implementation of Pyramid Scene Parsing Networks.
 
+The work is adapted from the keras/TF implementation https://github.com/Vladkryvoruchko/PSPNet-Keras-tensorflow.
 Original paper & code published by Hengshuang Zhao et al. (2017)
+
+
+I added a list of functions needed for my Galvanize Capstone project
+1. Train function: Continue training on top of a model or train from scratch
+2. Predict function
+3. Load more models
+Contact: jingbo.liu2013@gmail.com
 """
 from __future__ import print_function
 from __future__ import division
@@ -18,10 +24,8 @@ from keras import backend as K
 from keras.models import model_from_json
 import tensorflow as tf
 import layers_builder as layers
-import utils
+import model_utils
 import matplotlib.pyplot as plt
-
-__author__ = "Vlad Kryvoruchko, Chaoyue Wang, Jeffrey Hu & Julian Tatsch"
 
 
 # These are the means for the ImageNet pretrained ResNet
@@ -162,7 +166,7 @@ def pad_image(img, target_size):
 def visualize_prediction(prediction):
     """Visualize prediction."""
     cm = np.argmax(prediction, axis=2) + 1
-    color_cm = utils.add_color(cm)
+    color_cm = model_utils.add_color(cm)
     plt.imshow(color_cm)
     plt.show()
 
@@ -278,7 +282,7 @@ if __name__ == "__main__":
 
         if args.multi_scale:
             EVALUATION_SCALES = [0.5, 0.75, 1.0, 1.25, 1.5, 1.75]  # must be all floats!
-            #EVALUATION_SCALES = [0.15, 0.25, 0.5]  # must be all floats!
+
 
         list_sample = [x.rstrip() for x in open(args.input_list, 'r')]
 

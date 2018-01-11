@@ -1,29 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-<<<<<<< HEAD
-    <list default="true" id="4dac1ae4-f4df-4dec-b8b3-545d8c544b21" name="Default" comment="">
-<<<<<<< HEAD
-      <change type="DELETED" beforePath="$PROJECT_DIR$/logs/log_mit_gray_5iter" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/logs/log_mit_rgb_5iter" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/logs/pspnet50_ms_rgb.log" afterPath="$PROJECT_DIR$/logs/pspnet50_ms_rgb.log" />
-=======
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ADE_val_00000974_mitbs.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ADE_val_00000974_mitbs.npy" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ADE_val_00000974_psp.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ADE_val_00000974_psp.npy" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/debug/ADE_val_00000001.npy" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/iou_final.npy" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tem_list" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/test.sh" afterPath="" />
+    <list default="true" id="5ab8c673-b1da-4594-bb96-dedbb692429c" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/models/__init__.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/Capstone_DL_Object_detection.iml" afterPath="$PROJECT_DIR$/.idea/Capstone_DL_Object_detection.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pspnet50_rgb_pred.sh" afterPath="$PROJECT_DIR$/pspnet50_rgb_pred.sh" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/metrics_acc_iou.py" afterPath="$PROJECT_DIR$/src/metrics_acc_iou.py" />
->>>>>>> 9dadfe5ef165e76382fcc0f58c8d07472307abda
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/models/pspnet_pred.py" afterPath="$PROJECT_DIR$/models/pspnet_pred.py" />
     </list>
-=======
-    <list default="true" id="4dac1ae4-f4df-4dec-b8b3-545d8c544b21" name="Default" comment="" />
->>>>>>> b05a286ae22ae7cae7ac5dc982d4901d5068b2ee
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -32,86 +16,55 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-<<<<<<< HEAD
-<<<<<<< HEAD
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="metrics_acc_iou.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/metrics_acc_iou.py">
+    <leaf>
+      <file leaf-file-name="layers_builder.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/models/layers_builder.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="234">
-              <caret line="16" column="22" lean-forward="false" selection-start-line="16" selection-start-column="22" selection-end-line="16" selection-end-column="22" />
+            <state relative-caret-position="450">
+              <caret line="25" column="18" lean-forward="false" selection-start-line="25" selection-start-column="18" selection-end-line="25" selection-end-column="18" />
               <folding>
-                <element signature="e#0#18#0" expanded="true" />
-                <marker date="1515551621266" expanded="true" signature="1450:2604" ph="..." />
-                <marker date="1515551621266" expanded="true" signature="1896:2395" ph="..." />
+                <element signature="e#0#37#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="concat_image.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/concat_image.py">
+      <file leaf-file-name="pspnet_pred.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/models/pspnet_pred.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="234">
-              <caret line="19" column="0" lean-forward="false" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
+            <state relative-caret-position="282">
+              <caret line="250" column="46" lean-forward="true" selection-start-line="250" selection-start-column="46" selection-end-line="250" selection-end-column="46" />
               <folding>
-                <element signature="e#0#18#0" expanded="true" />
+                <element signature="e#521#558#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="pspnet.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/models/PSPNet-Keras-tensorflow/pspnet.py">
+      <file leaf-file-name="model_utils.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/models/model_utils.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="277">
-              <caret line="277" column="0" lean-forward="false" selection-start-line="277" selection-start-column="0" selection-end-line="277" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="pspnet_jl.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/models/PSPNet-Keras-tensorflow/pspnet_jl.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1154">
-              <caret line="282" column="66" lean-forward="false" selection-start-line="282" selection-start-column="66" selection-end-line="282" selection-end-column="66" />
+            <state relative-caret-position="72">
+              <caret line="4" column="5" lean-forward="false" selection-start-line="4" selection-start-column="5" selection-end-line="4" selection-end-column="5" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
     </leaf>
-=======
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
->>>>>>> 9dadfe5ef165e76382fcc0f58c8d07472307abda
-=======
-    <leaf />
->>>>>>> b05a286ae22ae7cae7ac5dc982d4901d5068b2ee
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>list_train</find>
-      <find>segSize</find>
-      <find>imread</find>
-      <find>imgSize</find>
-      <find>suffix</find>
-      <find>weights_encoder</find>
-      <find>join</find>
-<<<<<<< HEAD
-      <find>EVALUATION_SCALES</find>
-=======
-      <find>imsave</find>
-      <find>extract_classes</find>
-      <find>union_classes</find>
-      <find>extract_masks</find>
-      <find>intersection_meter</find>
-      <find>np.unique</find>
-      <find>EvalSegErr</find>
-      <find>extract_both_masks</find>
-      <find>print</find>
-      <find>intersectionAndUnion</find>
->>>>>>> 9dadfe5ef165e76382fcc0f58c8d07472307abda
+      <find>utils</find>
+      <find>model</find>
+      <find>weights</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -120,25 +73,18 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/models/semantic-segmentation-pytorch/predict.py" />
-        <option value="$PROJECT_DIR$/src/py_img_seg_eval/eval_segm.py" />
-        <option value="$PROJECT_DIR$/models/semantic-segmentation-pytorch/train.py" />
-        <option value="$PROJECT_DIR$/src/Contantenate_image.py" />
-        <option value="$PROJECT_DIR$/src/concat_image.py" />
-<<<<<<< HEAD
-        <option value="$PROJECT_DIR$/models/PSPNet-Keras-tensorflow/pspnet.py" />
-        <option value="$PROJECT_DIR$/models/PSPNet-Keras-tensorflow/pspnet_jl.py" />
-=======
-        <option value="$PROJECT_DIR$/src/metrics_acc_iou.py" />
->>>>>>> 9dadfe5ef165e76382fcc0f58c8d07472307abda
+        <option value="$PROJECT_DIR$/models/__init__.py" />
+        <option value="$PROJECT_DIR$/models/utils.py" />
+        <option value="$PROJECT_DIR$/models/pspnet_pred.py" />
+        <option value="$PROJECT_DIR$/models/model_utils.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="724" />
-    <option name="y" value="55" />
-    <option name="width" value="918" />
-    <option name="height" value="848" />
+    <option name="x" value="49" />
+    <option name="y" value="6" />
+    <option name="width" value="928" />
+    <option name="height" value="1112" />
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
@@ -156,7 +102,6 @@
     </navigator>
     <panes>
       <pane id="Scratches" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -172,33 +117,17 @@
             <path>
               <item name="Capstone_DL_Object_detection" type="b2602c69:ProjectViewProjectNode" />
               <item name="Capstone_DL_Object_detection" type="462c0819:PsiDirectoryNode" />
-              <item name="models" type="462c0819:PsiDirectoryNode" />
-<<<<<<< HEAD
-              <item name="PSPNet-Keras-tensorflow" type="462c0819:PsiDirectoryNode" />
-=======
-              <item name="semantic-segmentation-pytorch" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Capstone_DL_Object_detection" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Capstone_DL_Object_detection" type="462c0819:PsiDirectoryNode" />
-              <item name="models" type="462c0819:PsiDirectoryNode" />
-              <item name="semantic-segmentation-pytorch" type="462c0819:PsiDirectoryNode" />
-              <item name="vis" type="462c0819:PsiDirectoryNode" />
->>>>>>> 9dadfe5ef165e76382fcc0f58c8d07472307abda
+              <item name="weights" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-  </component>
-  <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src" />
-    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -217,53 +146,34 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="4dac1ae4-f4df-4dec-b8b3-545d8c544b21" name="Default" comment="" />
-      <created>1515365811931</created>
+      <changelist id="5ab8c673-b1da-4594-bb96-dedbb692429c" name="Default" comment="" />
+      <created>1515690269554</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1515365811931</updated>
+      <updated>1515690269554</updated>
     </task>
     <servers />
   </component>
   <component name="ToolWindowManager">
-<<<<<<< HEAD
     <frame x="49" y="6" width="1857" height="1092" extended-state="6" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24905661" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-=======
-    <frame x="65" y="24" width="1535" height="876" extended-state="6" />
-    <layout>
-<<<<<<< HEAD
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2495114" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
->>>>>>> 9dadfe5ef165e76382fcc0f58c8d07472307abda
-=======
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2495114" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
->>>>>>> b05a286ae22ae7cae7ac5dc982d4901d5068b2ee
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24959569" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2283871" sideWeight="0.5022801" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-<<<<<<< HEAD
-<<<<<<< HEAD
-      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22801636" sideWeight="0.49771988" order="7" side_tool="false" content_ui="tabs" />
-=======
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.4619355" sideWeight="0.49771988" order="7" side_tool="false" content_ui="tabs" />
-=======
-      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.4619355" sideWeight="0.49771988" order="7" side_tool="false" content_ui="tabs" />
->>>>>>> b05a286ae22ae7cae7ac5dc982d4901d5068b2ee
+      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3220859" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
->>>>>>> 9dadfe5ef165e76382fcc0f58c8d07472307abda
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
+      <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32924336" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -271,303 +181,51 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <option name="time" value="1" />
-    </breakpoint-manager>
+    <breakpoint-manager />
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/metrics_acc_iou.py">
+    <entry file="file://$PROJECT_DIR$/models/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="234">
-<<<<<<< HEAD
-          <caret line="16" column="22" lean-forward="true" selection-start-line="16" selection-start-column="22" selection-end-line="16" selection-end-column="22" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-            <marker date="1515551621266" expanded="true" signature="1450:2604" ph="..." />
-            <marker date="1515551621266" expanded="true" signature="1896:2395" ph="..." />
-=======
-          <caret line="16" column="22" lean-forward="false" selection-start-line="16" selection-start-column="22" selection-end-line="16" selection-end-column="22" />
-<<<<<<< HEAD
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
->>>>>>> 9dadfe5ef165e76382fcc0f58c8d07472307abda
-          </folding>
-=======
->>>>>>> b05a286ae22ae7cae7ac5dc982d4901d5068b2ee
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/concat_image.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="19" column="0" lean-forward="true" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/metrics_acc_iou.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1080">
-          <caret line="63" column="30" lean-forward="false" selection-start-line="63" selection-start-column="30" selection-end-line="63" selection-end-column="30" />
-<<<<<<< HEAD
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-            <marker date="1515551621266" expanded="true" signature="1450:2604" ph="..." />
-            <marker date="1515551621266" expanded="true" signature="1896:2395" ph="..." />
-          </folding>
-=======
->>>>>>> b05a286ae22ae7cae7ac5dc982d4901d5068b2ee
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/models/semantic-segmentation-pytorch/utils.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1818">
-          <caret line="102" column="0" lean-forward="false" selection-start-line="102" selection-start-column="0" selection-end-line="102" selection-end-column="0" />
-<<<<<<< HEAD
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/py_img_seg_eval/eval_segm.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="378">
-          <caret line="21" column="0" lean-forward="false" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/py_img_seg_eval/README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SECOND">
-          <first_editor relative-caret-position="0">
-            <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          </first_editor>
-          <second_editor />
-=======
->>>>>>> b05a286ae22ae7cae7ac5dc982d4901d5068b2ee
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/py_img_seg_eval/eval_segm.py" />
-    <entry file="file://$PROJECT_DIR$/src/py_img_seg_eval/README.md" />
-    <entry file="file://$PROJECT_DIR$/models/semantic-segmentation-pytorch/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1116">
-          <caret line="65" column="68" lean-forward="false" selection-start-line="65" selection-start-column="65" selection-end-line="65" selection-end-column="68" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/models/semantic-segmentation-pytorch/dataset.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1368">
-          <caret line="82" column="0" lean-forward="false" selection-start-line="82" selection-start-column="0" selection-end-line="82" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/models/semantic-segmentation-pytorch/train.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5976">
-          <caret line="349" column="28" lean-forward="false" selection-start-line="349" selection-start-column="28" selection-end-line="349" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/metrics_acc_iou.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1080">
-          <caret line="63" column="30" lean-forward="false" selection-start-line="63" selection-start-column="30" selection-end-line="63" selection-end-column="30" />
-<<<<<<< HEAD
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-            <marker date="1515551621266" expanded="true" signature="1450:2604" ph="..." />
-            <marker date="1515551621266" expanded="true" signature="1896:2395" ph="..." />
-          </folding>
-=======
->>>>>>> b05a286ae22ae7cae7ac5dc982d4901d5068b2ee
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/models/semantic-segmentation-pytorch/predict.py" />
-    <entry file="file://$PROJECT_DIR$/models/semantic-segmentation-pytorch/utils.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1818">
-          <caret line="102" column="0" lean-forward="false" selection-start-line="102" selection-start-column="0" selection-end-line="102" selection-end-column="0" />
-<<<<<<< HEAD
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/py_img_seg_eval/eval_segm.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="378">
-          <caret line="21" column="0" lean-forward="false" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/py_img_seg_eval/README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SECOND">
-          <first_editor relative-caret-position="0">
-            <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          </first_editor>
-          <second_editor />
-=======
->>>>>>> b05a286ae22ae7cae7ac5dc982d4901d5068b2ee
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/py_img_seg_eval/eval_segm.py" />
-    <entry file="file://$PROJECT_DIR$/src/py_img_seg_eval/README.md" />
-    <entry file="file://$PROJECT_DIR$/models/semantic-segmentation-pytorch/train.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5328">
-          <caret line="313" column="42" lean-forward="false" selection-start-line="313" selection-start-column="27" selection-end-line="313" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/models/semantic-segmentation-pytorch/dataset.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1368">
-          <caret line="82" column="0" lean-forward="false" selection-start-line="82" selection-start-column="0" selection-end-line="82" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/models/semantic-segmentation-pytorch/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1602">
-          <caret line="92" column="34" lean-forward="false" selection-start-line="92" selection-start-column="27" selection-end-line="92" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/py_img_seg_eval/README.md" />
-    <entry file="file://$PROJECT_DIR$/models/semantic-segmentation-pytorch/predict.py" />
-    <entry file="file://$PROJECT_DIR$/models/semantic-segmentation-pytorch/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="65" column="68" lean-forward="false" selection-start-line="65" selection-start-column="65" selection-end-line="65" selection-end-column="68" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/models/semantic-segmentation-pytorch/dataset.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="509">
-          <caret line="82" column="0" lean-forward="false" selection-start-line="82" selection-start-column="0" selection-end-line="82" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/models/semantic-segmentation-pytorch/train.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="509">
-          <caret line="349" column="28" lean-forward="false" selection-start-line="349" selection-start-column="28" selection-end-line="349" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Contantenate_image.py" />
-<<<<<<< HEAD
-    <entry file="file://$PROJECT_DIR$/src/py_img_seg_eval/eval_segm.py">
-      <provider selected="true" editor-type-id="text-editor">
-<<<<<<< HEAD
-        <state relative-caret-position="378">
-          <caret line="21" column="0" lean-forward="false" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
-=======
-        <state relative-caret-position="216">
-          <caret line="12" column="0" lean-forward="true" selection-start-line="12" selection-start-column="0" selection-end-line="117" selection-end-column="0" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-=======
-    <entry file="file://$PROJECT_DIR$/src/py_img_seg_eval/eval_segm.py" />
->>>>>>> b05a286ae22ae7cae7ac5dc982d4901d5068b2ee
-    <entry file="file://$PROJECT_DIR$/src/metrics_acc_iou.py">
+    <entry file="file://$PROJECT_DIR$/models/utils.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3888">
-          <caret line="216" column="48" lean-forward="true" selection-start-line="216" selection-start-column="48" selection-end-line="216" selection-end-column="48" />
-<<<<<<< HEAD
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-          </folding>
->>>>>>> 9dadfe5ef165e76382fcc0f58c8d07472307abda
-=======
->>>>>>> b05a286ae22ae7cae7ac5dc982d4901d5068b2ee
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Contantenate_image.py" />
-    <entry file="file://$PROJECT_DIR$/models/semantic-segmentation-pytorch/eval.py">
-      <provider selected="true" editor-type-id="text-editor">
-<<<<<<< HEAD
-        <state relative-caret-position="-90">
-          <caret line="52" column="51" lean-forward="true" selection-start-line="52" selection-start-column="41" selection-end-line="52" selection-end-column="51" />
-=======
-        <state relative-caret-position="75">
-          <caret line="97" column="27" lean-forward="false" selection-start-line="97" selection-start-column="22" selection-end-line="97" selection-end-column="27" />
-<<<<<<< HEAD
-          <folding>
-            <element signature="e#14#23#0" expanded="true" />
-          </folding>
->>>>>>> 9dadfe5ef165e76382fcc0f58c8d07472307abda
-=======
->>>>>>> b05a286ae22ae7cae7ac5dc982d4901d5068b2ee
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/models/semantic-segmentation-pytorch/utils.py">
-      <provider selected="true" editor-type-id="text-editor">
-<<<<<<< HEAD
-        <state relative-caret-position="113">
-          <caret line="92" column="23" lean-forward="false" selection-start-line="92" selection-start-column="23" selection-end-line="92" selection-end-column="23" />
-=======
-        <state relative-caret-position="171">
-          <caret line="116" column="25" lean-forward="false" selection-start-line="116" selection-start-column="25" selection-end-line="116" selection-end-column="25" />
-<<<<<<< HEAD
-          <folding>
-            <element signature="e#0#12#0" expanded="true" />
-          </folding>
->>>>>>> 9dadfe5ef165e76382fcc0f58c8d07472307abda
-=======
->>>>>>> b05a286ae22ae7cae7ac5dc982d4901d5068b2ee
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/debug/pytorch_log">
-      <provider selected="true" editor-type-id="text-editor">
-<<<<<<< HEAD
-        <state relative-caret-position="234">
-          <caret line="16" column="22" lean-forward="false" selection-start-line="16" selection-start-column="22" selection-end-line="16" selection-end-column="22" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-            <marker date="1515551621266" expanded="true" signature="1450:2604" ph="..." />
-            <marker date="1515551621266" expanded="true" signature="1896:2395" ph="..." />
-          </folding>
-=======
-        <state relative-caret-position="-2313">
-          <caret line="20" column="0" lean-forward="false" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="30" />
-<<<<<<< HEAD
-          <folding />
->>>>>>> 9dadfe5ef165e76382fcc0f58c8d07472307abda
-=======
->>>>>>> b05a286ae22ae7cae7ac5dc982d4901d5068b2ee
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/concat_image.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="234">
-          <caret line="19" column="0" lean-forward="false" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/models/PSPNet-Keras-tensorflow/pspnet.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="277">
-          <caret line="277" column="0" lean-forward="false" selection-start-line="277" selection-start-column="0" selection-end-line="277" selection-end-column="0" />
+        <state relative-caret-position="54">
+          <caret line="3" column="8" lean-forward="false" selection-start-line="3" selection-start-column="8" selection-end-line="3" selection-end-column="8" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/models/PSPNet-Keras-tensorflow/pspnet_jl.py">
+    <entry file="file://$PROJECT_DIR$/models/layers_builder.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1154">
-          <caret line="282" column="66" lean-forward="false" selection-start-line="282" selection-start-column="66" selection-end-line="282" selection-end-column="66" />
+        <state relative-caret-position="450">
+          <caret line="25" column="18" lean-forward="false" selection-start-line="25" selection-start-column="18" selection-end-line="25" selection-end-column="18" />
+          <folding>
+            <element signature="e#0#37#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/model_utils.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="72">
+          <caret line="4" column="5" lean-forward="false" selection-start-line="4" selection-start-column="5" selection-end-line="4" selection-end-column="5" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/pspnet_pred.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="282">
+          <caret line="250" column="46" lean-forward="true" selection-start-line="250" selection-start-column="46" selection-end-line="250" selection-end-column="46" />
+          <folding>
+            <element signature="e#521#558#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
