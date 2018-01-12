@@ -1,0 +1,29 @@
+Benchmark
+     BF Init Model 2018-01-11 22:14:48.532760 0:00:00.001380
+Namespace(flip=False, id='0', input_list='psptest1_list', input_path='example_images/ade20k.jpg', model='pspnet50_ade20k', multi_scale=False, output_path='results/', sliding=False)
+Keras model & weights found, loading...
+     AF Init Model 2018-01-11 22:14:51.995052 0:00:03.463682
+Predicting image scaled by 1.000000
+     BF Raw Image Resize 2018-01-11 22:14:52.007752 0:00:03.476369
+Input (512, 683) not fitting for network size (473, 473), resizing. You may want to try sliding prediction for better results.
+     BF Raw Image Resize 2018-01-11 22:14:52.014447 0:00:03.483065
+     BF Preprocess Image 2018-01-11 22:14:52.014479 0:00:03.483087
+     AF Preprocess Image 2018-01-11 22:14:52.021464 0:00:03.490080
+     BF Regular Model Prediction 2018-01-11 22:14:52.021492 0:00:03.490100
+     AF Regular Model Prediction 2018-01-11 22:14:53.495966 0:00:04.964614
+     BF Zoom 2018-01-11 22:14:53.496066 0:00:04.964681
+     AF Zoom 2018-01-11 22:14:55.988864 0:00:07.457499
+     AF Predict Model 2018-01-11 22:14:55.989209 0:00:07.457824
+For pic A Pixel_accuray is 0.952150  Mean_IOU is 0.770030
+For all the 1 pictures
+Mean Accuracy is 0.952150
+Mean IOU is 0.035935
+
+
+
+Modify 1
+For pic A Pixel_accuray is 0.950864  Mean_IOU is 0.760544
+For all the 1 pictures
+Mean Accuracy is 0.950864
+Mean IOU is 0.035492
+
