@@ -1,0 +1,179 @@
+ResnetDilated (
+  (conv1): Conv2d (3, 64, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False), weights=((64L, 3L, 3L, 3L),), parameters=1728
+  (bn1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True), weights=((64L,), (64L,)), parameters=128
+  (relu1): ReLU(inplace), weights=(), parameters=0
+  (conv2): Conv2d (64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False), weights=((64L, 64L, 3L, 3L),), parameters=36864
+  (bn2): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True), weights=((64L,), (64L,)), parameters=128
+  (relu2): ReLU(inplace), weights=(), parameters=0
+  (conv3): Conv2d (64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False), weights=((64L, 64L, 3L, 3L),), parameters=36864
+  (bn3): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True), weights=((64L,), (64L,)), parameters=128
+  (relu3): ReLU(inplace), weights=(), parameters=0
+  (maxpool): MaxPool2d(kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), dilation=(1, 1)), weights=(), parameters=0
+  (layer1): Sequential (
+    (0): BasicBlock(
+      (conv1): Conv2d (64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True)
+      (relu): ReLU(inplace)
+      (conv2): Conv2d (64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True)
+    ), weights=((64L, 64L, 3L, 3L), (64L,), (64L,), (64L, 64L, 3L, 3L), (64L,), (64L,)), parameters=73984
+    (1): BasicBlock(
+      (conv1): Conv2d (64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True)
+      (relu): ReLU(inplace)
+      (conv2): Conv2d (64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True)
+    ), weights=((64L, 64L, 3L, 3L), (64L,), (64L,), (64L, 64L, 3L, 3L), (64L,), (64L,)), parameters=73984
+    (2): BasicBlock(
+      (conv1): Conv2d (64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True)
+      (relu): ReLU(inplace)
+      (conv2): Conv2d (64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True)
+    ), weights=((64L, 64L, 3L, 3L), (64L,), (64L,), (64L, 64L, 3L, 3L), (64L,), (64L,)), parameters=73984
+  ), weights=((64L, 64L, 3L, 3L), (64L,), (64L,), (64L, 64L, 3L, 3L), (64L,), (64L,), (64L, 64L, 3L, 3L), (64L,), (64L,), (64L, 64L, 3L, 3L), (64L,), (64L,), (64L, 64L, 3L, 3L), (64L,), (64L,), (64L, 64L, 3L, 3L), (64L,), (64L,)), parameters=221952
+  (layer2): Sequential (
+    (0): BasicBlock(
+      (conv1): Conv2d (64, 128, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+      (bn1): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True)
+      (relu): ReLU(inplace)
+      (conv2): Conv2d (128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True)
+      (downsample): Sequential(
+        (0): Conv2d (64, 128, kernel_size=(1, 1), stride=(2, 2), bias=False)
+        (1): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True)
+      )
+    ), weights=((128L, 64L, 3L, 3L), (128L,), (128L,), (128L, 128L, 3L, 3L), (128L,), (128L,), (128L, 64L, 1L, 1L), (128L,), (128L,)), parameters=230144
+    (1): BasicBlock(
+      (conv1): Conv2d (128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn1): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True)
+      (relu): ReLU(inplace)
+      (conv2): Conv2d (128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True)
+    ), weights=((128L, 128L, 3L, 3L), (128L,), (128L,), (128L, 128L, 3L, 3L), (128L,), (128L,)), parameters=295424
+    (2): BasicBlock(
+      (conv1): Conv2d (128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn1): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True)
+      (relu): ReLU(inplace)
+      (conv2): Conv2d (128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True)
+    ), weights=((128L, 128L, 3L, 3L), (128L,), (128L,), (128L, 128L, 3L, 3L), (128L,), (128L,)), parameters=295424
+    (3): BasicBlock(
+      (conv1): Conv2d (128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn1): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True)
+      (relu): ReLU(inplace)
+      (conv2): Conv2d (128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True)
+    ), weights=((128L, 128L, 3L, 3L), (128L,), (128L,), (128L, 128L, 3L, 3L), (128L,), (128L,)), parameters=295424
+  ), weights=((128L, 64L, 3L, 3L), (128L,), (128L,), (128L, 128L, 3L, 3L), (128L,), (128L,), (128L, 64L, 1L, 1L), (128L,), (128L,), (128L, 128L, 3L, 3L), (128L,), (128L,), (128L, 128L, 3L, 3L), (128L,), (128L,), (128L, 128L, 3L, 3L), (128L,), (128L,), (128L, 128L, 3L, 3L), (128L,), (128L,), (128L, 128L, 3L, 3L), (128L,), (128L,), (128L, 128L, 3L, 3L), (128L,), (128L,)), parameters=1116416
+  (layer3): Sequential (
+    (0): BasicBlock(
+      (conv1): Conv2d (128, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn1): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True)
+      (relu): ReLU(inplace)
+      (conv2): Conv2d (256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(2, 2), dilation=(2, 2), bias=False)
+      (bn2): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True)
+      (downsample): Sequential(
+        (0): Conv2d (128, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (1): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True)
+      )
+    ), weights=((256L, 128L, 3L, 3L), (256L,), (256L,), (256L, 256L, 3L, 3L), (256L,), (256L,), (256L, 128L, 1L, 1L), (256L,), (256L,)), parameters=919040
+    (1): BasicBlock(
+      (conv1): Conv2d (256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(2, 2), dilation=(2, 2), bias=False)
+      (bn1): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True)
+      (relu): ReLU(inplace)
+      (conv2): Conv2d (256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(2, 2), dilation=(2, 2), bias=False)
+      (bn2): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True)
+    ), weights=((256L, 256L, 3L, 3L), (256L,), (256L,), (256L, 256L, 3L, 3L), (256L,), (256L,)), parameters=1180672
+    (2): BasicBlock(
+      (conv1): Conv2d (256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(2, 2), dilation=(2, 2), bias=False)
+      (bn1): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True)
+      (relu): ReLU(inplace)
+      (conv2): Conv2d (256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(2, 2), dilation=(2, 2), bias=False)
+      (bn2): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True)
+    ), weights=((256L, 256L, 3L, 3L), (256L,), (256L,), (256L, 256L, 3L, 3L), (256L,), (256L,)), parameters=1180672
+    (3): BasicBlock(
+      (conv1): Conv2d (256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(2, 2), dilation=(2, 2), bias=False)
+      (bn1): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True)
+      (relu): ReLU(inplace)
+      (conv2): Conv2d (256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(2, 2), dilation=(2, 2), bias=False)
+      (bn2): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True)
+    ), weights=((256L, 256L, 3L, 3L), (256L,), (256L,), (256L, 256L, 3L, 3L), (256L,), (256L,)), parameters=1180672
+    (4): BasicBlock(
+      (conv1): Conv2d (256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(2, 2), dilation=(2, 2), bias=False)
+      (bn1): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True)
+      (relu): ReLU(inplace)
+      (conv2): Conv2d (256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(2, 2), dilation=(2, 2), bias=False)
+      (bn2): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True)
+    ), weights=((256L, 256L, 3L, 3L), (256L,), (256L,), (256L, 256L, 3L, 3L), (256L,), (256L,)), parameters=1180672
+    (5): BasicBlock(
+      (conv1): Conv2d (256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(2, 2), dilation=(2, 2), bias=False)
+      (bn1): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True)
+      (relu): ReLU(inplace)
+      (conv2): Conv2d (256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(2, 2), dilation=(2, 2), bias=False)
+      (bn2): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True)
+    ), weights=((256L, 256L, 3L, 3L), (256L,), (256L,), (256L, 256L, 3L, 3L), (256L,), (256L,)), parameters=1180672
+  ), weights=((256L, 128L, 3L, 3L), (256L,), (256L,), (256L, 256L, 3L, 3L), (256L,), (256L,), (256L, 128L, 1L, 1L), (256L,), (256L,), (256L, 256L, 3L, 3L), (256L,), (256L,), (256L, 256L, 3L, 3L), (256L,), (256L,), (256L, 256L, 3L, 3L), (256L,), (256L,), (256L, 256L, 3L, 3L), (256L,), (256L,), (256L, 256L, 3L, 3L), (256L,), (256L,), (256L, 256L, 3L, 3L), (256L,), (256L,), (256L, 256L, 3L, 3L), (256L,), (256L,), (256L, 256L, 3L, 3L), (256L,), (256L,), (256L, 256L, 3L, 3L), (256L,), (256L,), (256L, 256L, 3L, 3L), (256L,), (256L,)), parameters=6822400
+  (layer4): Sequential (
+    (0): BasicBlock(
+      (conv1): Conv2d (256, 512, kernel_size=(3, 3), stride=(1, 1), padding=(2, 2), dilation=(2, 2), bias=False)
+      (bn1): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True)
+      (relu): ReLU(inplace)
+      (conv2): Conv2d (512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(4, 4), dilation=(4, 4), bias=False)
+      (bn2): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True)
+      (downsample): Sequential(
+        (0): Conv2d (256, 512, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (1): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True)
+      )
+    ), weights=((512L, 256L, 3L, 3L), (512L,), (512L,), (512L, 512L, 3L, 3L), (512L,), (512L,), (512L, 256L, 1L, 1L), (512L,), (512L,)), parameters=3673088
+    (1): BasicBlock(
+      (conv1): Conv2d (512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(4, 4), dilation=(4, 4), bias=False)
+      (bn1): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True)
+      (relu): ReLU(inplace)
+      (conv2): Conv2d (512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(4, 4), dilation=(4, 4), bias=False)
+      (bn2): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True)
+    ), weights=((512L, 512L, 3L, 3L), (512L,), (512L,), (512L, 512L, 3L, 3L), (512L,), (512L,)), parameters=4720640
+    (2): BasicBlock(
+      (conv1): Conv2d (512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(4, 4), dilation=(4, 4), bias=False)
+      (bn1): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True)
+      (relu): ReLU(inplace)
+      (conv2): Conv2d (512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(4, 4), dilation=(4, 4), bias=False)
+      (bn2): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True)
+    ), weights=((512L, 512L, 3L, 3L), (512L,), (512L,), (512L, 512L, 3L, 3L), (512L,), (512L,)), parameters=4720640
+  ), weights=((512L, 256L, 3L, 3L), (512L,), (512L,), (512L, 512L, 3L, 3L), (512L,), (512L,), (512L, 256L, 1L, 1L), (512L,), (512L,), (512L, 512L, 3L, 3L), (512L,), (512L,), (512L, 512L, 3L, 3L), (512L,), (512L,), (512L, 512L, 3L, 3L), (512L,), (512L,), (512L, 512L, 3L, 3L), (512L,), (512L,)), parameters=13114368
+)
+PSPBilinear (
+  (psp): ModuleList(
+    (0): Sequential(
+      (0): AdaptiveAvgPool2d(output_size=1)
+      (1): Conv2d (512, 512, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (2): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True)
+      (3): ReLU(inplace)
+    )
+    (1): Sequential(
+      (0): AdaptiveAvgPool2d(output_size=2)
+      (1): Conv2d (512, 512, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (2): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True)
+      (3): ReLU(inplace)
+    )
+    (2): Sequential(
+      (0): AdaptiveAvgPool2d(output_size=3)
+      (1): Conv2d (512, 512, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (2): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True)
+      (3): ReLU(inplace)
+    )
+    (3): Sequential(
+      (0): AdaptiveAvgPool2d(output_size=6)
+      (1): Conv2d (512, 512, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (2): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True)
+      (3): ReLU(inplace)
+    )
+  ), weights=((512L, 512L, 1L, 1L), (512L,), (512L,), (512L, 512L, 1L, 1L), (512L,), (512L,), (512L, 512L, 1L, 1L), (512L,), (512L,), (512L, 512L, 1L, 1L), (512L,), (512L,)), parameters=1052672
+  (conv_last): Sequential (
+    (0): Conv2d (2560, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False), weights=((512L, 2560L, 3L, 3L),), parameters=11796480
+    (1): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True), weights=((512L,), (512L,)), parameters=1024
+    (2): ReLU(inplace), weights=(), parameters=0
+    (3): Dropout(p=0.1), weights=(), parameters=0
+    (4): Conv2d (512, 150, kernel_size=(1, 1), stride=(1, 1)), weights=((150L, 512L, 1L, 1L), (150L,)), parameters=76950
+  ), weights=((512L, 2560L, 3L, 3L), (512L,), (512L,), (150L, 512L, 1L, 1L), (150L,)), parameters=11874454
+)
