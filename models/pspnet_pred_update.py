@@ -42,10 +42,12 @@ from datetime import datetime
 
 # These are the means for the ImageNet pretrained ResNet
 DATA_MEAN = np.array([[[[123.68, 116.779, 103.939]]]])  # RGB order
+EVALUATION_SCALES = [1.0]  # must be all floats!
 TIME_START = datetime.now()
 
 class PSPNet(object):
     """Pyramid Scene Parsing Network by proposed by Hengshuang Zhao et al 2017."""
+
 
     def __init__(self, nb_classes, resnet_layers, input_shape, weights):
         """Instanciate a PSPNet."""
@@ -101,13 +103,13 @@ class PSPNet(object):
             input_data = self._preprocess_image(img_batch)
             regular_prediction = self.model.predict(input_data, batch_size=batch_size)
 
-            if flip_evaluation:
+            if True: #flip_evaluation:
                 print("Predict flipped")
                 flipped_prediction = np.flip(
                                             self.model.predict(
-                                                np.flip(input_data, axis=2),
+                                                np.flip(input_data, axis=3),
                                             batch_size=batch_size),
-                                            axis=2)
+                                            axis=3)
                 prediction = (regular_prediction + flipped_prediction) / 2.0
             else:
                 prediction = regular_prediction
@@ -124,6 +126,38 @@ class PSPNet(object):
                 input_name = list_batch[i_c]
                 output_name = input_name.split("/")[-1][0:-4]
                 np.save(join(output_path, output_name), pred_i)
+#        h_ori, w_ori = img.shape[1:3]
+
+        # if img.shape[1:3] != self.input_shape:
+        #     print("Input %s not fitting for network size %s, resizing"
+        #           % (img.shape[1:3], self.input_shape))
+        # #     img = misc.imresize(img, self.input_shape)
+        # input_data = self._preprocess_image(img)
+        #
+        # # utils.debug(self.model, input_data)
+        #
+        # print("     BF Regular Model Prediction", str(datetime.now()), datetime.now() - TIME_START)
+        # regular_prediction = self.model.predict(input_data)
+        # print("     AF Regular Model Prediction", str(datetime.now()), datetime.now() - TIME_START)
+
+        # if False: #flip_evaluation:
+        #     print("Predict flipped")
+        #     flipped_prediction = np.fliplr(self.model.predict(np.flip(input_data, axis=2)))
+        #     prediction = (regular_prediction + flipped_prediction) / 2.0
+        # else:
+        #     prediction = regular_prediction
+        #
+        # print("     BF Zoom", str(datetime.now()), datetime.now() - TIME_START)
+        #
+        # prediction = np.argmax(prediction, axis=3)
+        #
+        # if img.shape[0:1] != self.input_shape:  # upscale prediction if necessary
+        #     h, w = prediction.shape[:2]
+        #     prediction = ndimage.zoom(prediction, (1, 1.*h_ori/h, 1.*w_ori/w),
+        #                               order=1, prefilter=False)
+        # print("     AF Zoom", str(datetime.now()), datetime.now() - TIME_START)
+        #
+        # return prediction
 
     def _preprocess_image(self, img):
         """Preprocess an image as input."""

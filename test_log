@@ -19,6 +19,13 @@ For all the 1 pictures
 Mean Accuracy is 0.952150
 Mean IOU is 0.035935
 
+## Fast prediction with flipped prediction
+Predicting for  data/ADEChallengeData2016/images/validation/ADE_val_00000005.jpg
+For pic A Pixel_accuray is 0.951437  Mean_IOU is 0.763220
+For pic D Pixel_accuray is 0.604583  Mean_IOU is 0.313278
+For all the 2 pictures
+Mean Accuracy is 0.863261
+Mean IOU is 0.040207
 
 
 Modify 1
@@ -27,3 +34,16 @@ For all the 1 pictures
 Mean Accuracy is 0.950864
 Mean IOU is 0.035492
 
+Implemented Batch Prediction
+For pic A Pixel_accuray is 0.950864  Mean_IOU is 0.760557
+For pic D Pixel_accuray is 0.611178  Mean_IOU is 0.312244
+For all the 2 pictures
+Mean Accuracy is 0.864511
+Mean IOU is 0.040397
+
+Implemented batch prediction with Flip option
+For pic A Pixel_accuray is 0.951437  Mean_IOU is 0.763233
+For pic D Pixel_accuray is 0.604583  Mean_IOU is 0.313278
+For all the 2 pictures
+Mean Accuracy is 0.863261
+Mean IOU is 0.040207
