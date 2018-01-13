@@ -36,6 +36,7 @@ from keras.models import model_from_json
 import tensorflow as tf
 import layers_builder as layers
 import model_utils as model_utils
+from keras.optimizers import SGD
 import matplotlib.pyplot as plt
 from datetime import datetime
 
@@ -125,13 +126,107 @@ class PSPNet(object):
                 output_name = input_name.split("/")[-1][0:-4]
                 np.save(join(output_path, output_name), pred_i)
 
-    def _preprocess_image(self, img):
+
+    def train_one_epoch(self, input_list, val_list, n_class=150):
+        '''
+        train one epoch on provide input and validation images
+        :param input_list: list of input images
+        :param val_list: list of validation images
+        :param flip_evaluation: flip preprocessing or not
+        :param batch_size: batch_size
+        :return:
+        '''
+
+        # X_batch = self._get_X_batch(input_list, ndim=3)
+        # y_batch = self._get_y_batch(val_list, n_class=n_class)
+        X_batch, y_batch = self._get_X_y_batch(input_list, val_list)
+        ## Random flip left right
+        if np.random.choice([False, True]):
+            X_batch = np.flip(X_batch, axis=2)
+            y_batch = np.flip(y_batch, axis=2)
+        self.model.train_on_batch(X_batch, y_batch)
+
+
+    def _get_X_y_batch(self, img_list, val_list, shapes = (473, 473), ndim=3, n_class=150):
+        '''
+        :param img_list: a list of rgb or gray image
+        :param shapes: the size of batch image
+        :return: img_batch n_img x height x width x nchanel
+        '''
+        batch_size = len(img_list)
+        X_batch = np.zeros((batch_size, shapes[0], shapes[1], ndim))
+        y_batch = np.zeros((batch_size, shapes[0], shapes[1], n_class))
+        ## Read image into batches
+        for i_c in range(batch_size):
+            input_name = img_list[i_c]
+            if ndim == 3:
+                img = misc.imread(input_name, mode="RGB")
+            elif ndim == 2:
+                img = misc.imread(input_name)
+            val_name = val_list[i_c]
+            val = misc.imread(val_name)
+            assert img.shape[0] == val.shape[0]
+            assert img.shape[1] == val.shape[1]
+            # Resize X
+            img = misc.imresize(img, (shapes[0], shapes[1]))
+            X_batch[i_c, :, :, :] = img
+            # Resize and expand y
+            cl = np.unique(val)
+            cl = cl[cl > 0]
+            val = misc.imresize(val, (shapes[0], shapes[1]))
+            for clc in cl:
+                cmask = (val == clc).astype(int)
+                y_batch[i_c, :, :, clc - 1] = cmask
+        return X_batch, y_batch.astype("float16")
+
+
+    # def _get_X_batch(self, img_list, shapes = (473, 473), ndim = 3):
+    #     '''
+    #     :param img_list: a list of rgb or gray image
+    #     :param shapes: the size of batch image
+    #     :return: img_batch n_img x height x width x nchanel
+    #     '''
+    #     batch_size = len(img_list)
+    #     img_batch = np.zeros((batch_size, shapes[0], shapes[1], ndim))
+    #     ## Read image into batches
+    #     for i_c in range(batch_size):
+    #         input_name = img_list[i_c]
+    #         if ndim == 3:
+    #             img = misc.imread(input_name, mode="RGB")
+    #         elif ndim == 2:
+    #             img = misc.imread(input_name)
+    #         img = misc.imresize(img, (shapes[0], shapes[1]))
+    #         img_batch[i_c, :, :, :] = img
+    #     return img_batch
+    #
+    #
+    # def _get_y_batch(img_list, shapes=(473, 473), n_class=150):
+    #     '''
+    #     :param img_list: a list of rgb or gray image
+    #     :param shapes: the size of batch image
+    #     :return: img_batch n_img x height x width x nchanel
+    #     '''
+    #     batch_size = len(img_list)
+    #     img_batch = np.zeros((batch_size, shapes[0], shapes[1], n_class))
+    #     ## Read image into batches
+    #     for i_c in range(batch_size):
+    #         input_name = img_list[i_c]
+    #         img = misc.imread(input_name)
+    #         cl = np.unique(img)
+    #         cl = cl[cl > 0]
+    #         img = misc.imresize(img, (shapes[0], shapes[1]))
+    #         for clc in cl:
+    #             cmask = (img == clc).astype(int)
+    #             img_batch[i_c, :, :, clc - 1] = cmask
+    #     return img_batch.astype("float16")
+
+
+    def _preprocess_image(self, imgbatch):
         """Preprocess an image as input."""
-        float_img = img.astype('float16')
+        float_img = imgbatch.astype('float16')
         centered_image = float_img - DATA_MEAN
         input_data = centered_image[:, :, :, ::-1]  # RGB => BGR
         return input_data
-
 
 
 class PSPNet50(PSPNet):
@@ -168,35 +263,74 @@ def visualize_prediction(prediction):
     plt.show()
 
 
+def output_model(net, args):
+    with open(args.model + ".txt", 'w') as fh:
+        # Pass the file handle in as a lambda function to make it callable
+        net.model.summary(print_fn=lambda x: fh.write(x + '\n'))
+
+
+## For memory control
+def get_model_memory_usage(batch_size, model):
+    import numpy as np
+    from keras import backend as K
+
+    shapes_mem_count = 0
+    for l in model.layers:
+        single_layer_mem = 1
+        for s in l.output_shape:
+            if s is None:
+                continue
+            single_layer_mem *= s
+        shapes_mem_count += single_layer_mem
+
+    trainable_count = np.sum([K.count_params(p) for p in set(model.trainable_weights)])
+    non_trainable_count = np.sum([K.count_params(p) for p in set(model.non_trainable_weights)])
+
+    total_memory = 4.0*batch_size*(shapes_mem_count + trainable_count + non_trainable_count)
+    gbytes = np.round(total_memory / (1024.0 ** 3), 3)
+    return gbytes
+
+
 def main(args):
     environ["CUDA_VISIBLE_DEVICES"] = "0"
 
     sess = tf.Session()
     K.set_session(sess)
-
-    print("     BF Init Model", str(datetime.now()), datetime.now() - TIME_START)
-
+    img_list = np.array([x.rstrip() for x in open(args.train_list, 'r')])
+    val_list = np.array([x.rstrip() for x in open(args.val_list, 'r')])
+    n_total = len(img_list)
+    batch_size = args.batch_size
+    index_array = np.arange(n_total)
+    n_batch = int((n_total - 1) / batch_size) + 1
+    print("No. %i of batches for each epoch"%(n_batch))
     with sess.as_default():
-        print(args)
-        # Build Model
-        if "pspnet50" in args.model:
-            pspnet = PSPNet50(nb_classes=150, input_shape=(473, 473),
-                              weights=args.model)
-        else:
-            print("Network architecture not implemented.")
+        # Build Model and train from scratch or train on top of an existing model
+        if args.weights is not None:
+            if "pspnet50" in args.model:
+                pspnet = PSPNet50(nb_classes=150, input_shape=(473, 473),
+                                  weights=args.weights)
+            else:
+                print("Network architecture not implemented.")
 
-        print("     AF Init Model", str(datetime.now()), datetime.now() - TIME_START)
-
-        ## Batch Prediction
-        pspnet.predict(args.input_list,  args.flip, output_path="results/", batch_size=5)
-
-        print("     After Model Prediction", str(datetime.now()), datetime.now() - TIME_START)
+            sgd = SGD(lr=args.learning_rate, momentum=0.9, nesterov=True)
+            pspnet.model.compile(optimizer=sgd,
+                  loss='categorical_crossentropy',
+                  metrics=['accuracy'])
+            print("total GPU memory usage is %f Gb"%(get_model_memory_usage(batch_size, pspnet.model)))
+            for i in range(args.num_epoch):
+                np.random.shuffle(index_array) ## Shuffle index
+                for i_batch in range(n_batch):
+                    if (i_batch + 1) * batch_size < n_total:
+                        index_batch = index_array[i_batch * batch_size:(i_batch + 1) * batch_size]
+                    else:
+                        index_batch = index_array[i_batch * batch_size:]
+                    print("%i/%i finished after %s" % (i_batch, n_batch, str(datetime.now() - TIME_START)))
+                    input_batch = img_list[index_batch]
+                    val_batch = val_list[index_batch]
+                    pspnet.train_one_epoch(input_batch, val_batch)
 
         ## Output model report
-        if args.print_report:
-            with open(args.model + ".txt", 'w') as fh:
-                # Pass the file handle in as a lambda function to make it callable
-                pspnet.model.summary(print_fn=lambda x: fh.write(x + '\n'))
+        output_model(pspnet, args) if args.print_report else None
 
 
 if __name__ == "__main__":
@@ -206,18 +340,23 @@ if __name__ == "__main__":
                         choices=['pspnet50_ade20k',
                                  'pspnet101_cityscapes',
                                  'pspnet101_voc2012'])
-    parser.add_argument('-il', '--input_list', type=str, default='example_images/ade20k.jpg',
+    parser.add_argument('-train', '--train_list', type=str,
+                        default='data/ADE20K_object150_train.txt',
                         help='Path the input image')
-
-    parser.add_argument('-i', '--input_path', type=str, default='example_images/ade20k.jpg',
-                        help='Path the input image')
-    parser.add_argument('-o', '--output_path', type=str, default='results/',
+    parser.add_argument('-val', '--val_list', type=str, default='',
+                        help='Path validation image')
+    parser.add_argument('--batch_size', type=int, default=2)
+    parser.add_argument('--num_epoch', type=int, default=1,
                         help='Path to output')
+    parser.add_argument('--learning_rate', type=float, default=1e-3,
+                        help='learning rate')
     parser.add_argument('--num_gpus', default="1")
+    parser.add_argument('--ckpt', default="weights/")
+    parser.add_argument('--weights', default=None,
+                        help="If weights provided, training start from this weights")
     parser.add_argument('-f', '--flip', action='store_true',
                         help="Whether the network should predict on both image and flipped image.")
     parser.add_argument('--print_report', default=False)
-
     args = parser.parse_args()
-
+    print(args)
     main(args)
