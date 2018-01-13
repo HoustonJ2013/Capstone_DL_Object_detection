@@ -2,9 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="23c56685-28da-4857-a667-25123ed3d30a" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ADE_val_00000001.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ADE_val_00000001_b.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ADE_val_00000003.jpg" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/models/pspnet_train.py" afterPath="$PROJECT_DIR$/models/pspnet_train.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -19,8 +16,8 @@
       <file leaf-file-name="pspnet_train.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/models/pspnet_train.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="30">
-              <caret line="332" column="55" lean-forward="false" selection-start-line="332" selection-start-column="55" selection-end-line="332" selection-end-column="55" />
+            <state relative-caret-position="414">
+              <caret line="287" column="79" lean-forward="false" selection-start-line="287" selection-start-column="79" selection-end-line="287" selection-end-column="79" />
               <folding>
                 <element signature="e#1094#1131#0" expanded="true" />
               </folding>
@@ -315,8 +312,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/models/pspnet_train.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="332" column="55" lean-forward="false" selection-start-line="332" selection-start-column="55" selection-end-line="332" selection-end-column="55" />
+        <state relative-caret-position="414">
+          <caret line="287" column="79" lean-forward="false" selection-start-line="287" selection-start-column="79" selection-end-line="287" selection-end-column="79" />
           <folding>
             <element signature="e#1094#1131#0" expanded="true" />
           </folding>

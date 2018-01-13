@@ -134,7 +134,7 @@ class PSPNet(object):
         :param val_list: list of validation images
         :param flip_evaluation: flip preprocessing or not
         :param batch_size: batch_size
-        :return:
+        :return: loss
         '''
 
         # X_batch = self._get_X_batch(input_list, ndim=3)
@@ -144,7 +144,7 @@ class PSPNet(object):
         if np.random.choice([False, True]):
             X_batch = np.flip(X_batch, axis=2)
             y_batch = np.flip(y_batch, axis=2)
-        self.model.train_on_batch(X_batch, y_batch)
+        return self.model.train_on_batch(X_batch, y_batch)
 
 
     def _get_X_y_batch(self, img_list, val_list, shapes = (473, 473), ndim=3, n_class=150):
@@ -178,48 +178,6 @@ class PSPNet(object):
                 cmask = (val == clc).astype(int)
                 y_batch[i_c, :, :, clc - 1] = cmask
         return X_batch, y_batch.astype("float16")
-
-
-    # def _get_X_batch(self, img_list, shapes = (473, 473), ndim = 3):
-    #     '''
-    #     :param img_list: a list of rgb or gray image
-    #     :param shapes: the size of batch image
-    #     :return: img_batch n_img x height x width x nchanel
-    #     '''
-    #     batch_size = len(img_list)
-    #     img_batch = np.zeros((batch_size, shapes[0], shapes[1], ndim))
-    #     ## Read image into batches
-    #     for i_c in range(batch_size):
-    #         input_name = img_list[i_c]
-    #         if ndim == 3:
-    #             img = misc.imread(input_name, mode="RGB")
-    #         elif ndim == 2:
-    #             img = misc.imread(input_name)
-    #         img = misc.imresize(img, (shapes[0], shapes[1]))
-    #         img_batch[i_c, :, :, :] = img
-    #     return img_batch
-    #
-    #
-    # def _get_y_batch(img_list, shapes=(473, 473), n_class=150):
-    #     '''
-    #     :param img_list: a list of rgb or gray image
-    #     :param shapes: the size of batch image
-    #     :return: img_batch n_img x height x width x nchanel
-    #     '''
-    #     batch_size = len(img_list)
-    #     img_batch = np.zeros((batch_size, shapes[0], shapes[1], n_class))
-    #     ## Read image into batches
-    #     for i_c in range(batch_size):
-    #         input_name = img_list[i_c]
-    #         img = misc.imread(input_name)
-    #         cl = np.unique(img)
-    #         cl = cl[cl > 0]
-    #         img = misc.imresize(img, (shapes[0], shapes[1]))
-    #         for clc in cl:
-    #             cmask = (img == clc).astype(int)
-    #             img_batch[i_c, :, :, clc - 1] = cmask
-    #     return img_batch.astype("float16")
-
 
     def _preprocess_image(self, imgbatch):
         """Preprocess an image as input."""
@@ -316,6 +274,7 @@ def main(args):
             pspnet.model.compile(optimizer=sgd,
                   loss='categorical_crossentropy',
                   metrics=['accuracy'])
+
             print("total GPU memory usage is %f Gb"%(get_model_memory_usage(batch_size, pspnet.model)))
             for i in range(args.num_epoch):
                 np.random.shuffle(index_array) ## Shuffle index
@@ -324,10 +283,11 @@ def main(args):
                         index_batch = index_array[i_batch * batch_size:(i_batch + 1) * batch_size]
                     else:
                         index_batch = index_array[i_batch * batch_size:]
-                    print("%i/%i finished after %s" % (i_batch, n_batch, str(datetime.now() - TIME_START)))
                     input_batch = img_list[index_batch]
                     val_batch = val_list[index_batch]
-                    pspnet.train_one_epoch(input_batch, val_batch)
+                    lss_, acc_ = pspnet.train_one_epoch(input_batch, val_batch)
+                    print("%i/%i finished after %s, Loss is %f Acc is %f" %
+                          (i_batch, n_batch, str(datetime.now() - TIME_START), lss_, acc_))
 
         ## Output model report
         output_model(pspnet, args) if args.print_report else None
