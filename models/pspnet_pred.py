@@ -66,7 +66,7 @@ class PSPNet(object):
             img = misc.imresize(img, self.input_shape)
         input_data = self.preprocess_image(img)
         # utils.debug(self.model, input_data)
-        np.save("input_data.npy", input_data)
+#        np.save("input_data.npy", input_data)
         regular_prediction = self.model.predict(input_data)[0]
         np.save("regular_pred.npy", regular_prediction)
         if flip_evaluation:
