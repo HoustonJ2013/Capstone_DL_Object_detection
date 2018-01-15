@@ -165,6 +165,7 @@ class PSPNet101(PSPNet):
     """Build a PSPNet based on a 101-Layer ResNet."""
 
     def __init__(self, nb_classes, weights, input_shape):
+
         """Instanciate a PSPNet101."""
         PSPNet.__init__(self, nb_classes=nb_classes, resnet_layers=101,
                         input_shape=input_shape, weights=weights)
@@ -197,7 +198,7 @@ def main(args):
     with sess.as_default():
         print(args)
         # Build Model
-        if "pspnet50" in args.model:
+        if "test" in args.model:
             pspnet = PSPNet50(nb_classes=150, input_shape=(473, 473),
                               weights=args.model)
         else:
@@ -223,7 +224,8 @@ if __name__ == "__main__":
                         help='Model/Weights to use',
                         choices=['pspnet50_ade20k',
                                  'pspnet101_cityscapes',
-                                 'pspnet101_voc2012'])
+                                 'pspnet101_voc2012',
+                                 'test'])
     parser.add_argument('-il', '--input_list', type=str, default='example_images/ade20k.jpg',
                         help='Path the input image')
 
