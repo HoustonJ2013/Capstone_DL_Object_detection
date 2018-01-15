@@ -66,7 +66,6 @@ class PSPNet(object):
                                              input_shape=self.input_shape)
             self.model.load_weights(h5_path)
 
-
     def predict(self, input_list, flip_evaluation, output_path = "./", batch_size = 5):
         """
         Predict segementation for a batch of images
@@ -90,14 +89,14 @@ class PSPNet(object):
             img_batch = np.zeros((c_batch_size, 473, 473, 3))
             input_shapes = []
 
-            ## Read image into batches
+            # Read image into batches
             for i_c in range(c_batch_size):
                 input_name = list_batch[i_c]
                 img = misc.imread(input_name, mode="RGB")
                 input_shapes.append((img.shape[0], img.shape[1]))
                 img = misc.imresize(img, (473, 473))
                 img_batch[i_c, :, :, :] = img
-            ## Batch prediction using keras model
+            # Batch prediction using keras model
 
             input_data = self._preprocess_image(img_batch)
             regular_prediction = self.model.predict(input_data, batch_size=batch_size)
@@ -126,7 +125,6 @@ class PSPNet(object):
                 output_name = input_name.split("/")[-1][0:-4]
                 np.save(join(output_path, output_name), pred_i)
 
-
     def train_one_epoch(self, input_list, val_list, n_class=150):
         '''
         train one epoch on provide input and validation images
@@ -145,7 +143,6 @@ class PSPNet(object):
             X_batch = np.flip(X_batch, axis=2)
             y_batch = np.flip(y_batch, axis=2)
         return self.model.train_on_batch(X_batch, y_batch)
-
 
     def _get_X_y_batch(self, img_list, val_list, shapes = (473, 473), ndim=3, n_class=150):
         '''
@@ -174,7 +171,7 @@ class PSPNet(object):
             cl = np.unique(val)
             cl = cl[cl > 0]
             val = misc.imresize(val, (shapes[0], shapes[1]))
-            for clc in cl:
+            for clc in cl: # clc - 1 is the right index for clc
                 cmask = (val == clc).astype(int)
                 y_batch[i_c, :, :, clc - 1] = cmask
         return X_batch, y_batch.astype("float16")
@@ -186,7 +183,50 @@ class PSPNet(object):
         input_data = centered_image[:, :, :, ::-1]  # RGB => BGR
         return input_data
 
+    def save_model(self, ckpt="./", modelname="test"):
+        model_json = self.model.to_json()
+        with open(join(ckpt, modelname + ".json"), "w") as json_file:
+            json_file.write(model_json)
+        self.model.save_weights(join(ckpt, modelname + ".h5"))
+        print("Saved model to disk")
 
+    def load_model(self, ckpt="./", modelname="test"):
+        json_file = open(join(ckpt, modelname + '.json'), 'r')
+        loaded_model_json = json_file.read()
+        json_file.close()
+        loaded_model = model_from_json(loaded_model_json)
+        # load weights into new model
+        loaded_model.load_weights(join(ckpt, modelname + ".h5"))
+        print("Loaded model from disk")
+
+    def _img_pixel_accuracy(self, y_pred, y_true, num_class=150):
+        '''
+        :param y_pred: predicted label image
+        :param y_true: true label image
+        :return: Accuracy for this prediction
+        '''
+        y_pred_img_ = tf.argmax(y_pred, axis=3)
+        y_true_img_ = tf.argmax(y_true, axis=3)
+        classMask_ = tf.logical_and(tf.greater_equal(y_true_img_, 0),
+                                    tf.less(y_true_img_, num_class))
+        y_true_masked_ = tf.boolean_mask(y_true_img_, classMask_)
+        y_pred_masked_ = tf.boolean_mask(y_pred_img_, classMask_)
+
+        return tf.reduce_sum(tf.cast(tf.equal(y_true_masked_, y_pred_masked_), tf.int32))/\
+               tf.reduce_sum(tf.cast(classMask_, tf.int32))
+
+    # Negative log likelihood function
+    def _nll(self, y_true, y_pred, num_class=150):
+        '''
+        Implementation of negative loglikelihood function in tensorflow
+        :param y_true: label
+        :param y_pred: prediction
+        :param num_class: number of classs
+        :return: loss function NLL
+        '''
+
+
+# helper functions
 class PSPNet50(PSPNet):
     """Build a PSPNet based on a 50-Layer ResNet."""
 
@@ -221,16 +261,14 @@ def visualize_prediction(prediction):
     plt.show()
 
 
-def output_model(net, args):
+def print_model(net, args):
     with open(args.model + ".txt", 'w') as fh:
         # Pass the file handle in as a lambda function to make it callable
         net.model.summary(print_fn=lambda x: fh.write(x + '\n'))
 
 
-## For memory control
+# For memory control
 def get_model_memory_usage(batch_size, model):
-    import numpy as np
-    from keras import backend as K
 
     shapes_mem_count = 0
     for l in model.layers:
@@ -273,9 +311,9 @@ def main(args):
             sgd = SGD(lr=args.learning_rate, momentum=0.9, nesterov=True)
             pspnet.model.compile(optimizer=sgd,
                   loss='categorical_crossentropy',
-                  metrics=['accuracy'])
+                  metrics=[pspnet._img_pixel_accuracy]) #
 
-            print("total GPU memory usage is %f Gb"%(get_model_memory_usage(batch_size, pspnet.model)))
+            print("The GPU memory has to be more than %f Gb"%(get_model_memory_usage(batch_size, pspnet.model)))
             for i in range(args.num_epoch):
                 np.random.shuffle(index_array) ## Shuffle index
                 for i_batch in range(n_batch):
@@ -286,11 +324,12 @@ def main(args):
                     input_batch = img_list[index_batch]
                     val_batch = val_list[index_batch]
                     lss_, acc_ = pspnet.train_one_epoch(input_batch, val_batch)
-                    print("%i/%i finished after %s, Loss is %f Acc is %f" %
+                    print("%i/%i finished at time %s from start, Loss is %f Acc is %f" %
                           (i_batch, n_batch, str(datetime.now() - TIME_START), lss_, acc_))
+                pspnet.save_model("./", "test")
 
         ## Output model report
-        output_model(pspnet, args) if args.print_report else None
+        print_model(pspnet, args) if args.print_report else None
 
 
 if __name__ == "__main__":

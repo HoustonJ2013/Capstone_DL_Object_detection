@@ -47,3 +47,11 @@ For pic D Pixel_accuray is 0.604583  Mean_IOU is 0.313278
 For all the 2 pictures
 Mean Accuracy is 0.863261
 Mean IOU is 0.040207
+
+After training with 20 samples,
+For pic A Pixel_accuray is 0.941893  Mean_IOU is 0.709581
+For pic D Pixel_accuray is 0.593910  Mean_IOU is 0.290110
+For all the 2 pictures
+Mean Accuracy is 0.853430
+Mean IOU is 0.039095
+
