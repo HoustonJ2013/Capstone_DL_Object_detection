@@ -86,11 +86,11 @@ if __name__ == '__main__':
 
         for predfile in list_pred:
             predc_ = np.load(predfile) - 1
-            imgname_ = predfile.split("/")[0][0:name_length_]
+            imgname_ = predfile.split("/")[-1][0:name_length_]
             raw_img = imread(join(image_folder, imgname_ + ".jpg"))
             val_ = imread(join(annot_folder, imgname_ +  ".png")).astype("int16") - 1
             img_comb_ = ConcatenateImg(raw_img, val_, predc_, colors)
 
-            outputname_ = predfile.split("/")[0][:-4]
+            outputname_ = predfile.split("/")[-1][:-4]
             imsave(join(args.output_path, outputname_ + ".jpg"), img_comb_)
 

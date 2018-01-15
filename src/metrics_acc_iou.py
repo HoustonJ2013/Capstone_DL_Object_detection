@@ -177,16 +177,16 @@ if __name__ == '__main__':
     parser.add_argument('--List_true',
                         default='./data/ADE20K_object150_val.txt')
     parser.add_argument('--val_folder',
-                        default='./data/ADEChallengeData2016/annotations/')
+                        default='./data/ADEChallengeData2016/annotations/validation/')
 
     parser.add_argument('--num_class', default=150, type=int)
     args = parser.parse_args()
 
     list_pred = [x.rstrip() for x in open(args.List_predict, 'r')]
-    list_val = [x.rstrip() for x in open(args.List_true, 'r')]
-    if (len(list_pred) != len(list_val)):
-        raise EvalSegErr("Prediction and validation lists have different number")
-    n_assess = len(list_val)
+#    list_val = [x.rstrip() for x in open(args.List_true, 'r')]
+#    if (len(list_pred) != len(list_val)):
+#        raise EvalSegErr("Prediction and validation lists have different number")
+    n_assess = len(list_pred)
 
     mean_Accu = AverageMeter()
     InterSect_Area = AverageMeter()
@@ -194,7 +194,8 @@ if __name__ == '__main__':
 
     for i in range(n_assess):
         pred_ = np.load(list_pred[i]) - 1
-        val_ = imread(args.val_folder + list_val[i][:-4] + ".png", "I") - 1
+        list_val = list_pred[i].split("/")[-1]
+        val_ = imread(args.val_folder + list_val[:-4] + ".png", "I") - 1
         ## debug control
         # if i == 0:
         #     np.save("debug_pred_0", pred_)
