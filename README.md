@@ -59,7 +59,7 @@ To assess performance, we use two metrics:
 (2) Mean of the standard Jaccard Index, commonly known as the PASCAL VOC intersection-over-union metric IoU=TP/TP+FP+FN, where TP, FP, and FN are the numbers of true positive, false positive, and false negative pixels, respectively, determined over the whole test set.
 
 
-To evalute your own prediction, run the code as follows. In order to make cross-platform cross-framework comparison, we saved all the predicted images as numpy array.   
+To evalute your own prediction, run the code as follows. In order to make cross-platform cross-framework comparison, we saved all the predicted images as numpy array in .npy format.   
 ```
 python src/metrics_acc_iou.py --List_predict List_Prediction --List_true List_validation --num_class 10
 ```
