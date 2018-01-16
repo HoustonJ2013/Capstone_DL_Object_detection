@@ -95,16 +95,18 @@ Raw Image/Annotations/Predicted
 
 ## Deep Learning Achitecutre and Analysis
 ### A few key concepts in state-of-art algrithms for semantic segmentation
-- ImageNet
+#### ImageNet
 
-- [Full Convolutional Network (FCN)](https://arxiv.org/abs/1411.4038)
+#### [Full Convolutional Network (FCN)](https://arxiv.org/abs/1411.4038)
 <img src="./pics/FCN - illustration.png" width=350 alt="Illustration for FCN" ALIGN="Right">
---A fully convolutional network (FCN) is composed of convolutional layers without any fully connected layers, which is usually found at the end of Imagenet. One advantage of FCN is that it takes input image of arbitrary size without any resizing. Almost all of the subsequent Neural Networks for semantic segmentation are based on FCN structure. 
+-- A fully convolutional network (FCN) is composed of convolutional layers without any fully connected layers, which is usually found at the end of Imagenet. One advantage of FCN is that it takes input image of arbitrary size without any resizing. Almost all of the subsequent Neural Networks for semantic segmentation are based on FCN structure. 
 
-- Encoder-Decoder Structure and Dilated/atrous Convolutional Layer
---Another main challenge for segmentations using convolutional neural network is the pooling layer, which increase the field of view and aggregate the information from a larger context at the expenses of losing the resolution. However, semantic segmentation requires for predicting the label at pixel level. One of the popular structures is the encoder-decoder structure, in which encoder gradually reduces the spatial resolution with pooling layer while decoder gradually recovers the spatial resolution and details of the object. Another useful layer structure for keeping the spatial resolution is dilated/atrous convolution layer, in which the convolution kernel is dilated by a ratio, e.g. 2x, 4x, or 8x. This dilated convolution is able to aggreate information from larger field of view without losing spatial information. 
+#### Encoder-Decoder Structure and Dilated/atrous Convolutional Layer
+Another main challenge for segmentations using convolutional neural network is the pooling layer, which increase the field of view and aggregate the information from a larger context at the expenses of losing the resolution. However, semantic segmentation requires for predicting the label at pixel level. One of the popular structures is the encoder-decoder structure, in which encoder gradually reduces the spatial resolution with pooling layer while decoder gradually recovers the spatial resolution and details of the object. Another useful layer structure for keeping the spatial resolution is dilated/atrous convolution layer, in which the convolution kernel is dilated by a ratio, e.g. 2x, 4x, or 8x. This dilated convolution is able to aggreate information from larger field of view without losing spatial information. 
 
-<img src="./pics/encoder_decoder.png" width=650 alt="Illustration for FCN" ALIGN="Middle">
+<img src="./pics/encoder_decoder.png" width=650 alt="Illustration for FCN http://www.mdpi.com/2076-3417/7/4/312/htm" ALIGN="Middle">
+
+
 Ordinary Convolution           |  Dilated Convolution    
 :---------------:|:--------------:
 <img src="https://github.com/vdumoulin/conv_arithmetic/blob/master/gif/padding_strides_odd.gif" width=250 alt="Convolution" ALIGN="Middle">|<img src="pics/dilation_demo.gif" width=250  alt="Convolution" ALIGN="Middle">
