@@ -114,7 +114,7 @@ Ordinary Convolution           |  Dilated Convolution
 
 Most state of art semantic segmentation deep learning architectures are based on these key components, with different flavors of implementation, training, data augmentation and post-processing.  
 
-### MIT Baseline Model ([Pytorch (resnet34_dilated8 + psp_bilinear)](https://github.com/hangzhaomit/semantic-segmentation-pytorch))
+### MIT Baseline Model ([Pytorch (resnet34_dilated8 + C1_bilinear)](https://github.com/hangzhaomit/semantic-segmentation-pytorch))
 
 ### Piramid Scence Parsing Network ([Tensorflow](https://github.com/Vladkryvoruchko/PSPNet-Keras-tensorflow), [Caffe](https://github.com/hszhao/PSPNet))
 
