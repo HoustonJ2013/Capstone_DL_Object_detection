@@ -80,7 +80,7 @@ python src/rgb2gray.py  --input_folder INPUT_FOLDER --output_folder OUTPUT_FOLDE
 
 options: --method (“luminance”,”gleam“)
 ```
-I trained a DilatedNet on both RGB and Gray scale images for 5 iterations (~ 90 % of the performance are achieved in the first 5 iterations), and assessed their performance at predicting the 2000 validation images.  Based on the observation, the performance of deep neural networks trained on gray image is roughtly 1% ~ 2% worse than that trained on RGB image. So the deep neural network structure is adaptitable to gray images such as seismic images. 
+I trained a DilatedNet on both RGB and Gray scale images for 5 iterations (~ 90 % of the performance are achieved in the first 5 iterations), and assessed their performance at predicting the 2000 validation images.  Based on the observation, the performance of deep neural networks trained on gray image is only ~ 1% worse than that trained on RGB image, and most of the predicting power between the two models are the same. So the deep neural network structure is adaptitable to gray images such as seismic images. 
 
 
 |	|Pixel_Accuracy|Mean IOU|
@@ -96,12 +96,21 @@ Raw Image/Annotations/Predicted
 ## Deep Learning Achitecutre and Analysis
 ### A few key concepts in state-of-art algrithms for semantic segmentation
 - ImageNet
+
 - [Full Convolutional Network (FCN)](https://arxiv.org/abs/1411.4038)
-A fully convolutional network (FCN) is composed of convolutional layers without any fully connected layers, which is usually found at the end of Imagenet. One advantage of FCN is that it takes input image of arbitrary size without any resizing. Almost all of the subsequent Neural Networks for semantic segmentation are based on FCN structure. 
 <img src="./pics/FCN - illustration.png" width=350 alt="Illustration for FCN" ALIGN="Right">
 
-- Encoder-Decoder Structure
-- Dilated/atrous Convolutional Layer
+A fully convolutional network (FCN) is composed of convolutional layers without any fully connected layers, which is usually found at the end of Imagenet. One advantage of FCN is that it takes input image of arbitrary size without any resizing. Almost all of the subsequent Neural Networks for semantic segmentation are based on FCN structure. 
+
+- Encoder-Decoder Structure and Dilated/atrous Convolutional Layer
+Another main challenge for segmentations using convolutional neural network is the pooling layer, which increase the field of view and aggregate the information from a larger context at the expenses of losing the resolution. However, semantic segmentation requires for predicting the label at pixel level. One of the popular structures is the encoder-decoder structure, in which encoder gradually reduces the spatial resolution with pooling layer while decoder gradually recovers the spatial resolution and details of the object. Another useful layer structure for keeping the spatial resolution is dilated/atrous convolution layer, in which the convolution kernel is dilated by a ratio, e.g. 2x, 4x, or 8x. This dilated convolution is able to aggreate information from larger field of view without losing spatial information. 
+<img src="./pics/encoder_decoder.png" width=550 alt="Illustration for FCN" ALIGN="Middle">
+
+Ordinary Convolution           |  Dilated Convolution    
+:---------------:|:--------------:
+<img src="https://github.com/vdumoulin/conv_arithmetic/blob/master/gif/padding_strides_odd.gif" width=250 alt="Convolution" ALIGN="Middle">|<img src="pics/dilation_demo.gif" width=250  alt="Convolution" ALIGN="Middle">
+
+Most state of art semantic segmentation deep learning architectures are based on these key components, with different flavors of implementation, training, data augmentation and post-processing.  
 
 ### MIT Baseline Model ([Pytorch (resnet34_dilated8 + psp_bilinear)](https://github.com/hangzhaomit/semantic-segmentation-pytorch))
 
