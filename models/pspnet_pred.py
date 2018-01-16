@@ -74,6 +74,24 @@ class PSPNet(object):
         Arguments:
             img: A list of input images
         """
+<<<<<<< HEAD
+        h_ori, w_ori = img.shape[:2]
+        if img.shape[0:2] != self.input_shape:
+            print("Input %s not fitting for network size %s, resizing. You may want to try sliding prediction for better results." % (img.shape[0:2], self.input_shape))
+            img = misc.imresize(img, self.input_shape)
+        input_data = self.preprocess_image(img)
+        # utils.debug(self.model, input_data)
+#        np.save("input_data.npy", input_data)
+        regular_prediction = self.model.predict(input_data)[0]
+        np.save("regular_pred.npy", regular_prediction)
+        if flip_evaluation:
+            print("Predict flipped")
+            flipped_prediction = np.fliplr(self.model.predict(np.flip(input_data, axis=2))[0])
+            prediction = (regular_prediction + flipped_prediction) / 2.0
+        else:
+            prediction = regular_prediction
+=======
+>>>>>>> a9e9a525ad2563dd3fe7a22fe1512df572e9a104
 
         list_sample = [x.rstrip() for x in open(args.input_list, 'r')]
         n_total = len(list_sample)

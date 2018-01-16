@@ -324,7 +324,7 @@ def main(args):
                     lss_, acc_ = pspnet.train_one_epoch(input_batch, val_batch)
                     print("%i/%i finished at time %s from start, Loss is %f Acc is %f" %
                           (i_batch, n_batch, str(datetime.now() - TIME_START), lss_, acc_))
-                if i >= 0 and i%args.save_epoch ==0:
+                if i > 0 and i%args.save_epoch ==0:
                     savefolder_ = args.ckpt + args.model + "_batch" + str(args.batch_size) \
                                   + "_lr" + str(round(args.learning_rate, 5)) + \
                                   "_" + args.optimizer + "/"
