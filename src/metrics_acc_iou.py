@@ -176,16 +176,12 @@ if __name__ == '__main__':
                         help="a list for prediction results")
     parser.add_argument('--List_true',
                         default='./data/ADE20K_object150_val.txt')
-    parser.add_argument('--val_folder',
-                        default='./data/ADEChallengeData2016/annotations/validation/')
 
     parser.add_argument('--num_class', default=150, type=int)
     args = parser.parse_args()
 
     list_pred = [x.rstrip() for x in open(args.List_predict, 'r')]
-#    list_val = [x.rstrip() for x in open(args.List_true, 'r')]
-#    if (len(list_pred) != len(list_val)):
-#        raise EvalSegErr("Prediction and validation lists have different number")
+    list_true = [x.rstrip() for x in open(args.List_true, 'r')]
     n_assess = len(list_pred)
 
     mean_Accu = AverageMeter()
@@ -194,8 +190,7 @@ if __name__ == '__main__':
 
     for i in range(n_assess):
         pred_ = np.load(list_pred[i]) - 1
-        list_val = list_pred[i].split("/")[-1]
-        val_ = imread(args.val_folder + list_val[:-4] + ".png", "I") - 1
+        val_ = imread(list_true[i], "I") - 1
         ## debug control
         # if i == 0:
         #     np.save("debug_pred_0", pred_)
@@ -209,7 +204,7 @@ if __name__ == '__main__':
 
         InterSect_Area.update(InterAreaC_)
         Union_Area.update(UnionAreaC_)
-        print("For pic %s Pixel_accuray is %f  Mean_IOU is %f" % (list_val[i], pix_acc, mean_iou_))
+        print("For pic %s Pixel_accuray is %f  Mean_IOU is %f" % (list_true[i], pix_acc, mean_iou_))
 
     iou_final = InterSect_Area.sum / (Union_Area.sum + 1e-10)
     # np.save("iou_final.npy", iou_final)
