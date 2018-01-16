@@ -25,8 +25,9 @@ Contact: jingbo.liu2013@gmail.com
 
 from __future__ import print_function
 from __future__ import division
-from os.path import splitext, join, isfile
+from os.path import splitext, join, isfile, exists
 from os import environ
+import os
 from math import ceil
 import argparse
 import numpy as np
@@ -36,7 +37,7 @@ from keras.models import model_from_json
 import tensorflow as tf
 import layers_builder as layers
 import model_utils as model_utils
-from keras.optimizers import SGD
+from keras.optimizers import SGD, Adam
 import matplotlib.pyplot as plt
 from datetime import datetime
 
@@ -215,16 +216,6 @@ class PSPNet(object):
         return tf.reduce_sum(tf.cast(tf.equal(y_true_masked_, y_pred_masked_), tf.int32))/\
                tf.reduce_sum(tf.cast(classMask_, tf.int32))
 
-    # Negative log likelihood function
-    def _nll(self, y_true, y_pred, num_class=150):
-        '''
-        Implementation of negative loglikelihood function in tensorflow
-        :param y_true: label
-        :param y_pred: prediction
-        :param num_class: number of classs
-        :return: loss function NLL
-        '''
-
 
 # helper functions
 class PSPNet50(PSPNet):
@@ -301,6 +292,7 @@ def main(args):
     print("No. %i of batches for each epoch"%(n_batch))
     with sess.as_default():
         # Build Model and train from scratch or train on top of an existing model
+        # Current implementation needs to provide pre-trained weights
         if args.weights is not None:
             if "pspnet50" in args.model:
                 pspnet = PSPNet50(nb_classes=150, input_shape=(473, 473),
@@ -308,12 +300,18 @@ def main(args):
             else:
                 print("Network architecture not implemented.")
 
-            sgd = SGD(lr=args.learning_rate, momentum=0.9, nesterov=True)
-            pspnet.model.compile(optimizer=sgd,
-                  loss='categorical_crossentropy',
+            if args.optimizer =="SGD":
+                optimizer_ = SGD(lr=args.learning_rate, momentum=0.9, nesterov=True)
+            elif args.optimizer=="Adam":
+                optimizer_ = Adam(lr=args.learning_rate, beta_1=0.9, beta_2=0.999, decay=0.0)
+            else:
+                print("We support SGD and Adam optimizers")
+            pspnet.model.compile(optimizer=optimizer_,
+                  loss='categorical_crossentropy', # Categorical_crossentropy is the same and NLL
                   metrics=[pspnet._img_pixel_accuracy]) #
 
-            print("The GPU memory has to be more than %f Gb"%(get_model_memory_usage(batch_size, pspnet.model)))
+            print("The GPU memory has to be more than %f Gb"%(
+                        get_model_memory_usage(batch_size, pspnet.model)))
             for i in range(args.num_epoch):
                 np.random.shuffle(index_array) ## Shuffle index
                 for i_batch in range(n_batch):
@@ -326,10 +324,19 @@ def main(args):
                     lss_, acc_ = pspnet.train_one_epoch(input_batch, val_batch)
                     print("%i/%i finished at time %s from start, Loss is %f Acc is %f" %
                           (i_batch, n_batch, str(datetime.now() - TIME_START), lss_, acc_))
-                pspnet.save_model("./", "test")
+                if i >= 0 and i%args.save_epoch ==0:
+                    savefolder_ = args.ckpt + args.model + "_batch" + str(args.batch_size) \
+                                  + "_lr" + str(round(args.learning_rate, 5)) + \
+                                  "_" + args.optimizer + "/"
+                    if exists(savefolder_):
+                        pspnet.save_model(savefolder_, args.modelname + "_epoch"+str(i))
+                    else:
+                        os.mkdir(savefolder_)
+                        pspnet.save_model(savefolder_, args.modelname + "_epoch" + str(i))
 
         ## Output model report
-        print_model(pspnet, args) if args.print_report else None
+        if args.print_report:
+            print_model(pspnet, args)
 
 
 if __name__ == "__main__":
@@ -339,20 +346,28 @@ if __name__ == "__main__":
                         choices=['pspnet50_ade20k',
                                  'pspnet101_cityscapes',
                                  'pspnet101_voc2012'])
+    parser.add_argument('--modelname', type=str, default='pspade20k',
+                        help="A name to label the model weights when saved")
     parser.add_argument('-train', '--train_list', type=str,
                         default='data/ADE20K_object150_train.txt',
                         help='Path the input image')
     parser.add_argument('-val', '--val_list', type=str, default='',
                         help='Path validation image')
+
     parser.add_argument('--batch_size', type=int, default=2)
     parser.add_argument('--num_epoch', type=int, default=1,
-                        help='Path to output')
-    parser.add_argument('--learning_rate', type=float, default=1e-3,
+                        help='no. of epoches to train the model')
+    parser.add_argument('--learning_rate', type=float, default=1e-4,
                         help='learning rate')
-    parser.add_argument('--num_gpus', default="1")
+    parser.add_argument('--num_gpus', type=int, default=1)
+    parser.add_argument('--optimizer', default="Adam")
+
     parser.add_argument('--ckpt', default="weights/")
     parser.add_argument('--weights', default=None,
                         help="If weights provided, training start from this weights")
+    parser.add_argument('--save_epoch', default=2,
+                        help="save the weights every save_epoch iteration")
+
     parser.add_argument('-f', '--flip', action='store_true',
                         help="Whether the network should predict on both image and flipped image.")
     parser.add_argument('--print_report', default=False)

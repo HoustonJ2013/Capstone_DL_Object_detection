@@ -1,4 +1,4 @@
-python models/pspnet_pred.py -m test --input_list psptest1_list --output_path results/ -f
+python models/pspnet_pred.py -m pspnet50_ade20k --input_list psptest1_list --output_path results/ -f
 
 python src/metrics_acc_iou.py --List_predict pred_list
 

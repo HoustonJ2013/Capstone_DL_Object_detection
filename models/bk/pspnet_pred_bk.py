@@ -25,9 +25,8 @@ Contact: jingbo.liu2013@gmail.com
 
 from __future__ import print_function
 from __future__ import division
-from os.path import splitext, join, isfile, exists
+from os.path import splitext, join, isfile
 from os import environ
-import os
 from math import ceil
 import argparse
 import numpy as np
@@ -37,7 +36,6 @@ from keras.models import model_from_json
 import tensorflow as tf
 import layers_builder as layers
 import model_utils as model_utils
-from keras.optimizers import SGD, Adam
 import matplotlib.pyplot as plt
 from datetime import datetime
 
@@ -67,6 +65,7 @@ class PSPNet(object):
                                              input_shape=self.input_shape)
             self.model.load_weights(h5_path)
 
+
     def predict(self, input_list, flip_evaluation, output_path = "./", batch_size = 5):
         """
         Predict segementation for a batch of images
@@ -90,14 +89,14 @@ class PSPNet(object):
             img_batch = np.zeros((c_batch_size, 473, 473, 3))
             input_shapes = []
 
-            # Read image into batches
+            ## Read image into batches
             for i_c in range(c_batch_size):
                 input_name = list_batch[i_c]
                 img = misc.imread(input_name, mode="RGB")
                 input_shapes.append((img.shape[0], img.shape[1]))
                 img = misc.imresize(img, (473, 473))
                 img_batch[i_c, :, :, :] = img
-            # Batch prediction using keras model
+            ## Batch prediction using keras model
 
             input_data = self._preprocess_image(img_batch)
             regular_prediction = self.model.predict(input_data, batch_size=batch_size)
@@ -126,98 +125,15 @@ class PSPNet(object):
                 output_name = input_name.split("/")[-1][0:-4]
                 np.save(join(output_path, output_name), pred_i)
 
-    def train_one_epoch(self, input_list, val_list, n_class=150):
-        '''
-        train one epoch on provide input and validation images
-        :param input_list: list of input images
-        :param val_list: list of validation images
-        :param flip_evaluation: flip preprocessing or not
-        :param batch_size: batch_size
-        :return: loss
-        '''
-
-        # X_batch = self._get_X_batch(input_list, ndim=3)
-        # y_batch = self._get_y_batch(val_list, n_class=n_class)
-        X_batch, y_batch = self._get_X_y_batch(input_list, val_list)
-        ## Random flip left right
-        if np.random.choice([False, True]):
-            X_batch = np.flip(X_batch, axis=2)
-            y_batch = np.flip(y_batch, axis=2)
-        return self.model.train_on_batch(X_batch, y_batch)
-
-    def _get_X_y_batch(self, img_list, val_list, shapes = (473, 473), ndim=3, n_class=150):
-        '''
-        :param img_list: a list of rgb or gray image
-        :param shapes: the size of batch image
-        :return: img_batch n_img x height x width x nchanel
-        '''
-        batch_size = len(img_list)
-        X_batch = np.zeros((batch_size, shapes[0], shapes[1], ndim))
-        y_batch = np.zeros((batch_size, shapes[0], shapes[1], n_class))
-        ## Read image into batches
-        for i_c in range(batch_size):
-            input_name = img_list[i_c]
-            if ndim == 3:
-                img = misc.imread(input_name, mode="RGB")
-            elif ndim == 2:
-                img = misc.imread(input_name)
-            val_name = val_list[i_c]
-            val = misc.imread(val_name)
-            assert img.shape[0] == val.shape[0]
-            assert img.shape[1] == val.shape[1]
-            # Resize X
-            img = misc.imresize(img, (shapes[0], shapes[1]))
-            X_batch[i_c, :, :, :] = img
-            # Resize and expand y
-            cl = np.unique(val)
-            cl = cl[cl > 0]
-            val = misc.imresize(val, (shapes[0], shapes[1]))
-            for clc in cl: # clc - 1 is the right index for clc
-                cmask = (val == clc).astype(int)
-                y_batch[i_c, :, :, clc - 1] = cmask
-        return X_batch, y_batch.astype("float16")
-
-    def _preprocess_image(self, imgbatch):
+    def _preprocess_image(self, img):
         """Preprocess an image as input."""
-        float_img = imgbatch.astype('float16')
+        float_img = img.astype('float16')
         centered_image = float_img - DATA_MEAN
         input_data = centered_image[:, :, :, ::-1]  # RGB => BGR
         return input_data
 
-    def save_model(self, ckpt="./", modelname="test"):
-        model_json = self.model.to_json()
-        with open(join(ckpt, modelname + ".json"), "w") as json_file:
-            json_file.write(model_json)
-        self.model.save_weights(join(ckpt, modelname + ".h5"))
-        print("Saved model to disk")
-
-    def load_model(self, ckpt="./", modelname="test"):
-        json_file = open(join(ckpt, modelname + '.json'), 'r')
-        loaded_model_json = json_file.read()
-        json_file.close()
-        loaded_model = model_from_json(loaded_model_json)
-        # load weights into new model
-        loaded_model.load_weights(join(ckpt, modelname + ".h5"))
-        print("Loaded model from disk")
-
-    def _img_pixel_accuracy(self, y_pred, y_true, num_class=150):
-        '''
-        :param y_pred: predicted label image
-        :param y_true: true label image
-        :return: Accuracy for this prediction
-        '''
-        y_pred_img_ = tf.argmax(y_pred, axis=3)
-        y_true_img_ = tf.argmax(y_true, axis=3)
-        classMask_ = tf.logical_and(tf.greater_equal(y_true_img_, 0),
-                                    tf.less(y_true_img_, num_class))
-        y_true_masked_ = tf.boolean_mask(y_true_img_, classMask_)
-        y_pred_masked_ = tf.boolean_mask(y_pred_img_, classMask_)
-
-        return tf.reduce_sum(tf.cast(tf.equal(y_true_masked_, y_pred_masked_), tf.int32))/\
-               tf.reduce_sum(tf.cast(classMask_, tf.int32))
 
 
-# helper functions
 class PSPNet50(PSPNet):
     """Build a PSPNet based on a 50-Layer ResNet."""
 
@@ -231,6 +147,7 @@ class PSPNet101(PSPNet):
     """Build a PSPNet based on a 101-Layer ResNet."""
 
     def __init__(self, nb_classes, weights, input_shape):
+
         """Instanciate a PSPNet101."""
         PSPNet.__init__(self, nb_classes=nb_classes, resnet_layers=101,
                         input_shape=input_shape, weights=weights)
@@ -250,32 +167,6 @@ def visualize_prediction(prediction):
     color_cm = model_utils.add_color(cm)
     plt.imshow(color_cm)
     plt.show()
-
-
-def print_model(net, args):
-    with open(args.model + ".txt", 'w') as fh:
-        # Pass the file handle in as a lambda function to make it callable
-        net.model.summary(print_fn=lambda x: fh.write(x + '\n'))
-
-
-# For memory control
-def get_model_memory_usage(batch_size, model):
-
-    shapes_mem_count = 0
-    for l in model.layers:
-        single_layer_mem = 1
-        for s in l.output_shape:
-            if s is None:
-                continue
-            single_layer_mem *= s
-        shapes_mem_count += single_layer_mem
-
-    trainable_count = np.sum([K.count_params(p) for p in set(model.trainable_weights)])
-    non_trainable_count = np.sum([K.count_params(p) for p in set(model.non_trainable_weights)])
-
-    total_memory = 4.0*batch_size*(shapes_mem_count + trainable_count + non_trainable_count)
-    gbytes = np.round(total_memory / (1024.0 ** 3), 3)
-    return gbytes
 
 
 def main(args):
@@ -303,9 +194,10 @@ def main(args):
         print("     After Model Prediction", str(datetime.now()), datetime.now() - TIME_START)
 
         ## Output model report
-        ## Output model report
         if args.print_report:
-            print_model(pspnet, args)
+            with open(args.model + ".txt", 'w') as fh:
+                # Pass the file handle in as a lambda function to make it callable
+                pspnet.model.summary(print_fn=lambda x: fh.write(x + '\n'))
 
 
 if __name__ == "__main__":
