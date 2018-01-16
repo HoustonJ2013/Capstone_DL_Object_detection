@@ -126,26 +126,26 @@ class PSPNet(object):
                 output_name = input_name.split("/")[-1][0:-4]
                 np.save(join(output_path, output_name), pred_i)
 
-    def train_one_epoch(self, input_list, val_list, n_class=150):
+    def train_one_epoch(self, input_list, label_list, n_class=150):
         '''
         train one epoch on provide input and validation images
         :param input_list: list of input images
-        :param val_list: list of validation images
+        :param label_list: list of validation images
         :param flip_evaluation: flip preprocessing or not
         :param batch_size: batch_size
         :return: loss
         '''
 
         # X_batch = self._get_X_batch(input_list, ndim=3)
-        # y_batch = self._get_y_batch(val_list, n_class=n_class)
-        X_batch, y_batch = self._get_X_y_batch(input_list, val_list)
+        # y_batch = self._get_y_batch(label_list, n_class=n_class)
+        X_batch, y_batch = self._get_X_y_batch(input_list, label_list)
         ## Random flip left right
         if np.random.choice([False, True]):
             X_batch = np.flip(X_batch, axis=2)
             y_batch = np.flip(y_batch, axis=2)
         return self.model.train_on_batch(X_batch, y_batch)
 
-    def _get_X_y_batch(self, img_list, val_list, shapes = (473, 473), ndim=3, n_class=150):
+    def _get_X_y_batch(self, img_list, label_list, shapes = (473, 473), ndim=3, n_class=150):
         '''
         :param img_list: a list of rgb or gray image
         :param shapes: the size of batch image
@@ -161,7 +161,7 @@ class PSPNet(object):
                 img = misc.imread(input_name, mode="RGB")
             elif ndim == 2:
                 img = misc.imread(input_name)
-            val_name = val_list[i_c]
+            val_name = label_list[i_c]
             val = misc.imread(val_name)
             assert img.shape[0] == val.shape[0]
             assert img.shape[1] == val.shape[1]
@@ -284,7 +284,7 @@ def main(args):
     sess = tf.Session()
     K.set_session(sess)
     img_list = np.array([x.rstrip() for x in open(args.train_list, 'r')])
-    val_list = np.array([x.rstrip() for x in open(args.val_list, 'r')])
+    label_list = np.array([x.rstrip() for x in open(args.label_list, 'r')])
     n_total = len(img_list)
     batch_size = args.batch_size
     index_array = np.arange(n_total)
@@ -320,10 +320,10 @@ def main(args):
                     else:
                         index_batch = index_array[i_batch * batch_size:]
                     input_batch = img_list[index_batch]
-                    val_batch = val_list[index_batch]
-                    lss_, acc_ = pspnet.train_one_epoch(input_batch, val_batch)
-                    print("%i/%i finished at time %s from start, Loss is %f Acc is %f" %
-                          (i_batch, n_batch, str(datetime.now() - TIME_START), lss_, acc_))
+                    lab_batch = label_list[index_batch]
+                    lss_, acc_ = pspnet.train_one_epoch(input_batch, lab_batch)
+                    print("%i/%i in %i epoch finished at time %s from start, Loss is %f Acc is %f" %
+                          (i_batch, n_batch, i, str(datetime.now() - TIME_START), lss_, acc_))
                 if i > 0 and i%args.save_epoch ==0:
                     savefolder_ = args.ckpt + args.model + "_batch" + str(args.batch_size) \
                                   + "_lr" + str(round(args.learning_rate, 5)) + \
@@ -351,7 +351,7 @@ if __name__ == "__main__":
     parser.add_argument('-train', '--train_list', type=str,
                         default='data/ADE20K_object150_train.txt',
                         help='Path the input image')
-    parser.add_argument('-val', '--val_list', type=str, default='',
+    parser.add_argument('-lab', '--label_list', type=str, default='',
                         help='Path validation image')
 
     parser.add_argument('--batch_size', type=int, default=2)
