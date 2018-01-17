@@ -2,7 +2,7 @@
 
 ## Motivations: Bussiness Value 
 ### 1. Oil and Gas E&P : Automatic Seismic [Fault](https://en.wikipedia.org/wiki/Fault_(geology))/[Horizon](http://subsurfwiki.org/wiki/Horizon) picking and interpretation 
-<img src="./pics/Seismic_fault_horizon_picking.jpg" width="500" ALIGN="Right"> 
+<img src="https://raw.githubusercontent.com/HoustonJ2013/Capstone_DL_Object_detection/master/pics/Seismic_fault_horizon_picking.jpg" width="500" ALIGN="Right"> 
 
 Where to drill and when to drill is one of the most important items on stake holder worry plate in oil and gas E&P.  A well interpreted seismic image is an important tool on the table to help answer those questions. Interpreting a seismic image requires that the interpreter manually check the seismic image and draw upon his or her geological understanding to pick the most likely interpretation from the many “valid” interpretations that the data allow. 
 
@@ -18,7 +18,7 @@ The challenges for a sucessful deep learning project are datasets and algorithms
 
 Seismic Interpretation            |  Semantic Segmentation     
 :---------------:|:--------------:
-<img src="./pics/Seismic_interpretation.jpg" width=350 alt="Seismic interpretation" ALIGN="Middle">|<img src="pics/Semantic_segmentation.jpg" width=450  alt="Semantic segmentation" ALIGN="Middle">
+<img src="https://raw.githubusercontent.com/HoustonJ2013/Capstone_DL_Object_detection/master/pics/Seismic_interpretation.jpg" width=350 alt="Seismic interpretation" ALIGN="Middle">|<img src="pics/Semantic_segmentation.jpg" width=450  alt="Semantic segmentation" ALIGN="Middle">
 
 
 [Semantic segmentation](https://en.wikipedia.org/wiki/Image_segmentation) is potentially a good Deep Learning solution to seismic Falut/Horizon picking and interpretation as they share many common challenges: 1. Pixel level accuracy. 2. Pixel level classification: in semantic segmentation, we identify each pixel as car, pedestrain and in seismic fault/horizon interpretation, we identify pixel as layers between Petrel and Oligocence or in a Fault block... 
@@ -80,7 +80,7 @@ python src/rgb2gray.py  --input_folder INPUT_FOLDER --output_folder OUTPUT_FOLDE
 
 options: --method (“luminance”,”gleam“)
 ```
-I trained a DilatedNet on both RGB and Gray scale images for 5 iterations (~ 90 % of the performance are achieved in the first 5 iterations), and assessed their performance at predicting the 2000 validation images.  Based on the observation, the performance of deep neural networks trained on gray image is only ~ 1% worse than that trained on RGB image, and most of the predicting power between the two models are the same. So the deep neural network structure is adaptitable to gray images such as seismic images. 
+I trained a the MIT baseline model (Resnet34 with dillated modification + billinear decoder) on both RGB and Gray scale images for 5 iterations (~ 90 % of the performance are achieved in the first 5 iterations), and assessed their performance at predicting the 2000 validation images.  Based on the observation, the performance of deep neural networks trained on gray image is only ~ 1% worse than that trained on RGB image, and most of the predicting power between the two models are the same. So the deep neural network structure is adaptitable to gray images such as seismic images. 
 
 
 |	|Pixel_Accuracy|Mean IOU|
@@ -116,13 +116,23 @@ Most state of art semantic segmentation deep learning architectures are based on
 
 ### MIT Baseline Model ([Pytorch (resnet34_dilated8 + C1_bilinear)](https://github.com/hangzhaomit/semantic-segmentation-pytorch))
 MIT hosts a [Scene Parsing Chanllenge](http://placeschallenge.csail.mit.edu/) in 2016 to segment and parse an image into different image regions associated with semantic categories, such as sky, road, person, and bed. The participants are from 
-many famous universities and companies all over the world. In the end of 2017, they released a benchmark model and pre-trained model that includes many state of art deep learning architecture for semantic segmentation from the challenges. As a baseline model, I selected the ResNet34 with dilation modification as encoder, and C1_bilinar model as decoder. The reported score for this model has mean IoU of 0.327, and accuracy of 76.47%. The best performance from MIT baseline model options has mean IoU of 0.38, and accuracy of 78.21%. 
+many famous universities and companies all over the world. In the end of 2017, they released a benchmark model and pre-trained model that includes many state of art deep learning architecture for semantic segmentation from the challenges. As a baseline model, I selected the ResNet34 with dilation modification as encoder, and C1_bilinar model as decoder. The reported score for this model has mean IoU of 0.327, and accuracy of 76.47%. The best performance from MIT baseline model options has mean IoU of 0.38, and accuracy of 78.21%.
 
+The network structure table can be found in this [repo](https://raw.githubusercontent.com/HoustonJ2013/Capstone_DL_Object_detection/master/netstructures/mitbaselin_report.txt)
+
+## Neural Network Structure for This Project
 ### Piramid Scence Parsing Network ([Tensorflow](https://github.com/Vladkryvoruchko/PSPNet-Keras-tensorflow), [Caffe](https://github.com/hszhao/PSPNet))
-
+The [piramid scence parsing](https://arxiv.org/abs/1612.01105) module was in the champion model of MIT Scene Parsing Challenge 2016, which was able to aggreagate the information of pictures with different scale of views and thus leads to better prediction for the hard scene context. As shown in the picture below, the author selected four scales 1, 2, 3, 6 to aggregate the feature information, and then upsampling and stack the results. I used exact the same module in my project. 
 <img src="./pics/pspnet.png" width=800 alt="PSPNET Structure" ALIGN="Middle">
+### 
 
-## Adapt to my own Nets and improve
+## Results
+We used the 2000 labeled validation pictures to assess the perfomance of my model and MIT baseline model. 
+
+Model | Important Strucutre and Features | Mean Pixel Accuray | Mean IoU     
+:---------------:|:--------------:|:--------------:|:--------------:
+MIT Baseline Model|ResNet34 + Billinear Upsampling + Multi-scale Prediction| 0.7805 | 0.360
+Capstone Model|ResNet50 + PSP Module + Cubic Upsampling + Multi-scale and Flipped Prediction| 0.7951 | 0.406
 
 ### Conclusion and demo
 
