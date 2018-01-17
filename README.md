@@ -134,6 +134,11 @@ Model | Important Strucutre and Features | Mean Pixel Accuray | Mean IoU
 MIT Baseline Model|ResNet34 + Billinear Upsampling + Multi-scale Prediction| 0.7805 | 0.360
 Capstone Model|ResNet50 + PSP Module + Cubic Upsampling + Multi-scale and Flipped Prediction| 0.7951 | 0.406
 
+
+<img src="https://raw.githubusercontent.com/HoustonJ2013/Capstone_DL_Object_detection/master/pics/Mean_Pixel_Accu.jpg" width=450 alt="Seismic interpretation" ALIGN="Middle">|<img src="https://raw.githubusercontent.com/HoustonJ2013/Capstone_DL_Object_detection/master/pics/Mean_IoU.jpg" width=450  alt="Semantic segmentation" ALIGN="Middle">
+
+
+
 ### Conclusion and demo
 
 
