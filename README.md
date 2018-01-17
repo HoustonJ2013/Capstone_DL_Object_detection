@@ -28,7 +28,7 @@ In this capstone project, I will focus on the algorithm part of the deep learnin
 
 ## Data Set and Resources
 
-In this project, I choose [ADE20K Dataset](http://groups.csail.mit.edu/vision/datasets/ADE20K/), which was released by MIT as the data sets for [MIT Scene Parsing chanllenges (2017)](http://sceneparsing.csail.mit.edu/). The ADE20k data set contains more than 20K scene-centric images exhaustively annotated with objects and object parts. Specifically, the benchmark is divided into 20K images for training, 2K images for validation, and another batch of held-out images for testing. 
+In this project, I choose [ADE20K Dataset](http://groups.csail.mit.edu/vision/datasets/ADE20K/), which was released by MIT as the data sets for [MIT Scene Parsing chanllenges (2017)](http://sceneparsing.csail.mit.edu/). The ADE20k data set contains more than 20K scene-centric images exhaustively annotated with objects and object parts. Specifically, the benchmark is divided into 20K images for training, 2K images for validation, and another batch of held-out images for testing. There are totally 150 semantic categories included in the challenge for evaluation, which include stuffs like sky, road, grass, and discrete objects like person, car, bed.
 
 
 <img src="./pics/frame_rjob6ak7h3ivflyt.jpg" width=400 alt="Image Raw" ALIGN="Middle">|<img src="pics/frame_rjob6ak7h3ivflyt_seg.png" width=400  alt="Annotations" ALIGN="Middle">
@@ -94,7 +94,7 @@ Raw Image/Annotations/Predicted
 <img src="./pics/validation_gray_ADE_val_00000650_5iter.png" width=800 alt="Seismic interpretation" ALIGN="Middle">
 
 ## Deep Learning Achitecutre and Analysis
-### A few key concepts in state-of-art algrithms for semantic segmentation
+### A few key components in state-of-art algrithms for semantic segmentation
 #### [ImageNet](http://www.image-net.org/)
 ImageNet is an image database organized according to the WordNet hierarchy (currently only the nouns), in which each node of the hierarchy is depicted by hundreds and thousands of images. There are more than 14 million labeled pictures for more than 22,000 categories available for free on [ImageNet](http://www.image-net.org/). In the context of ImageNet, sometimes people refer to several recognized high-performance deep learning structures trained on ImageNet dataset for image classification, including VGG, ResNet, Inception, and Xception. Those high-performance structures and the pre-trained weights are very popluar as a starting point for many other image recognition application. In this project, I investigated several structures for semantic segmentation that use [Resnet](https://arxiv.org/abs/1512.03385) as their starting point. 
 
@@ -115,6 +115,8 @@ Ordinary Convolution           |  Dilated Convolution
 Most state of art semantic segmentation deep learning architectures are based on these key components, with different flavors of implementation, training, data augmentation and post-processing.  
 
 ### MIT Baseline Model ([Pytorch (resnet34_dilated8 + C1_bilinear)](https://github.com/hangzhaomit/semantic-segmentation-pytorch))
+MIT hosts a [Scene Parsing Chanllenge](http://placeschallenge.csail.mit.edu/) in 2016 to segment and parse an image into different image regions associated with semantic categories, such as sky, road, person, and bed. The participants are from 
+many famous universities and companies all over the world. In the end of 2017, they released a benchmark model and pre-trained model that includes many state of art deep learning architecture for semantic segmentation from the challenges. As a baseline model, I selected the ResNet34 with dilation modification as encoder, and C1_bilinar model as decoder. The reported score for this model has mean IoU of 0.327, and accuracy of 76.47%. The best performance from MIT baseline model options has mean IoU of 0.38, and accuracy of 78.21%. 
 
 ### Piramid Scence Parsing Network ([Tensorflow](https://github.com/Vladkryvoruchko/PSPNet-Keras-tensorflow), [Caffe](https://github.com/hszhao/PSPNet))
 
@@ -134,7 +136,9 @@ Most state of art semantic segmentation deep learning architectures are based on
 + [A 2017 Guide to Semantic Segmentation with Deep Learning](http://blog.qure.ai/notes/semantic-segmentation-deep-learning-review)
 + [Scene Parsing through ADE20K Dataset. Bolei Zhou, Hang Zhao, Xavier Puig, Sanja Fidler, Adela Barriuso and Antonio Torralba. Computer Vision and Pattern Recognition (CVPR), 2017.](http://people.csail.mit.edu/bzhou/publication/scene-parse-camera-ready.pdf)
 + [Semantic Understanding of Scenes through ADE20K Dataset. Bolei Zhou, Hang Zhao, Xavier Puig, Sanja Fidler, Adela Barriuso and Antonio Torralba. arXiv:1608.05442.](https://arxiv.org/pdf/1608.05442.pdf)
++ [Pyramid Scene Parsing Network](https://arxiv.org/abs/1612.01105)
 + [Color-to-Grayscale: Does the Method Matter in Image Recognition?](http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0029740#s3)
 + [The Cityscapes Dataset for Semantic Urban Scene Understanding](https://arxiv.org/pdf/1604.01685.pdf)
 + [Hands Deep in Deep Learning for Hand Pose Estimation](https://arxiv.org/pdf/1502.06807.pdf)
+
 
