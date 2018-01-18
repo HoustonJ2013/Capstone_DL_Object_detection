@@ -24,6 +24,12 @@ h1 {
     background-color:  #F0F8FF;
 }
 
+h3 {
+    color: black;
+    text-align: Right;
+    background-color:  #F0F8FF;
+}
+
 p {
     font-family: verdana;
     font-size: 20px;
