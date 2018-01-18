@@ -1,3 +1,4 @@
+
 .dtable {
     width: 100%;
     display: table;
@@ -10,6 +11,8 @@
     width: 35%;
     display: table-cell;
 }
+
+html {background-color:  #F0F8FF;}
 
 tbody {
     background-color:  #F0F8FF;
