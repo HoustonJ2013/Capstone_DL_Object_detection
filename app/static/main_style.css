@@ -5,6 +5,11 @@
     background-color: #F0F8FF;
 }
 
+.imgthumb{
+    width: 10px;
+    height: 10px;
+}
+
 .d_cell {
     padding: 5px;
     height: 120px;
