@@ -10,19 +10,18 @@
 
 <body>
     <h1>{{ title }} </h1>
-    <h2> --Demonstration For Jingbo Liu's Capstone Project </h2>
+    <h2 aligh="Right"> --Demonstration For Jingbo Liu's Capstone Project </h2>
 
     <div class="dtable">
         <div style="display: table-row;">
             <div class="d_cell">
-                <h2> User's Input</h2>
 
                 <form action="{{ url_for('submit') }}" method="post" >
                     <p align="Center">
                                 <strong>Neural Network Structure</strong>
                     </p>
                     <img src="https://raw.githubusercontent.com/HoustonJ2013/Capstone_DL_Object_detection/master/pics/pspnet.png"
-                    width="600" ALIGN="Center">
+                    width="800" ALIGN="Center">
                     <p>
                         Step 1. Quality and Run Time: Trade run time for Quality )
                     </p>
@@ -31,6 +30,7 @@
                             <option>Intermediate </option>
                             <option>Premium</option>
                         </select>
+                    <button type="submit" class="btn btn-default">Run</button>
                     <p>
                         Step 2. Select a Image/upload your own Image
                     </p>
