@@ -28,10 +28,10 @@ def submit():
     # elif model_select == "Model3":
     #     model_c = model_3
 
-    if isinstance(doc, basestring):
-        doc = [doc]
-    sec_name = model_c.predict(doc)
-    proba = [np.max(model_c.predict_proba(doc))]
+    # if isinstance(doc, basestring):
+    #     doc = [doc]
+    # sec_name = model_c.predict(doc)
+    # proba = [np.max(model_c.predict_proba(doc))]
     return render_template('index.html', title='Understanding Your Image at Pixel Level', data=zip(doc,sec_name,proba))
 
 
