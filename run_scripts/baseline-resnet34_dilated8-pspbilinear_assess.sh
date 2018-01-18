@@ -1,1 +1,1 @@
-python src/metrics_acc_iou.py --List_predict ./results/baseline-resnet34_dilated8-psp_bilinear/val_list.txt --List_true ./data/ADE20K_val_fullpath.txt --num_class 150 > logs/baseline-resnet34_dilated8-psp_bilinear_val.log
+python src/metrics_acc_iou.py --List_predict ./results/baseline-resnet34_dilated8-psp_bilinear/val_list.txt --List_true ./data/ADE20K_val_fullpath.txt --num_class 20 > logs/baseline-resnet34_dilated8-psp_bilinear_val_20.log
