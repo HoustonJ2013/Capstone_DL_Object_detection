@@ -5,12 +5,12 @@
     <title>{{ title }}</title>
     <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='main_style.css')}}">
     <img src="https://raw.githubusercontent.com/HoustonJ2013/Capstone_DL_Object_detection/master/pics/Galvanize.png"
-         width="50" ALIGN="Left">
+         width="80" ALIGN="Left">
 </head>
 
 <body>
     <h1>{{ title }} </h1>
-    <h3> --Demonstration For Jingbo Liu's Capstone Project </h3>
+    <h2> --Demonstration For Jingbo Liu's Capstone Project </h2>
 
     <div class="dtable">
         <div style="display: table-row;">
@@ -18,8 +18,8 @@
                 <h2> User's Input</h2>
 
                 <form action="{{ url_for('submit') }}" method="post" >
-                    <p>
-                                Neural Network Structure
+                    <p align="Center">
+                                <strong>Neural Network Structure</strong>
                     </p>
                     <img src="https://raw.githubusercontent.com/HoustonJ2013/Capstone_DL_Object_detection/master/pics/pspnet.png"
                     width="600" ALIGN="Center">
