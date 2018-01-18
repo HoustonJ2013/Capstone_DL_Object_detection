@@ -5,6 +5,7 @@ from keras.layers import BatchNormalization, Activation, Input, Dropout, ZeroPad
 from keras.layers.merge import Concatenate, Add
 from keras.models import Model
 from keras.optimizers import SGD
+import tensorflow as tf
 
 learning_rate = 1e-3  # Layer specific learning rate
 # Weight decay not implemented
@@ -18,9 +19,9 @@ def Interp(x, shape):
     from keras.backend import tf as ktf
     new_height, new_width = shape
     resized = ktf.image.resize_images(x, [new_height, new_width],
+                                      method=tf.image.ResizeMethod.BICUBIC,
                                       align_corners=True)
     return resized
-
 
 def residual_conv(prev, level, pad=1, lvl=1, sub_lvl=1, modify_stride=False):
     lvl = str(lvl)

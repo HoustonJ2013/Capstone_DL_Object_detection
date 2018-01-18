@@ -175,7 +175,7 @@ class PSPNet(object):
             for clc in cl: # clc - 1 is the right index for clc
                 cmask = (val == clc).astype(int)
                 y_batch[i_c, :, :, clc - 1] = cmask
-        return X_batch, y_batch.astype("float16")
+        return X_batch.astype("float16"), y_batch.astype("float16")
 
     def _preprocess_image(self, imgbatch):
         """Preprocess an image as input."""

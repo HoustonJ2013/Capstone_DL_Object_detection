@@ -55,3 +55,9 @@ For all the 2 pictures
 Mean Accuracy is 0.853430
 Mean IOU is 0.039095
 
+Prediction using BICUBIC as image_resize method, Default was BILINEAR
+For pic data/ADEChallengeData2016/annotations/validation/ADE_val_00000001.png Pixel_accuray is 0.951555  Mean_IOU is 0.766429
+For pic data/ADEChallengeData2016/annotations/validation/ADE_val_00000003.png Pixel_accuray is 0.608796  Mean_IOU is 0.320713
+For all the 2 pictures
+Mean Accuracy is 0.864420
+Mean IOU is 0.040723

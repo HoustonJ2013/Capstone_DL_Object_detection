@@ -56,7 +56,7 @@ class PSPNet(object):
         json_path = join("weights", "keras", weights + ".json")
         h5_path = join("weights", "keras", weights + ".h5")
 
-        if isfile(json_path) and isfile(h5_path):
+        if False: #isfile(json_path) and isfile(h5_path):
             print("Keras model & weights found, loading...")
             with open(json_path, 'r') as file_handle:
                 self.model = model_from_json(file_handle.read())
@@ -303,9 +303,8 @@ def main(args):
         print("     After Model Prediction", str(datetime.now()), datetime.now() - TIME_START)
 
         ## Output model report
-        ## Output model report
-        if args.print_report:
-            print_model(pspnet, args)
+        # if args.print_report:
+        #     print_model(pspnet, args)
 
 
 if __name__ == "__main__":
