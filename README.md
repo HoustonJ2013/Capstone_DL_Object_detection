@@ -2,7 +2,7 @@
 
 ## Motivations: Bussiness Value 
 ### 1. Oil and Gas E&P : Automatic Seismic [Fault](https://en.wikipedia.org/wiki/Fault_(geology))/[Horizon](http://subsurfwiki.org/wiki/Horizon) picking and interpretation 
-<img src="./pics/Seismic_fault_horizon_picking.jpg" width="500" ALIGN="Right"> 
+<img src="https://raw.githubusercontent.com/HoustonJ2013/Capstone_DL_Object_detection/master/pics/Seismic_fault_horizon_picking.jpg" width="500" ALIGN="Right"> 
 
 Where to drill and when to drill is one of the most important items on stake holder worry plate in oil and gas E&P.  A well interpreted seismic image is an important tool on the table to help answer those questions. Interpreting a seismic image requires that the interpreter manually check the seismic image and draw upon his or her geological understanding to pick the most likely interpretation from the many “valid” interpretations that the data allow. 
 
@@ -18,7 +18,7 @@ The challenges for a sucessful deep learning project are datasets and algorithms
 
 Seismic Interpretation            |  Semantic Segmentation     
 :---------------:|:--------------:
-<img src="./pics/Seismic_interpretation.jpg" width=350 alt="Seismic interpretation" ALIGN="Middle">|<img src="pics/Semantic_segmentation.jpg" width=450  alt="Semantic segmentation" ALIGN="Middle">
+<img src="https://raw.githubusercontent.com/HoustonJ2013/Capstone_DL_Object_detection/master/pics/Seismic_interpretation.jpg" width=350 alt="Seismic interpretation" ALIGN="Middle">|<img src="pics/Semantic_segmentation.jpg" width=450  alt="Semantic segmentation" ALIGN="Middle">
 
 
 [Semantic segmentation](https://en.wikipedia.org/wiki/Image_segmentation) is potentially a good Deep Learning solution to seismic Falut/Horizon picking and interpretation as they share many common challenges: 1. Pixel level accuracy. 2. Pixel level classification: in semantic segmentation, we identify each pixel as car, pedestrain and in seismic fault/horizon interpretation, we identify pixel as layers between Petrel and Oligocence or in a Fault block... 
@@ -28,7 +28,7 @@ In this capstone project, I will focus on the algorithm part of the deep learnin
 
 ## Data Set and Resources
 
-In this project, I choose [ADE20K Dataset](http://groups.csail.mit.edu/vision/datasets/ADE20K/), which was released by MIT as the data sets for [MIT Scene Parsing chanllenges (2017)](http://sceneparsing.csail.mit.edu/). The ADE20k data set contains more than 20K scene-centric images exhaustively annotated with objects and object parts. Specifically, the benchmark is divided into 20K images for training, 2K images for validation, and another batch of held-out images for testing. 
+In this project, I choose [ADE20K Dataset](http://groups.csail.mit.edu/vision/datasets/ADE20K/), which was released by MIT as the data sets for [MIT Scene Parsing chanllenges (2017)](http://sceneparsing.csail.mit.edu/). The ADE20k data set contains more than 20K scene-centric images exhaustively annotated with objects and object parts. Specifically, the benchmark is divided into 20K images for training, 2K images for validation, and another batch of held-out images for testing. There are totally 150 semantic categories included in the challenge for evaluation, which include stuffs like sky, road, grass, and discrete objects like person, car, bed.
 
 
 <img src="./pics/frame_rjob6ak7h3ivflyt.jpg" width=400 alt="Image Raw" ALIGN="Middle">|<img src="pics/frame_rjob6ak7h3ivflyt_seg.png" width=400  alt="Annotations" ALIGN="Middle">
@@ -59,7 +59,7 @@ To assess performance, we use two metrics:
 (2) Mean of the standard Jaccard Index, commonly known as the PASCAL VOC intersection-over-union metric IoU=TP/TP+FP+FN, where TP, FP, and FN are the numbers of true positive, false positive, and false negative pixels, respectively, determined over the whole test set.
 
 
-To evalute your own prediction, run the code as follows. In order to make cross-platform cross-framework comparison, we saved all the predicted images as numpy array.   
+To evalute your own prediction, run the code as follows. In order to make cross-platform cross-framework comparison, we saved all the predicted images as numpy array in .npy format.   
 ```
 python src/metrics_acc_iou.py --List_predict List_Prediction --List_true List_validation --num_class 10
 ```
@@ -69,8 +69,8 @@ python src/metrics_acc_iou.py --List_predict List_Prediction --List_true List_va
 ### Image Quality Check
 Image annotation quality is checked and I randomly selected 40 pictures and put the raw image and annotation image in togglable slides in a [PPT](https://github.com/HoustonJ2013/Capstone_Deep_Learning_Galvanize/blob/master/ppts/QC_Dec_12.pptx). Overall the quality of the annotation is very good for this assessement. 
 
-### Pre-processing 
-Seismic images only have one value in a pixel, compared to the RGB color scale in the training data sets. In this project, I convert the RGB colored images to grayscale images in order to better emulate the seismic images. [Gleam algorithm was found to be almost always the top performer for face and object recognition.](http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0029740#s3) Gleam method uses standard [gamma correction](https://en.wikipedia.org/wiki/Gamma_correction) on RGB channels, and takes the mean of the corrected RGB channels as grayscale intensity.  
+### Does Gray Scale Matter?
+Seismic images only have one value in a pixel, compared to the RGB color scale in the training data sets. In this project, I used the RGB colored images. In the rest of this section, I will assess how much impact of gray image on the performance of Deep Learning using MIT [baseline model](https://github.com/hangzhaomit/semantic-segmentation-pytorch). [Gleam algorithm was found to be almost always the top performer for face and object recognition.](http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0029740#s3) Gleam method uses standard [gamma correction](https://en.wikipedia.org/wiki/Gamma_correction) on RGB channels, and takes the mean of the corrected RGB channels as grayscale intensity.  
 
   <img src="./pics/gleam_equation.png" width="200" ALIGN="center">  where <img src="./pics/R'.PNG" width="15" ALIGN="center"><img src="./pics/G'.PNG" width="12" ALIGN="center"><img src="./pics/B'.PNG" width="12" ALIGN="center"> are gamma corrected RGB channels. 
   
@@ -80,13 +80,13 @@ python src/rgb2gray.py  --input_folder INPUT_FOLDER --output_folder OUTPUT_FOLDE
 
 options: --method (“luminance”,”gleam“)
 ```
-Converting image from RGB to grayscale loses color information, and I assessed how much impact the color information have on performance based on the MIT [benchmark model](https://github.com/hangzhaomit/semantic-segmentation-pytorch). I trained a DilatedNet on both RGB and Gray scale images for 5 iterations (~ 90 % of the performance are achieved in the first 5 iterations), and assessed their performance at predicting the 2000 validation images.  Based on the observation, the performance of gray image is roughtly 1% worse than RGB image. 
+I trained a the MIT baseline model (Resnet34 with dillated modification + billinear decoder) on both RGB and Gray scale images for 5 iterations (~ 90 % of the performance are achieved in the first 5 iterations), and assessed their performance at predicting the 2000 validation images.  Based on the observation, the performance of deep neural networks trained on gray image is only ~ 1% worse than that trained on RGB image, and most of the predicting power between the two models are the same. So the deep neural network structure is adaptitable to gray images such as seismic images. 
 
 
 |	|Pixel_Accuracy|Mean IOU|
 |---------------|--------------|--------------|
-|RGB Image	|0.7498	|0.382|
-|Gray Image|0.7366	|0.359|
+|RGB Image	|0.7498	|0.296|
+|Gray Image|0.7366	|0.278|
 
 
 Raw Image/Annotations/Predicted
@@ -94,21 +94,58 @@ Raw Image/Annotations/Predicted
 <img src="./pics/validation_gray_ADE_val_00000650_5iter.png" width=800 alt="Seismic interpretation" ALIGN="Middle">
 
 ## Deep Learning Achitecutre and Analysis
-### A few key concepts in state-of-art algrithms for semantic segmentation
-- ImageNet
-- Full Convolutional Network
-- Encoder-Decoder Structure
-- Dilated/atrous Convolutional Layer
+### A few key components in state-of-art algrithms for semantic segmentation
+#### [ImageNet](http://www.image-net.org/)
+ImageNet is an image database organized according to the WordNet hierarchy (currently only the nouns), in which each node of the hierarchy is depicted by hundreds and thousands of images. There are more than 14 million labeled pictures for more than 22,000 categories available for free on [ImageNet](http://www.image-net.org/). In the context of ImageNet, sometimes people refer to several recognized high-performance deep learning structures trained on ImageNet dataset for image classification, including VGG, ResNet, Inception, and Xception. Those high-performance structures and the pre-trained weights are very popluar as a starting point for many other image recognition application. In this project, I investigated several structures for semantic segmentation that use [Resnet](https://arxiv.org/abs/1512.03385) as their starting point. 
 
-### MIT Baseline Model ([Pytorch (resnet34_dilated8 + psp_bilinear)](https://github.com/hangzhaomit/semantic-segmentation-pytorch))
+#### [Full Convolutional Network (FCN)](https://arxiv.org/abs/1411.4038)
+<img src="./pics/FCN - illustration.png" width=300 alt="Illustration for FCN" ALIGN="Right">
+A fully convolutional network (FCN) is composed of convolutional layers without any fully connected layers, which is usually found at the end of Imagenet. One advantage of FCN is that it takes input image of arbitrary size without any resizing. Almost all of the subsequent Neural Networks for semantic segmentation are based on FCN structure. 
 
+#### [Encoder-Decoder Structure](https://arxiv.org/abs/1511.00561) and [Dilated/atrous Convolutional Layer](https://arxiv.org/abs/1511.07122)
+Another main challenge for segmentations using convolutional neural network is the pooling layer, which increase the field of view and aggregate the information from a larger context at the expenses of losing the resolution. However, semantic segmentation requires pixel level accuray for predicting the labels. One of the popular structures for semantic segnmentation is the encoder-decoder, in which encoder gradually reduces the spatial resolution with pooling layer while decoder gradually recovers the spatial resolution and details of the object. Another useful layer structure for keeping the spatial resolution is dilated/atrous convolution layer, in which the convolution kernel is dilated by a ratio, e.g. 2x, 4x, or 8x. This dilated convolution is able to aggreate information from larger field of view and lose less spatial information. 
+
+<img src="./pics/encoder_decoder.png" width=650 alt="Illustration for FCN http://www.mdpi.com/2076-3417/7/4/312/htm" ALIGN="Middle">
+
+
+Ordinary Convolution           |  Dilated Convolution    
+:---------------:|:--------------:
+<img src="https://github.com/vdumoulin/conv_arithmetic/blob/master/gif/padding_strides_odd.gif" width=250 alt="Convolution" ALIGN="Middle">|<img src="pics/dilation_demo.gif" width=250  alt="Convolution" ALIGN="Middle">
+
+Most state of art semantic segmentation deep learning architectures are based on these key components, with different flavors of implementation, training, data augmentation and post-processing.  
+
+### MIT Baseline Model ([Pytorch (resnet34_dilated8 + C1_bilinear)](https://github.com/hangzhaomit/semantic-segmentation-pytorch))
+MIT hosts a [Scene Parsing Chanllenge](http://placeschallenge.csail.mit.edu/) in 2016 to segment and parse an image into different image regions associated with semantic categories, such as sky, road, person, and bed. The participants are from 
+many famous universities and companies all over the world. In the end of 2017, they released a benchmark model and pre-trained model that includes many state of art deep learning architecture for semantic segmentation from the challenges. As a baseline model, I selected the ResNet34 with dilation modification as encoder, and C1_bilinar model as decoder. The reported score for this model has mean IoU of 0.327, and accuracy of 76.47%. The best performance from MIT baseline model options has mean IoU of 0.38, and accuracy of 78.21%.
+
+
+## Neural Network Structure for Capstone Project
 ### Piramid Scence Parsing Network ([Tensorflow](https://github.com/Vladkryvoruchko/PSPNet-Keras-tensorflow), [Caffe](https://github.com/hszhao/PSPNet))
+The [piramid scence parsing](https://arxiv.org/abs/1612.01105) module was in the champion model of MIT Scene Parsing Challenge 2016, which was able to aggreagate the information of pictures with different scale of views and thus leads to better prediction for the hard scene context. As shown in the picture below, the author selected four scales 1, 2, 3, 6 to aggregate the feature information, and then upsampling and stack the results. I used exact the same module in my project. 
+<img src="./pics/pspnet.png" width=800 alt="PSPNET Structure" ALIGN="Middle">
+### 
 
-<img src="./pics/pspnet.png" width=800 alt="Seismic interpretation" ALIGN="Middle">
+## Results
+We used the 2000 labeled validation pictures to assess the perfomance of my Capstone model and MIT baseline model. The detailed layers and operations in these two models can be found in the tables. ([MITBASELINE](https://raw.githubusercontent.com/HoustonJ2013/Capstone_DL_Object_detection/master/netstructures/mitbaselin_report.txt)  [Capstone Model](https://github.com/HoustonJ2013/Capstone_DL_Object_detection/blob/master/netstructures/pspnet50_report.txt))
 
-### Multi-Path Refinement Networks ([MatConvNet](https://github.com/guosheng/refinenet))
+Both models worked very well, and my Capstone model has several additional features that contributed to the improvement over MIT baseline model: 1. Deeper resnets 50 vs 34; 2. PSP Module helps aggreate gloabl context information better. 3. Flipped prediction vs non-flipped prediction; 4. Nonlinear upsampling method Cubic vs Bilinear. 
 
-## Adapt to my own Nets and improve
+Model | Important Strucutre and Features | Mean Pixel Accuray | Mean IoU     
+:---------------:|:--------------:|:--------------:|:--------------:
+MIT Baseline Model|ResNet34 + Billinear Upsampling + Multi-scale Prediction| 0.7805 | 0.360
+Capstone Model|ResNet50 + PSP Module + Cubic Upsampling + Multi-scale and Flipped Prediction| 0.7951 | 0.406
+
+|<img src="https://raw.githubusercontent.com/HoustonJ2013/Capstone_DL_Object_detection/master/pics/Mean_Pixel_Accu.jpg" width=450 alt="Seismic interpretation" ALIGN="Middle">|<img src="https://raw.githubusercontent.com/HoustonJ2013/Capstone_DL_Object_detection/master/pics/Mean_IoU.jpg" width=450  alt="Semantic segmentation" ALIGN="Middle">|
+|:---------------:|:--------------:|
+
+Beyond the numbers and statistics, I show a few predicton examples of images to have a better idea of how the models performed. 
+
+
+Example 1. Capstone model is able to handle confusing labels better than MIT Baseline Model. In this case, building and house are very close and it is even hard for a human being to differentiate from the two.
+<img src="./pics/MIT_VS_Capstone_Case1.png" width=650 alt="Seismic interpretation" ALIGN="Middle">
+
+
+
 
 ### Conclusion and demo
 
@@ -122,7 +159,9 @@ Raw Image/Annotations/Predicted
 + [A 2017 Guide to Semantic Segmentation with Deep Learning](http://blog.qure.ai/notes/semantic-segmentation-deep-learning-review)
 + [Scene Parsing through ADE20K Dataset. Bolei Zhou, Hang Zhao, Xavier Puig, Sanja Fidler, Adela Barriuso and Antonio Torralba. Computer Vision and Pattern Recognition (CVPR), 2017.](http://people.csail.mit.edu/bzhou/publication/scene-parse-camera-ready.pdf)
 + [Semantic Understanding of Scenes through ADE20K Dataset. Bolei Zhou, Hang Zhao, Xavier Puig, Sanja Fidler, Adela Barriuso and Antonio Torralba. arXiv:1608.05442.](https://arxiv.org/pdf/1608.05442.pdf)
++ [Pyramid Scene Parsing Network](https://arxiv.org/abs/1612.01105)
 + [Color-to-Grayscale: Does the Method Matter in Image Recognition?](http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0029740#s3)
 + [The Cityscapes Dataset for Semantic Urban Scene Understanding](https://arxiv.org/pdf/1604.01685.pdf)
 + [Hands Deep in Deep Learning for Hand Pose Estimation](https://arxiv.org/pdf/1502.06807.pdf)
+
 
