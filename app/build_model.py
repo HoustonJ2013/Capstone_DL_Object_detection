@@ -5,7 +5,7 @@ text classification model.
 When run as a module, this will load a csv dataset, train a classification
 model, and then pickle the resulting model object to disk.
 """
-import cPickle as pickle
+import _pickle as pickle
 import pandas as pd
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.naive_bayes import MultinomialNB
