@@ -324,7 +324,7 @@ def main(args):
                     lss_, acc_ = pspnet.train_one_epoch(input_batch, lab_batch)
                     print("%i/%i in %i epoch finished at time %s from start, Loss is %f Acc is %f" %
                           (i_batch, n_batch, i, str(datetime.now() - TIME_START), lss_, acc_))
-                if i > 0 and i%args.save_epoch ==0:
+                if (i > 0 and i%args.save_epoch==0) or i == args.num_epoch - 1:
                     savefolder_ = args.ckpt + args.model + "_batch" + str(args.batch_size) \
                                   + "_lr" + str(round(args.learning_rate, 5)) + \
                                   "_" + args.optimizer + "/"
@@ -365,7 +365,7 @@ if __name__ == "__main__":
     parser.add_argument('--ckpt', default="weights/")
     parser.add_argument('--weights', default=None,
                         help="If weights provided, training start from this weights")
-    parser.add_argument('--save_epoch', default=2,
+    parser.add_argument('--save_epoch', type=int, default=2,
                         help="save the weights every save_epoch iteration")
 
     parser.add_argument('-f', '--flip', action='store_true',
