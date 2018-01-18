@@ -289,9 +289,9 @@ def main(args):
     with sess.as_default():
         print(args)
         # Build Model
-        if "pspnet50_ade" in args.model:
+        if "psp" in args.model and "50" in args.model:
             pspnet = PSPNet50(nb_classes=150, input_shape=(473, 473),
-                              weights=args.model)
+                              weights=args.weights)
         else:
             print("Network architecture not implemented.")
 
@@ -322,6 +322,8 @@ if __name__ == "__main__":
                         help='Path the input image')
     parser.add_argument('-o', '--output_path', type=str, default='results/',
                         help='Path to output')
+    parser.add_argument('-w', '--weights', type=str, default='results/',
+                                                help='name of the weights to load')
     parser.add_argument('--num_gpus', default="1")
     parser.add_argument('-f', '--flip', action='store_true',
                         help="Whether the network should predict on both image and flipped image.")
