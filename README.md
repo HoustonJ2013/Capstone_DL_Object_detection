@@ -118,7 +118,6 @@ Most state of art semantic segmentation deep learning architectures are based on
 MIT hosts a [Scene Parsing Chanllenge](http://placeschallenge.csail.mit.edu/) in 2016 to segment and parse an image into different image regions associated with semantic categories, such as sky, road, person, and bed. The participants are from 
 many famous universities and companies all over the world. In the end of 2017, they released a benchmark model and pre-trained model that includes many state of art deep learning architecture for semantic segmentation from the challenges. As a baseline model, I selected the ResNet34 with dilation modification as encoder, and C1_bilinar model as decoder. The reported score for this model has mean IoU of 0.327, and accuracy of 76.47%. The best performance from MIT baseline model options has mean IoU of 0.38, and accuracy of 78.21%.
 
-The network structure table can be found in this [repo](https://raw.githubusercontent.com/HoustonJ2013/Capstone_DL_Object_detection/master/netstructures/mitbaselin_report.txt)
 
 ## Neural Network Structure for This Project
 ### Piramid Scence Parsing Network ([Tensorflow](https://github.com/Vladkryvoruchko/PSPNet-Keras-tensorflow), [Caffe](https://github.com/hszhao/PSPNet))
@@ -127,17 +126,22 @@ The [piramid scence parsing](https://arxiv.org/abs/1612.01105) module was in the
 ### 
 
 ## Results
-We used the 2000 labeled validation pictures to assess the perfomance of my model and MIT baseline model. 
+We used the 2000 labeled validation pictures to assess the perfomance of my Capstone model and MIT baseline model. The detailed layers and operations in these two models can be found in the tables. ([MITBASELINE](https://raw.githubusercontent.com/HoustonJ2013/Capstone_DL_Object_detection/master/netstructures/mitbaselin_report.txt)  [Capstone Model](https://github.com/HoustonJ2013/Capstone_DL_Object_detection/blob/master/netstructures/pspnet50_report.txt))
+
+Both models worked very well, and my Capstone model has several additional features that contributed to the improvement over MIT baseline model: 1. Deeper resnets 50 vs 34; 2. PSP Module helps aggreate gloabl contextual information better. 3. Flipped prediction vs non-flipped prediction; 4. Nonlinear upsampling method Cubic vs Bilinear. 
 
 Model | Important Strucutre and Features | Mean Pixel Accuray | Mean IoU     
 :---------------:|:--------------:|:--------------:|:--------------:
 MIT Baseline Model|ResNet34 + Billinear Upsampling + Multi-scale Prediction| 0.7805 | 0.360
 Capstone Model|ResNet50 + PSP Module + Cubic Upsampling + Multi-scale and Flipped Prediction| 0.7951 | 0.406
 
+|<img src="https://raw.githubusercontent.com/HoustonJ2013/Capstone_DL_Object_detection/master/pics/Mean_Pixel_Accu.jpg" width=450 alt="Seismic interpretation" ALIGN="Middle">|<img src="https://raw.githubusercontent.com/HoustonJ2013/Capstone_DL_Object_detection/master/pics/Mean_IoU.jpg" width=450  alt="Semantic segmentation" ALIGN="Middle">|
+|:---------------:|:--------------:|
 
-<img src="https://raw.githubusercontent.com/HoustonJ2013/Capstone_DL_Object_detection/master/pics/Mean_Pixel_Accu.jpg" width=450 alt="Seismic interpretation" ALIGN="Middle">|<img src="https://raw.githubusercontent.com/HoustonJ2013/Capstone_DL_Object_detection/master/pics/Mean_IoU.jpg" width=450  alt="Semantic segmentation" ALIGN="Middle">
+Beyond the numbers and statistics, I will show a fews examples of prediction to have a better idea of how the models performed. 
+Example 1. Capstone model is able to handle confusing labels better than MIT Baseline Model. In this case, building and house are very close and it is even hard for a human being to differentiate from the two.
 
-
+<img src="./pics/MIT_VS_Capstone_Case1.png" width=650 alt="Seismic interpretation" ALIGN="Middle">
 
 ### Conclusion and demo
 
