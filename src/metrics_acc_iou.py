@@ -209,5 +209,7 @@ if __name__ == '__main__':
     iou_final = InterSect_Area.sum / (Union_Area.sum + 1e-10)
     # np.save("iou_final.npy", iou_final)
     print("For all the %i pictures"%(n_assess))
+    for i in range(len(iou_final)):
+        print("class %i iou: %f"%(i, iou_final[i][0]))
     print("Mean Accuracy is %f"%(mean_Accu.avg))
     print("Mean IOU is %f" % (iou_final.mean()))
