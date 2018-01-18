@@ -1,0 +1,4 @@
+Namespace(batch_size=2, ckpt='weights/', flip=False, label_list='data/test_val.txt', learning_rate=0.0001, model='pspnet50_ade20k', modelname='pspade20k', num_epoch=2, num_gpus=1, optimizer='Adam', print_report=False, save_epoch=1, train_list='data/test_train.txt', weights='pspnet50_ade20k')
+No. 10 of batches for each epoch
+Keras model & weights found, loading...
+The GPU memory has to be more than 4.370000 Gb

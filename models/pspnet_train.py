@@ -75,7 +75,7 @@ class PSPNet(object):
             img: A list of input images
         """
 
-        list_sample = [x.rstrip() for x in open(args.input_list, 'r')]
+        list_sample = [x.rstrip() for x in open(input_list, 'r')]
         n_total = len(list_sample)
         if n_total == 1:
             batch_size =1
@@ -168,6 +168,7 @@ class PSPNet(object):
             # Resize X
             img = misc.imresize(img, (shapes[0], shapes[1]))
             X_batch[i_c, :, :, :] = img
+            X_batch = self._preprocess_image(X_batch)
             # Resize and expand y
             cl = np.unique(val)
             cl = cl[cl > 0]
@@ -175,7 +176,7 @@ class PSPNet(object):
             for clc in cl: # clc - 1 is the right index for clc
                 cmask = (val == clc).astype(int)
                 y_batch[i_c, :, :, clc - 1] = cmask
-        return X_batch, y_batch.astype("float16")
+        return X_batch.astype("float16"), y_batch.astype("float16")
 
     def _preprocess_image(self, imgbatch):
         """Preprocess an image as input."""
@@ -324,7 +325,7 @@ def main(args):
                     lss_, acc_ = pspnet.train_one_epoch(input_batch, lab_batch)
                     print("%i/%i in %i epoch finished at time %s from start, Loss is %f Acc is %f" %
                           (i_batch, n_batch, i, str(datetime.now() - TIME_START), lss_, acc_))
-                if i > 0 and i%args.save_epoch ==0:
+                if (i > 0 and i%args.save_epoch==0) or i == args.num_epoch - 1:
                     savefolder_ = args.ckpt + args.model + "_batch" + str(args.batch_size) \
                                   + "_lr" + str(round(args.learning_rate, 5)) + \
                                   "_" + args.optimizer + "/"
@@ -365,7 +366,7 @@ if __name__ == "__main__":
     parser.add_argument('--ckpt', default="weights/")
     parser.add_argument('--weights', default=None,
                         help="If weights provided, training start from this weights")
-    parser.add_argument('--save_epoch', default=2,
+    parser.add_argument('--save_epoch', type=int, default=1,
                         help="save the weights every save_epoch iteration")
 
     parser.add_argument('-f', '--flip', action='store_true',

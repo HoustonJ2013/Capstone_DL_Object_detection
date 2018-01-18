@@ -103,7 +103,7 @@ ImageNet is an image database organized according to the WordNet hierarchy (curr
 A fully convolutional network (FCN) is composed of convolutional layers without any fully connected layers, which is usually found at the end of Imagenet. One advantage of FCN is that it takes input image of arbitrary size without any resizing. Almost all of the subsequent Neural Networks for semantic segmentation are based on FCN structure. 
 
 #### [Encoder-Decoder Structure](https://arxiv.org/abs/1511.00561) and [Dilated/atrous Convolutional Layer](https://arxiv.org/abs/1511.07122)
-Another main challenge for segmentations using convolutional neural network is the pooling layer, which increase the field of view and aggregate the information from a larger context at the expenses of losing the resolution. However, semantic segmentation requires for predicting the label at pixel level. One of the popular structures is the encoder-decoder structure, in which encoder gradually reduces the spatial resolution with pooling layer while decoder gradually recovers the spatial resolution and details of the object. Another useful layer structure for keeping the spatial resolution is dilated/atrous convolution layer, in which the convolution kernel is dilated by a ratio, e.g. 2x, 4x, or 8x. This dilated convolution is able to aggreate information from larger field of view without losing spatial information. 
+Another main challenge for segmentations using convolutional neural network is the pooling layer, which increase the field of view and aggregate the information from a larger context at the expenses of losing the resolution. However, semantic segmentation requires pixel level accuray for predicting the labels. One of the popular structures for semantic segnmentation is the encoder-decoder, in which encoder gradually reduces the spatial resolution with pooling layer while decoder gradually recovers the spatial resolution and details of the object. Another useful layer structure for keeping the spatial resolution is dilated/atrous convolution layer, in which the convolution kernel is dilated by a ratio, e.g. 2x, 4x, or 8x. This dilated convolution is able to aggreate information from larger field of view and lose less spatial information. 
 
 <img src="./pics/encoder_decoder.png" width=650 alt="Illustration for FCN http://www.mdpi.com/2076-3417/7/4/312/htm" ALIGN="Middle">
 
@@ -118,24 +118,32 @@ Most state of art semantic segmentation deep learning architectures are based on
 MIT hosts a [Scene Parsing Chanllenge](http://placeschallenge.csail.mit.edu/) in 2016 to segment and parse an image into different image regions associated with semantic categories, such as sky, road, person, and bed. The participants are from 
 many famous universities and companies all over the world. In the end of 2017, they released a benchmark model and pre-trained model that includes many state of art deep learning architecture for semantic segmentation from the challenges. As a baseline model, I selected the ResNet34 with dilation modification as encoder, and C1_bilinar model as decoder. The reported score for this model has mean IoU of 0.327, and accuracy of 76.47%. The best performance from MIT baseline model options has mean IoU of 0.38, and accuracy of 78.21%.
 
-The network structure table can be found in this [repo](https://raw.githubusercontent.com/HoustonJ2013/Capstone_DL_Object_detection/master/netstructures/mitbaselin_report.txt)
 
-## Neural Network Structure for This Project
+## Neural Network Structure for Capstone Project
 ### Piramid Scence Parsing Network ([Tensorflow](https://github.com/Vladkryvoruchko/PSPNet-Keras-tensorflow), [Caffe](https://github.com/hszhao/PSPNet))
 The [piramid scence parsing](https://arxiv.org/abs/1612.01105) module was in the champion model of MIT Scene Parsing Challenge 2016, which was able to aggreagate the information of pictures with different scale of views and thus leads to better prediction for the hard scene context. As shown in the picture below, the author selected four scales 1, 2, 3, 6 to aggregate the feature information, and then upsampling and stack the results. I used exact the same module in my project. 
 <img src="./pics/pspnet.png" width=800 alt="PSPNET Structure" ALIGN="Middle">
 ### 
 
 ## Results
-We used the 2000 labeled validation pictures to assess the perfomance of my model and MIT baseline model. 
+We used the 2000 labeled validation pictures to assess the perfomance of my Capstone model and MIT baseline model. The detailed layers and operations in these two models can be found in the tables. ([MITBASELINE](https://raw.githubusercontent.com/HoustonJ2013/Capstone_DL_Object_detection/master/netstructures/mitbaselin_report.txt)  [Capstone Model](https://github.com/HoustonJ2013/Capstone_DL_Object_detection/blob/master/netstructures/pspnet50_report.txt))
+
+Both models worked very well, and my Capstone model has several additional features that contributed to the improvement over MIT baseline model: 1. Deeper resnets 50 vs 34; 2. PSP Module helps aggreate gloabl context information better. 3. Flipped prediction vs non-flipped prediction; 4. Nonlinear upsampling method Cubic vs Bilinear. 
 
 Model | Important Strucutre and Features | Mean Pixel Accuray | Mean IoU     
 :---------------:|:--------------:|:--------------:|:--------------:
 MIT Baseline Model|ResNet34 + Billinear Upsampling + Multi-scale Prediction| 0.7805 | 0.360
 Capstone Model|ResNet50 + PSP Module + Cubic Upsampling + Multi-scale and Flipped Prediction| 0.7951 | 0.406
 
+|<img src="https://raw.githubusercontent.com/HoustonJ2013/Capstone_DL_Object_detection/master/pics/Mean_Pixel_Accu.jpg" width=450 alt="Seismic interpretation" ALIGN="Middle">|<img src="https://raw.githubusercontent.com/HoustonJ2013/Capstone_DL_Object_detection/master/pics/Mean_IoU.jpg" width=450  alt="Semantic segmentation" ALIGN="Middle">|
+|:---------------:|:--------------:|
 
-<img src="https://raw.githubusercontent.com/HoustonJ2013/Capstone_DL_Object_detection/master/pics/Mean_Pixel_Accu.jpg" width=450 alt="Seismic interpretation" ALIGN="Middle">|<img src="https://raw.githubusercontent.com/HoustonJ2013/Capstone_DL_Object_detection/master/pics/Mean_IoU.jpg" width=450  alt="Semantic segmentation" ALIGN="Middle">
+Beyond the numbers and statistics, I show a few predicton examples of images to have a better idea of how the models performed. 
+
+
+Example 1. Capstone model is able to handle confusing labels better than MIT Baseline Model. In this case, building and house are very close and it is even hard for a human being to differentiate from the two.
+<img src="./pics/MIT_VS_Capstone_Case1.png" width=650 alt="Seismic interpretation" ALIGN="Middle">
+
 
 
 
