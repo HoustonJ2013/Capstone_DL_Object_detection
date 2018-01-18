@@ -1,0 +1,1 @@
+python src/metrics_acc_iou.py --List_predict ./results/baseline_resnet35_dilated8-psp_blinear_train_100/val_list.txt --List_true ./data/ADE20K_val_fullpath.txt --num_class 150 > logs/baseline-train28iter_val.log
