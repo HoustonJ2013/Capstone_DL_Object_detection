@@ -14,13 +14,12 @@
 
                 <form action="{{ url_for('submit') }}" method="post" >
                     <p>
-                        Step 1. Select a model for object detection
-                        (Default model is preloaded. Loading a new model takes some time)
+                        Step 1. Quality and Run Time: Trade run time for Quality )
                     </p>
-                        <select name="model_selected" id="Models">
-                            <option>Default(resnet34_dilated8 + c1_bilinear)</option>
-                            <option>Model2</option>
-                            <option>Model3</option>
+                        <select name="Prediction Options" id="Models">
+                            <option>Basic </option>
+                            <option>Intermediate </option>
+                            <option>Premium</option>
                         </select>
                     <p>
                         Step 2. Select/Upload a picture for object detection
@@ -70,3 +69,4 @@
     </div>
 </body>
 </html>
+<img src="../pics/Resources.jpg" width="380" ALIGN="Right">
