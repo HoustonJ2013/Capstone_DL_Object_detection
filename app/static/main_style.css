@@ -1,0 +1,26 @@
+.dtable {
+    width: 100%;
+    display: table;
+    background-color: #F0F8FF;
+}
+
+.d_cell {
+    padding: 5px;
+    height: 120px;
+    width: 35%;
+    display: table-cell;
+}
+
+tbody {
+    background-color: green;
+}
+
+h1 {
+    color: white;
+    text-align: center;
+}
+
+p {
+    font-family: verdana;
+    font-size: 20px;
+}
