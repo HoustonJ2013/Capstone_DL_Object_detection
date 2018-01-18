@@ -138,10 +138,14 @@ Capstone Model|ResNet50 + PSP Module + Cubic Upsampling + Multi-scale and Flippe
 |<img src="https://raw.githubusercontent.com/HoustonJ2013/Capstone_DL_Object_detection/master/pics/Mean_Pixel_Accu.jpg" width=450 alt="Seismic interpretation" ALIGN="Middle">|<img src="https://raw.githubusercontent.com/HoustonJ2013/Capstone_DL_Object_detection/master/pics/Mean_IoU.jpg" width=450  alt="Semantic segmentation" ALIGN="Middle">|
 |:---------------:|:--------------:|
 
-Beyond the numbers and statistics, I will show a fews examples of prediction to have a better idea of how the models performed. 
-Example 1. Capstone model is able to handle confusing labels better than MIT Baseline Model. In this case, building and house are very close and it is even hard for a human being to differentiate from the two.
+Beyond the numbers and statistics, I show a few predicton examples of images to have a better idea of how the models performed. 
 
+
+Example 1. Capstone model is able to handle confusing labels better than MIT Baseline Model. In this case, building and house are very close and it is even hard for a human being to differentiate from the two.
 <img src="./pics/MIT_VS_Capstone_Case1.png" width=650 alt="Seismic interpretation" ALIGN="Middle">
+
+
+
 
 ### Conclusion and demo
 
