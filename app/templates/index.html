@@ -5,7 +5,9 @@
     <title>{{ title }}</title>
     <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='main_style.css')}}">
     <img src="https://raw.githubusercontent.com/HoustonJ2013/Capstone_DL_Object_detection/master/pics/Galvanize.png"
-         width="80" ALIGN="Left">
+         width="120" ALIGN="Left">
+    <img src="https://raw.githubusercontent.com/HoustonJ2013/Capstone_DL_Object_detection/master/pics/app_pic_ec2.png"
+                        width="120" ALIGN="Right">
 </head>
 
 <body>
@@ -19,14 +21,14 @@
                 <form action="{{ url_for('submit') }}" method="post" >
                     <a href="https://hszhao.github.io/projects/pspnet/index.html" align="Center">
                         <center>
-                            <font size="3" >
+                            <font size="4" >
                                 <strong>Neural Network Structure For This Project
                                 </strong>
                             </font>
                         </center>
                     </a>
                     <img src="https://raw.githubusercontent.com/HoustonJ2013/Capstone_DL_Object_detection/master/pics/pspnet.png"
-                    width="650" ALIGN="Center">
+                    width="750" ALIGN="Center">
                     <p>
                         Step 1. Quality and Run Time: Trade run time for Quality )
                     </p>
@@ -74,8 +76,7 @@
 
 
             <div class="d_cell">
-                <h2>Results  <img src="https://raw.githubusercontent.com/HoustonJ2013/Capstone_DL_Object_detection/master/pics/app_pic_ec2.png"
-                        width="200" ALIGN="Right"> </h2>
+                <h2>Results </h2>
 
                 <div id="results">
                     {% if data is not none %}
