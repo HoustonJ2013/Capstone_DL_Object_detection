@@ -38,7 +38,7 @@ def colorlabel(color_list):
     for im in images:
       new_im.paste(im, (x_offset, 0))
       x_offset += im.size[0]
-    new_im.save("statc/color.jpg")
+    new_im.save("static/color.jpg")
 
 
 def colorEncode(labelmap, colors):
