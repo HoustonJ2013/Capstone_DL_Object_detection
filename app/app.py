@@ -16,6 +16,7 @@ from scipy.io import loadmat
 from PIL import Image
 from PIL import ImageFont
 from PIL import ImageDraw
+from collections import Counter
 
 app = Flask(__name__)
 DATA_MEAN = np.array([[[[123.68, 116.779, 103.939]]]])  # RGB order
@@ -82,12 +83,12 @@ def run():
         print("     AF Init Model", str(datetime.now()), datetime.now() - TIME_START)
         Capnet.predict(input_list, flip, output_path="static/", batch_size=5)
         pred_path = (input_list[0])[:-4] + ".npy"
-        pred_array = np.load(pred_path) - 1
+        pred_array = np.load(pred_path).astype("float16") - 1
         pred_rgb = colorEncode(pred_array, colors)
         img = Image.fromarray(pred_rgb)
         img.save("static/pred.jpg")
         pic_pred.append("/" + "static/pred.jpg")
-        color_list = np.unique(pred_array)
+        color_list = [tem[0] for tem in Counter(pred_array.flatten()).most_common[7]]
         color_list = color_list[color_list > 0]
         colorlabel(color_list)
         print("Num of colors is ", len(color_list))
