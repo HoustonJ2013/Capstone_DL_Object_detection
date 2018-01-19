@@ -2,20 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="656c4a41-5f07-4980-9072-29fdf40439a3" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/pics/ADE_train_00000033.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/pics/ADE_train_00000033_train.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/pics/ADE_train_00000036.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/pics/ADE_train_00000036_train.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/pics/ADE_train_00007396.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/pics/ADE_train_00007396_train.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/pics/ADE_train_00007508.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/pics/ADE_train_00007508_train.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/pics/ADE_train_00007644.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/pics/ADE_train_00007644_train.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/pics/ADE_train_00015122.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/pics/ADE_train_00015122_train.png" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/app.py" afterPath="$PROJECT_DIR$/app/app.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/templates/index.html" afterPath="$PROJECT_DIR$/app/templates/index.html" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -62,11 +49,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="app.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="app.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/app.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="267">
-              <caret line="41" column="0" lean-forward="true" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
+            <state relative-caret-position="87">
+              <caret line="28" column="7" lean-forward="false" selection-start-line="28" selection-start-column="7" selection-end-line="28" selection-end-column="7" />
               <folding>
                 <element signature="e#0#23#0" expanded="true" />
               </folding>
@@ -108,7 +95,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/templates/index.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="109">
@@ -151,8 +138,8 @@
         <option value="$PROJECT_DIR$/models/pspnet_pred.py" />
         <option value="$PROJECT_DIR$/models/pspnet_train.py" />
         <option value="$PROJECT_DIR$/models/model_utils.py" />
-        <option value="$PROJECT_DIR$/app/app.py" />
         <option value="$PROJECT_DIR$/app/templates/index.html" />
+        <option value="$PROJECT_DIR$/app/app.py" />
       </list>
     </option>
   </component>
@@ -359,16 +346,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/app.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="267">
-          <caret line="41" column="0" lean-forward="true" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#23#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/static/main_style.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="262">
@@ -390,6 +367,16 @@
         <state relative-caret-position="109">
           <caret line="100" column="0" lean-forward="true" selection-start-line="100" selection-start-column="0" selection-end-line="100" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/app.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="87">
+          <caret line="28" column="7" lean-forward="false" selection-start-line="28" selection-start-column="7" selection-end-line="28" selection-end-column="7" />
+          <folding>
+            <element signature="e#0#23#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

@@ -26,7 +26,7 @@ def index():
 
 
 @app.route('/run', methods=['POST'])
-def submit():
+def run():
     option = request.form["Prediction Options"]
     flip = ""
     input_list = ""
