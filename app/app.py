@@ -88,7 +88,9 @@ def run():
         img.save("static/pred.jpg")
         pic_pred.append("/" + "static/pred.jpg")
         color_list = np.unique(pred_array)
+        color_list = color_list[color_list > 0]
         colorlabel(color_list)
+        print("Num of colors is ", len(color_list))
     pic_pred.append("/static/color.jpg")
     return render_template('index.html',  data=pic_pred)
 
