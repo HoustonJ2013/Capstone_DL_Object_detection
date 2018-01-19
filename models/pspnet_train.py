@@ -302,9 +302,9 @@ def main(args):
                 print("Network architecture not implemented.")
 
             if args.optimizer =="SGD":
-                optimizer_ = SGD(lr=args.learning_rate, momentum=0.9, nesterov=True)
+                optimizer_ = SGD(lr=args.learning_rate, momentum=0.95, nesterov=True)
             elif args.optimizer=="Adam":
-                optimizer_ = Adam(lr=args.learning_rate, beta_1=0.9, beta_2=0.999, decay=0.0)
+                optimizer_ = Adam(lr=args.learning_rate, beta_1=0.95, beta_2=0.999, decay=0.0)
             else:
                 print("We support SGD and Adam optimizers")
             pspnet.model.compile(optimizer=optimizer_,
