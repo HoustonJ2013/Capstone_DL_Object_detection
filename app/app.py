@@ -25,23 +25,22 @@ def index():
     return render_template('index.html',  data=None)
 
 
-@app.route('/submit', methods=['POST'])
+@app.route('/run', methods=['POST'])
 def submit():
-    doc = request.form['text1']
-    model_select = request.form["model_selected"]
+    option = request.form["Prediction Options"]
     flip = ""
     input_list = ""
     sess = tf.Session()
     K.set_session(sess)
     with sess.as_default():
         # Build Model
-
         Capnet = PSPNet50(nb_classes=150, input_shape=(473, 473),
                               weights="pspnet50_ade20k")
         print("     AF Init Model", str(datetime.now()), datetime.now() - TIME_START)
         Capnet.predict(input_list, flip, output_path="results/", batch_size=5)
+    pic_pred = "file:pics/validation_ADE_val_00000661.png"
 
-    return render_template('index.html',  data=zip(doc,sec_name,proba))
+    return render_template('index.html',  data=zip(pic_pred))
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000, debug=True)
