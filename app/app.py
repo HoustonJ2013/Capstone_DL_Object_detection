@@ -24,8 +24,6 @@ def index():
     return render_template('index.html',  data=None)
 
 
-
-
 @app.route('/run', methods=['POST'])
 def run():
     option = request.form["Prediction Options"]

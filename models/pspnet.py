@@ -75,7 +75,7 @@ class PSPNet(object):
             img: A list of input images
         """
 
-        list_sample = [x.rstrip() for x in open(input_list, 'r')]
+        list_sample = input_list
         n_total = len(list_sample)
         if n_total == 1:
             batch_size =1

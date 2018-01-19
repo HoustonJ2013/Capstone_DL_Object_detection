@@ -67,7 +67,9 @@ def main(args):
         print("     AF Init Model", str(datetime.now()), datetime.now() - TIME_START)
 
         ## Batch Prediction
-        pspnet.predict(args.input_list,  args.flip, output_path="results/", batch_size=5)
+
+        input_list = [x.rstrip() for x in open(args.input_list, 'r')]
+        pspnet.predict(input_list,  args.flip, output_path="results/", batch_size=5)
 
         print("     After Model Prediction", str(datetime.now()), datetime.now() - TIME_START)
 
