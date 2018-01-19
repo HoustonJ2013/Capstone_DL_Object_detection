@@ -88,7 +88,7 @@ def run():
         img = Image.fromarray(pred_rgb)
         img.save("static/pred.jpg")
         pic_pred.append("/" + "static/pred.jpg")
-        color_list = [tem[0] for tem in Counter(pred_array.flatten()).most_common[7]]
+        color_list = [tem[0] for tem in Counter(pred_array.flatten()).most_common(7)]
         color_list = color_list[color_list > 0]
         colorlabel(color_list)
         print("Num of colors is ", len(color_list))
