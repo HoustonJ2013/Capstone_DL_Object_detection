@@ -32,6 +32,7 @@ def colorlabel(color_list):
     img_list = ["color150/" + obj.split(";")[0] + ".jpg" for obj in obj_list]
     images = map(Image.open, img_list)
     widths, heights = zip(*(i.size for i in images))
+    print(widths, heights, img_list)
     height_max = max(heights)
     width_total = sum(widths)
     new_im = Image.new('RGB', (width_total , height_max))
@@ -88,8 +89,9 @@ def run():
         img = Image.fromarray(pred_rgb)
         img.save("static/pred.jpg")
         pic_pred.append("/" + "static/pred.jpg")
-        color_list = np.array([tem[0] for tem in Counter(pred_array.flatten()).most_common(7)])
-        color_list = color_list[color_list > 0]
+        pred_array = pred_array.flatten()
+        pred_array = pred_array[pred_array > 0]
+        color_list = np.array([tem[0] for tem in Counter(pred_array).most_common(7)])
         colorlabel(color_list)
         print("Num of colors is ", len(color_list))
     pic_pred.append("/static/color.jpg")
