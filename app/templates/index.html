@@ -105,6 +105,9 @@
             {% if data is not none %}
             <center>
                 {% for pic in data %}
+                <tr>
+                    <td>  {{pic}}  </td>
+                </tr>
                 <img src={{pic}} width="800" ALIGN="Center">
                 {% endfor %}
             </center>
