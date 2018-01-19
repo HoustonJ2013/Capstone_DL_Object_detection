@@ -28,7 +28,7 @@ def index():
 def run():
     option = request.form["Prediction Options"]
     flip = False
-    input_list = ["/static/ADE_val_00001772.jpg"]
+    input_list = ["static/ADE_val_00001772.jpg"]
 
     sess = tf.Session()
     K.set_session(sess)
