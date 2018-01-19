@@ -18,18 +18,22 @@ app = Flask(__name__)
 
 DATA_MEAN = np.array([[[[123.68, 116.779, 103.939]]]])  # RGB order
 TIME_START = datetime.now()
+sess = tf.Session()
+K.set_session(sess)
+with sess.as_default():
+    print("     AF Init Model", str(datetime.now()), datetime.now() - TIME_START)
+    Capnet = PSPNet50(nb_classes=150, input_shape=(473, 473),
+                           weights="pspnet50_ade20k")
+    print("     AF Init Model", str(datetime.now()), datetime.now() - TIME_START)
+
 
 
 @app.route('/')
 def index():
     return render_template('index.html',  data=None)
 
-sess = tf.Session()
-K.set_session(sess)
-print("     AF Init Model", str(datetime.now()), datetime.now() - TIME_START)
-Capnet = sess.run(PSPNet50(nb_classes=150, input_shape=(473, 473),
-                           weights="pspnet50_ade20k"))
-print("     AF Init Model", str(datetime.now()), datetime.now() - TIME_START)
+
+
 
 @app.route('/run', methods=['POST'])
 def run():

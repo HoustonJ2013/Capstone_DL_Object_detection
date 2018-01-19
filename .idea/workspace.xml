@@ -2,12 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="656c4a41-5f07-4980-9072-29fdf40439a3" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/pics/validation_ADE_val_00000661.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/pics/validation_ADE_val_00000662.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/pics/validation_ADE_val_00000663.png" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/app.py" afterPath="$PROJECT_DIR$/app/app.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/templates/index.html" afterPath="$PROJECT_DIR$/app/templates/index.html" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -21,8 +16,8 @@
       <file leaf-file-name="pspnet_pred.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/models/pspnet_pred.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="216">
-              <caret line="69" column="89" lean-forward="false" selection-start-line="69" selection-start-column="8" selection-end-line="69" selection-end-column="89" />
+            <state relative-caret-position="54">
+              <caret line="57" column="27" lean-forward="true" selection-start-line="57" selection-start-column="4" selection-end-line="57" selection-end-column="27" />
               <folding>
                 <element signature="e#1094#1131#0" expanded="true" />
               </folding>
@@ -33,7 +28,7 @@
       <file leaf-file-name="pspnet_train.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/models/pspnet_train.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
+            <state relative-caret-position="42">
               <caret line="42" column="20" lean-forward="false" selection-start-line="42" selection-start-column="20" selection-end-line="42" selection-end-column="20" />
               <folding>
                 <element signature="e#1094#1131#0" expanded="true" />
@@ -45,8 +40,8 @@
       <file leaf-file-name="app.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/app.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="249">
-              <caret line="39" column="0" lean-forward="true" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
+            <state relative-caret-position="321">
+              <caret line="25" column="53" lean-forward="true" selection-start-line="25" selection-start-column="53" selection-end-line="25" selection-end-column="53" />
               <folding>
                 <element signature="e#0#23#0" expanded="true" />
               </folding>
@@ -265,24 +260,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/models/pspnet_pred.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="69" column="89" lean-forward="false" selection-start-line="69" selection-start-column="8" selection-end-line="69" selection-end-column="89" />
-          <folding>
-            <element signature="e#1094#1131#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/static/main_style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="262">
-          <caret line="15" column="15" lean-forward="false" selection-start-line="15" selection-start-column="15" selection-end-line="15" selection-end-column="15" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/app_fraud.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-324">
@@ -313,13 +290,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/models/pspnet_train.py">
+    <entry file="file://$PROJECT_DIR$/app/static/main_style.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="42" column="20" lean-forward="false" selection-start-line="42" selection-start-column="20" selection-end-line="42" selection-end-column="20" />
-          <folding>
-            <element signature="e#1094#1131#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="262">
+          <caret line="15" column="15" lean-forward="false" selection-start-line="15" selection-start-column="15" selection-end-line="15" selection-end-column="15" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -339,10 +314,30 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/models/pspnet_pred.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="54">
+          <caret line="57" column="27" lean-forward="true" selection-start-line="57" selection-start-column="4" selection-end-line="57" selection-end-column="27" />
+          <folding>
+            <element signature="e#1094#1131#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/pspnet_train.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="42">
+          <caret line="42" column="20" lean-forward="false" selection-start-line="42" selection-start-column="20" selection-end-line="42" selection-end-column="20" />
+          <folding>
+            <element signature="e#1094#1131#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/app.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="249">
-          <caret line="39" column="0" lean-forward="true" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
+        <state relative-caret-position="321">
+          <caret line="25" column="53" lean-forward="true" selection-start-line="25" selection-start-column="53" selection-end-line="25" selection-end-column="53" />
           <folding>
             <element signature="e#0#23#0" expanded="true" />
           </folding>
