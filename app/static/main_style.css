@@ -1,0 +1,47 @@
+
+.dtable {
+    width: 100%;
+    display: table;
+    background-color: #F0F8FF;
+}
+
+.imgthumb{
+    width: 50px;
+    height: 50px;
+}
+
+.d_cell {
+    padding: 15px;
+    height: 120px;
+    width: 85%;
+    display: table-cell;
+}
+
+html {background-color:  #F0F8FF;}
+
+tbody {
+    background-color:  #F0F8FF;
+}
+
+h1 {
+    font-size: 2.5em;
+    color: black;
+    text-align: Left;
+    background-color:  #F0F8FF;
+}
+
+h2 {
+    font-size: 1.8em;
+    color: black;
+    text-align: Right;
+    background-color:  #F0F8FF;
+}
+
+p {
+    font-family: verdana;
+    font-size: 20px;
+}
+
+table, td {
+   border: 1px solid black;
+}

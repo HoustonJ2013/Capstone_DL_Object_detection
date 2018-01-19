@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title }}</title>
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='main_style.css')}}">
+    <img src="https://raw.githubusercontent.com/HoustonJ2013/Capstone_DL_Object_detection/master/pics/Galvanize.png"
+         width="120" ALIGN="Left">
+    <img src="https://raw.githubusercontent.com/HoustonJ2013/Capstone_DL_Object_detection/master/pics/app_pic_ec2.png"
+                        width="155" ALIGN="Left" hspace="20">
+</head>
+
+<body>
+    <h1>{{ title }} </h1>
+    <h2 aligh="Right"> --Demonstration For Jingbo Liu's Capstone Project </h2>
+
+    <div class="dtable">
+        <div style="display: table-row;">
+            <div class="d_cell">
+
+
+                <a href="https://hszhao.github.io/projects/pspnet/index.html" align="Center">
+                    <center>
+                        <font size="4" >
+                            <strong>Neural Network Structure For This Project (Hengshuang Zhao et al.)
+                            </strong>
+                        </font>
+                    </center>
+                </a>
+                <center>
+                    <img src="https://raw.githubusercontent.com/HoustonJ2013/Capstone_DL_Object_detection/master/pics/pspnet.png"
+                    width="1000" ALIGN="Center">
+                </center>
+
+                <a href="https://github.com/HoustonJ2013/Capstone_DL_Object_detection" align="Center">
+                    <center>
+                        <font size="4" >
+                            <strong>Example Prediction and Jingbo's Project Repo
+                            </strong>
+                        </font>
+                    </center>
+                </a>
+                <center>
+                    <img src="https://raw.githubusercontent.com/HoustonJ2013/Capstone_DL_Object_detection/master/pics/presentation_1552.jpg"
+                    width="600" ALIGN="Center">
+                </center>
+
+
+
+                <form action="{{ url_for('submit') }}" method="post" >
+                    <p>
+                        Step 1. Quality and Run Time: Trade run time for Quality )
+                    </p>
+                        <select name="Prediction Options" id="Models">
+                            <option>Basic </option>
+                            <option>Intermediate </option>
+                            <option>Premium</option>
+                        </select>
+                    <button type="submit" class="btn btn-default">Run</button>
+                    <p>
+                        Step 2. Select a Image/upload your own Image
+                    </p>
+                    <p>  Click One </p>
+                    <tr>
+
+                          <td style="width: 500px;" colspan="4">
+                              <img src="http://scenesegmentation.csail.mit.edu/demo/1.jpg" class="imgthumb" onclick="go(this.src);">
+                              <img src="http://scenesegmentation.csail.mit.edu/demo/2.jpg" class="imgthumb" onclick="go(this.src);">
+                              <img src="http://scenesegmentation.csail.mit.edu/demo/3.jpg" class="imgthumb" onclick="go(this.src);">
+                              <img src="http://scenesegmentation.csail.mit.edu/demo/4.jpg" class="imgthumb" onclick="go(this.src);">
+                              <img src="http://scenesegmentation.csail.mit.edu/demo/5.jpg" class="imgthumb" onclick="go(this.src);">
+                              <img src="http://scenesegmentation.csail.mit.edu/demo/6.jpg" class="imgthumb" onclick="go(this.src);">
+                              <img src="http://scenesegmentation.csail.mit.edu/demo/7.jpg" class="imgthumb" onclick="go(this.src);">
+                              <img src="http://scenesegmentation.csail.mit.edu/demo/8.jpg" class="imgthumb" onclick="go(this.src);">
+                              <img src="http://scenesegmentation.csail.mit.edu/demo/9.jpg" class="imgthumb" onclick="go(this.src);">
+                              <img src="http://scenesegmentation.csail.mit.edu/demo/10.jpg" class="imgthumb" onclick="go(this.src);">
+                              <img src="http://scenesegmentation.csail.mit.edu/demo/11.jpg" class="imgthumb" onclick="go(this.src);">
+                              <img src="http://scenesegmentation.csail.mit.edu/demo/12.jpg" class="imgthumb" onclick="go(this.src);">
+                              <img src="http://scenesegmentation.csail.mit.edu/demo/13.jpg" class="imgthumb" onclick="go(this.src);">
+                              <img src="http://scenesegmentation.csail.mit.edu/demo/14.jpg" class="imgthumb" onclick="go(this.src);">
+                              <img src="http://scenesegmentation.csail.mit.edu/demo/15.jpg" class="imgthumb" onclick="go(this.src);">
+                              <img src="http://scenesegmentation.csail.mit.edu/demo/16.jpg" class="imgthumb" onclick="go(this.src);">
+                              <img src="http://scenesegmentation.csail.mit.edu/demo/17.jpg" class="imgthumb" onclick="go(this.src);">
+                              <img src="http://scenesegmentation.csail.mit.edu/demo/18.jpg" class="imgthumb" onclick="go(this.src);">
+                              <img src="http://scenesegmentation.csail.mit.edu/demo/19.jpg" class="imgthumb" onclick="go(this.src);">
+                              <img src="http://scenesegmentation.csail.mit.edu/demo/20.jpg" class="imgthumb" onclick="go(this.src);">
+                              <img src="http://scenesegmentation.csail.mit.edu/demo/21.jpg" class="imgthumb" onclick="go(this.src);">
+                          </td>
+                    </tr>
+
+                    <button type="submit" class="btn btn-default">Run</button>
+                </form>
+
+            </div>
+
+
+
+        </div>
+    </div>
+</body>
+</html>

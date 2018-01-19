@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title }}</title>
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='main_style.css')}}">
+</head>
+
+
+<body>
+    <h1>{{ title }}</h1>
+    <div class="dtable">
+        <div style="display: table-row;">
+            <div class="d_cell">
+                <h2>User Entry</h2>
+                <form action="{{ url_for('score') }}" method="post" >
+
+                    <select name="options">
+                      <option selected="selected" value="option1">option1</option>
+                      <option value="option2">option2</option>
+                      <option value="option3">option3</option>
+                    </select>
+                    <button type="submit" class="btn btn-default">Go</button>
+                    <p>
+
+                        Option 1 : Display the last 10 events prediction from Database
+                        Database is updating every minutes
+
+                    </p>
+
+
+                    <p>
+
+                        Option 2 : Check one live entry from http://galvanize-case-study-on-fraud.herokuapp.com/data_point
+
+                    </p>
+
+                    <p>
+                        Option 3 : Enter Your Own Entry as json
+                    </p>
+                    <textarea name="text1" cols="50" rows="5" >
+                    </textarea>
+
+                    <p>
+                        The fraudulent events have three level:
+                    </p>
+                    <p>
+                        High Risk : > 80% of chance it is fraudulent based on Machine Learning Model
+                    </p>
+                    <p>
+                        Medium Risk : > 50% of chance it is fraudulent
+                    </p>
+                    <p>
+                        Low Risk : < 50% of chance it is fraudulent
+                    </p>
+
+                </form>
+
+            </div>
+
+            <div class="d_cell">
+                <h2>Results</h2>
+                <div id="results">
+                    {% if data is not none %}
+                    <table>
+                        <tbody>
+                            <thead>
+                                <th>  Organization </th>
+                                <th>  Event Name  </th>
+                                <th>  Payee Name  </th>
+                                <th>  Risk Level  </th>
+                            </thead>
+                            {% for org_name, name, payee_name, risk_level in data %}
+                            <tr>
+                                <td>  {{org_name}}  </td>
+                                <td>  {{name}}  </td>
+                                <td>  {{payee_name}}  </td>
+                                <td>  {{risk_level}}  </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
