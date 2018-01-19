@@ -38,10 +38,9 @@ def index():
 @app.route('/run', methods=['POST'])
 def run():
     option = request.form["Prediction Options"]
-    flip = ""
-    input_list = ""
-    #Capnet.predict(input_list, flip, output_path="results/", batch_size=5)
-
+    flip = False
+    input_list = ["/static/ADE_val_00001772.jpg"]
+    Capnet.predict(input_list, flip, output_path="/static/", batch_size=5)
     pic_pred = ["/static/validation_ADE_val_00000661.png", "/static/validation_ADE_val_00000661.png"]
 
     return render_template('index.html',  data=pic_pred)
