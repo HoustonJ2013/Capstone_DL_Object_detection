@@ -40,7 +40,7 @@ def run():
         Capnet.predict(input_list, flip, output_path="results/", batch_size=5)
     pic_pred = ["file:pics/validation_ADE_val_00000661.png"]
 
-    return render_template('index.html',  data=zip(pic_pred))
+    return render_template('index.html',  data=pic_pred)
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000, debug=True)
