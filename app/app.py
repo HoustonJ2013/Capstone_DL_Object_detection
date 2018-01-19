@@ -22,23 +22,26 @@ TIME_START = datetime.now()
 
 @app.route('/')
 def index():
-    return render_template('index.html', title='Understanding Your Image at Pixel Level', data=None)
+    return render_template('index.html',  data=None)
 
 
 @app.route('/submit', methods=['POST'])
 def submit():
     doc = request.form['text1']
     model_select = request.form["model_selected"]
+    flip = ""
+    input_list = ""
     sess = tf.Session()
     K.set_session(sess)
     with sess.as_default():
         # Build Model
 
-        pspnet = PSPNet50(nb_classes=150, input_shape=(473, 473),
+        Capnet = PSPNet50(nb_classes=150, input_shape=(473, 473),
                               weights="pspnet50_ade20k")
         print("     AF Init Model", str(datetime.now()), datetime.now() - TIME_START)
+        Capnet.predict(input_list, flip, output_path="results/", batch_size=5)
 
-    return render_template('index.html', title='Understanding Your Image at Pixel Level', data=zip(doc,sec_name,proba))
+    return render_template('index.html',  data=zip(doc,sec_name,proba))
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000, debug=True)
