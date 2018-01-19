@@ -1,11 +1,23 @@
 from flask import Flask
 from flask import render_template, request
-import _pickle as pickle
-import pandas as pd
 import numpy as np
-from build_model import TextClassifier, get_data
+from scipy import misc, ndimage
+from keras import backend as K
+from keras.models import model_from_json
+import tensorflow as tf
+import layers_builder as layers
+import model_utils as model_utils
+from keras.optimizers import SGD, Adam
+import matplotlib.pyplot as plt
+from datetime import datetime
+from pspnet import *
+
+
 
 app = Flask(__name__)
+
+DATA_MEAN = np.array([[[[123.68, 116.779, 103.939]]]])  # RGB order
+TIME_START = datetime.now()
 
 
 @app.route('/')
@@ -17,17 +29,15 @@ def index():
 def submit():
     doc = request.form['text1']
     model_select = request.form["model_selected"]
-    # if model_select == "Default(resnet34_dilated8 + c1_bilinear)":
-    #     model_c = model
-    # elif model_select == "Model2":
-    #     model_c = model_2
-    # elif model_select == "Model3":
-    #     model_c = model_3
+    sess = tf.Session()
+    K.set_session(sess)
+    with sess.as_default():
+        # Build Model
 
-    # if isinstance(doc, basestring):
-    #     doc = [doc]
-    # sec_name = model_c.predict(doc)
-    # proba = [np.max(model_c.predict_proba(doc))]
+        pspnet = PSPNet50(nb_classes=150, input_shape=(473, 473),
+                              weights="pspnet50_ade20k")
+        print("     AF Init Model", str(datetime.now()), datetime.now() - TIME_START)
+
     return render_template('index.html', title='Understanding Your Image at Pixel Level', data=zip(doc,sec_name,proba))
 
 if __name__ == '__main__':
