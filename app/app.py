@@ -15,17 +15,8 @@ from pspnet import *
 
 
 app = Flask(__name__)
-
 DATA_MEAN = np.array([[[[123.68, 116.779, 103.939]]]])  # RGB order
 TIME_START = datetime.now()
-sess = tf.Session()
-K.set_session(sess)
-with sess.as_default():
-    print("     AF Init Model", str(datetime.now()), datetime.now() - TIME_START)
-    Capnet = PSPNet50(nb_classes=150, input_shape=(473, 473),
-                           weights="pspnet50_ade20k")
-    print("     AF Init Model", str(datetime.now()), datetime.now() - TIME_START)
-
 
 
 @app.route('/')
@@ -40,9 +31,17 @@ def run():
     option = request.form["Prediction Options"]
     flip = False
     input_list = ["/static/ADE_val_00001772.jpg"]
-    Capnet.predict(input_list, flip, output_path="/static/", batch_size=5)
-    pic_pred = ["/static/validation_ADE_val_00000661.png", "/static/validation_ADE_val_00000661.png"]
 
+    sess = tf.Session()
+    K.set_session(sess)
+    with sess.as_default():
+        print("     AF Init Model", str(datetime.now()), datetime.now() - TIME_START)
+        Capnet = PSPNet50(nb_classes=150, input_shape=(473, 473),
+                          weights="pspnet50_ade20k")
+        print("     AF Init Model", str(datetime.now()), datetime.now() - TIME_START)
+        Capnet.predict(input_list, flip, output_path="/static/", batch_size=5)
+
+    pic_pred = ["/static/validation_ADE_val_00000661.png", "/static/validation_ADE_val_00000661.png"]
     return render_template('index.html',  data=pic_pred)
 
 if __name__ == '__main__':
