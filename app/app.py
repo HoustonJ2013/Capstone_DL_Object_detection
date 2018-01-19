@@ -39,7 +39,7 @@ def run():
         print("     AF Init Model", str(datetime.now()), datetime.now() - TIME_START)
         #Capnet.predict(input_list, flip, output_path="results/", batch_size=5)
 
-    pic_pred = ["file:static/validation_ADE_val_00000661.png"]
+    pic_pred = ["/static/validation_ADE_val_00000661.png"]
 
     return render_template('index.html',  data=zip(pic_pred))
 
