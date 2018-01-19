@@ -24,22 +24,21 @@ TIME_START = datetime.now()
 def index():
     return render_template('index.html',  data=None)
 
+sess = tf.Session()
+K.set_session(sess)
+print("     AF Init Model", str(datetime.now()), datetime.now() - TIME_START)
+Capnet = sess.run(PSPNet50(nb_classes=150, input_shape=(473, 473),
+                           weights="pspnet50_ade20k"))
+print("     AF Init Model", str(datetime.now()), datetime.now() - TIME_START)
 
 @app.route('/run', methods=['POST'])
 def run():
     option = request.form["Prediction Options"]
     flip = ""
     input_list = ""
-    sess = tf.Session()
-    K.set_session(sess)
-    with sess.as_default():
-        # Build Model
-        Capnet = PSPNet50(nb_classes=150, input_shape=(473, 473),
-                              weights="pspnet50_ade20k")
-        print("     AF Init Model", str(datetime.now()), datetime.now() - TIME_START)
-        #Capnet.predict(input_list, flip, output_path="results/", batch_size=5)
+    #Capnet.predict(input_list, flip, output_path="results/", batch_size=5)
 
-    pic_pred = ["/static/validation_ADE_val_00000661.png"]
+    pic_pred = ["/static/validation_ADE_val_00000661.png", "/static/validation_ADE_val_00000661.png"]
 
     return render_template('index.html',  data=pic_pred)
 
