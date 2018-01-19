@@ -2,7 +2,6 @@ from __future__ import print_function
 import colorsys
 import numpy as np
 from keras.models import Model
-import ade20k_labels
 
 
 
