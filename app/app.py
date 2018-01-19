@@ -1,6 +1,7 @@
 from flask import Flask
 from flask import render_template, request
 import numpy as np
+import pandas as pd
 from scipy import misc, ndimage
 from keras import backend as K
 from keras.models import model_from_json
@@ -11,12 +12,53 @@ from keras.optimizers import SGD, Adam
 import matplotlib.pyplot as plt
 from datetime import datetime
 from pspnet import *
-
-
+from scipy.io import loadmat
+from PIL import Image
+from PIL import ImageFont
+from PIL import ImageDraw
 
 app = Flask(__name__)
 DATA_MEAN = np.array([[[[123.68, 116.779, 103.939]]]])  # RGB order
 TIME_START = datetime.now()
+colors = loadmat("data/color150.mat")['colors'] ## Load colormap
+obj_df = pd.read_csv("data/object150_info.csv")
+
+
+#helper functions
+def colorlabel(color_list):
+    obj_list = obj_df[obj_df["Idx"].isin(color_list+1)]["Name"].values
+    n_obj = len(obj_list)
+    img_list = ["color150/" + obj.split(";")[0] + ".jpg" for obj in obj_list]
+    images = map(Image.open, img_list)
+    widths, heights = zip(*(i.size for i in images))
+    height_max = max(heights)
+    width_total = sum(widths)
+    new_im = Image.new('RGB', (width_total , height_max))
+    x_offset = 0
+    for im in images:
+      new_im.paste(im, (x_offset, 0))
+      x_offset += im.size[0]
+    new_im.save("statc/color.jpg")
+
+
+def colorEncode(labelmap, colors):
+    '''
+    Encode label map with predefined color
+    :param labelmap: label array
+    :param colors:  Colors
+    :return:  Colored RGB Image
+    '''
+    labelmap = labelmap.astype('int')
+    labelmap_rgb = np.zeros((labelmap.shape[0], labelmap.shape[1], 3),
+                            dtype=np.uint8)
+    for label in np.unique(labelmap):
+        if label < 0:
+            continue
+        labelmap_rgb += (labelmap == label)[:, :, np.newaxis] * \
+            np.tile(colors[label],
+                    (labelmap.shape[0], labelmap.shape[1], 1))
+    return labelmap_rgb
+
 
 
 @app.route('/')
@@ -29,18 +71,27 @@ def run():
     option = request.form["Prediction Options"]
     flip = False
     input_list = ["static/ADE_val_00001772.jpg"]
-
     sess = tf.Session()
     K.set_session(sess)
+    pic_pred = []
+    pic_pred.append("/" + input_list[0])
     with sess.as_default():
         print("     AF Init Model", str(datetime.now()), datetime.now() - TIME_START)
         Capnet = PSPNet50(nb_classes=150, input_shape=(473, 473),
                           weights="pspnet50_ade20k")
         print("     AF Init Model", str(datetime.now()), datetime.now() - TIME_START)
         Capnet.predict(input_list, flip, output_path="static/", batch_size=5)
-
-    pic_pred = ["/static/validation_ADE_val_00000661.png", "/static/validation_ADE_val_00000661.png"]
+        pred_path = (input_list[0])[:-4] + ".npy"
+        pred_array = np.load(pred_path) - 1
+        pred_rgb = colorEncode(pred_array, colors)
+        img = Image.fromarray(pred_rgb)
+        img.save("static/pred.jpg")
+        pic_pred.append("/" + "static/pred.jpg")
+        color_list = np.unique(pred_array)
+        colorlabel(color_list)
+    pic_pred.append("/static/color.jpg")
     return render_template('index.html',  data=pic_pred)
+
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000, debug=True)
