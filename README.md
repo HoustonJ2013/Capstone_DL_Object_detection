@@ -123,7 +123,7 @@ The [piramid scence parsing](https://arxiv.org/abs/1612.01105) module was in the
 ## Results
 We used the 2000 labeled validation pictures to assess the perfomance of my Capstone model and MIT baseline model. The detailed layers and operations in these two models can be found in the tables. ([MITBASELINE](https://raw.githubusercontent.com/HoustonJ2013/Capstone_DL_Object_detection/master/netstructures/mitbaselin_report.txt)  [Capstone Model](https://github.com/HoustonJ2013/Capstone_DL_Object_detection/blob/master/netstructures/pspnet50_report.txt))
 
-Both models worked very well, and my Capstone model has several additional features that contributed to the improvement over MIT baseline model: 1. Deeper resnets 50 vs 34; 2. PSP Module helps aggreate gloabl context information better. 3. Flipped prediction vs non-flipped prediction; 4. Nonlinear upsampling method Cubic vs Bilinear. 
+Both models worked very well, and my Capstone model has several additional features that contributed to the improvement over MIT baseline model: 1. Deeper resnets 50 vs 34; 2. PSP Module helps aggreate global context information better. 3. Flipped prediction vs non-flipped prediction; 4. Nonlinear upsampling method Cubic vs Bilinear. 
 
 Model | Important Strucutre and Features | Mean Pixel Accuray | Mean IoU     
 :---------------:|:--------------:|:--------------:|:--------------:
@@ -138,6 +138,9 @@ Beyond the numbers and statistics, I show a few predicton examples of images to 
 
 Example 1. Capstone model is able to handle confusing labels better than MIT Baseline Model. In this case, building and house are very close and it is even hard for a human being to differentiate from the two.
 <img src="./pics/MIT_VS_Capstone_Case1.png" width=650 alt="Seismic interpretation" ALIGN="Middle">
+
+Example 2. Capstone model is able to learn and identify object not even labeled by human experts. In this case, the river is not labeled in the human label, but the deep learning model learned from other "experiences" and was able to delinear the river object correctly.  
+<img src="./pics/MIT_VS_Capstone_Case2.png" width=650 alt="Seismic interpretation" ALIGN="Middle">
 
 
 
