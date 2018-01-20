@@ -35,11 +35,13 @@ def colorlabel(color_list):
     print(widths, heights, img_list)
     height_max = max(heights)
     width_total = sum(widths)
-    new_im = Image.new('RGB', (width_total , height_max))
+    new_im = Image.new('RGB', (width_total, height_max))
+    print("before paste", new_im.getdata())
     x_offset = 0
     for im in images:
       new_im.paste(im, (x_offset, 0))
       x_offset += im.size[0]
+    print("After paste", new_im.getdata())
     new_im.save("static/color.jpg")
 
 
