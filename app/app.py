@@ -32,18 +32,14 @@ def colorlabel(color_list):
     img_list = ["color150/" + obj.split(";")[0] + ".jpg" for obj in obj_list]
     images = list(map(Image.open, img_list))
     widths, heights = zip(*(i.size for i in images))
-    print(widths, heights, img_list)
     height_max = max(heights)
     width_total = sum(widths)
     new_im = Image.new('RGB', (width_total, height_max))
-    print("before paste", max(list(new_im.getdata())))
     x_offset = 0
     print(len(images))
     for im in images:
-        print("image", max(list(im.getdata())))
         new_im.paste(im, (x_offset, 0))
         x_offset += im.size[0]
-    print("After paste", max(list(new_im.getdata())))
     new_im.save("static/color.jpg")
 
 
