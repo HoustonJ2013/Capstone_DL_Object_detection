@@ -114,18 +114,23 @@ class PSPNet(object):
                 prediction = regular_prediction
 
 
-            prediction = np.argmax(prediction, axis=3) + 1
+            pred_index = np.argmax(prediction, axis=3) + 1
+            pred_prob = np.amax(prediction, axis=3)
 
             ## Post-scale up and save image
             for i_c in range(c_batch_size):
                 h_ori, w_ori = input_shapes[i_c][0], input_shapes[i_c][1]
-                h, w = prediction.shape[1:3]
-                pred_i = ndimage.zoom(prediction[i_c, :, :], (1.*h_ori/h, 1.*w_ori/w),
+                h, w = pred_index.shape[1:3]
+                pred_i = ndimage.zoom(pred_index[i_c, :, :], (1.*h_ori/h, 1.*w_ori/w),
+                                          order=1, prefilter=False)
+                pred_p = ndimage.zoom(pred_prob[i_c, :, :], (1.*h_ori/h, 1.*w_ori/w),
                                           order=1, prefilter=False)
                 input_name = list_batch[i_c]
                 output_name = input_name.split("/")[-1][0:-4]
+                output_prob_name = input_name.split("/")[-1][0:-4] + "_prob"
                 print("Predicting",output_name)
                 np.save(join(output_path, output_name), pred_i)
+                np.save(join(output_path, output_prob_name), pred_p)
 
     def train_one_epoch(self, input_list, label_list, n_class=150):
         '''
