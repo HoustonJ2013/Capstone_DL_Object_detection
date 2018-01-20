@@ -39,8 +39,9 @@ def colorlabel(color_list):
     print("before paste", max(list(new_im.getdata())))
     x_offset = 0
     for im in images:
-      new_im.paste(im, (x_offset, 0))
-      x_offset += im.size[0]
+        print("image", max(list(im.getdata())))
+        new_im.paste(im, (x_offset, 0))
+        x_offset += im.size[0]
     print("After paste", max(list(new_im.getdata())))
     new_im.save("static/color.jpg")
 
