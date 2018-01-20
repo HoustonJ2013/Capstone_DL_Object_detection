@@ -109,9 +109,9 @@ def run():
         pred_array = pred_array[pred_array > 0]
         color_list = np.array([tem[0] for tem in Counter(pred_array).most_common(10)])
         new_im = colorlabel(color_list)
-        new_im.save("static/color.jpg")
+        new_im.save("static/" + picture[:-4] + "_color.jpg")
         print("finished color")
-    pic_pred.append("/static/color.jpg")
+    pic_pred.append("/static/" + picture[:-4] + "_color.jpg")
     return render_template('index.html',  data=pic_pred)
 
 
