@@ -18,6 +18,8 @@ from PIL import ImageFont
 from PIL import ImageDraw
 from collections import Counter
 import time
+from io import BytesIO
+import requests as url_request
 
 app = Flask(__name__)
 DATA_MEAN = np.array([[[[123.68, 116.779, 103.939]]]])  # RGB order
@@ -74,6 +76,9 @@ def run():
     flip = True
     picture = request.form["answer"]
     url = request.form["url"]
+    response = url_request.get(url)
+    url_img = Image.open(BytesIO(response.content))
+
     print(url)
     print(picture)
     input_list = ["static/" + picture]
