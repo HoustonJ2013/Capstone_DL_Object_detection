@@ -99,7 +99,7 @@ def run():
         new_im = colorlabel(color_list)
         new_im.save("static/color.jpg")
     pic_pred.append("/static/color.jpg")
-    time.sleep(2)
+    time.sleep(5)
     return render_template('index.html',  data=pic_pred)
 
 
