@@ -128,7 +128,7 @@ def run():
 
             pred_array = pred_array.flatten()
             pred_array = pred_array[pred_array > 0]
-            color_list = np.array([tem[0] for tem in Counter(pred_array).most_common(6)])
+            color_list = np.array([tem[0] for tem in Counter(pred_array).most_common(10)])
             new_im = colorlabel(color_list)
             new_im.save("static/" + picture[:-4] + "_color.jpg")
             pic_pred.append("/static/" + picture[:-4] + "_color.jpg")
