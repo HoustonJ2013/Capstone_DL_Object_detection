@@ -77,46 +77,62 @@ def run():
     picture = request.form["answer"]
     url = request.form["url"]
     response = url_request.get(url)
-    url_img = Image.open(BytesIO(response.content))
-
-    print(url)
+    if "html" in response.content:
+        raise ValueError("The url is not a image, please re-enter a valid url")
+    else:
+        url_img = Image.open(BytesIO(response.content))
+        url_img.save("static/url_img.jpg")
+        picture="url_img.jpg"
+    print(len(url))
     print(picture)
-    input_list = ["static/" + picture]
+
     sess = tf.Session()
     K.set_session(sess)
     pic_pred = []
-    pic_pred.append("/" + input_list[0])
-    with sess.as_default():
-        print("     AF Init Model", str(datetime.now()), datetime.now() - TIME_START)
-        Capnet = PSPNet50(nb_classes=150, input_shape=(473, 473),
-                          weights="pspnet50_ade20k")
-        print("     AF Init Model", str(datetime.now()), datetime.now() - TIME_START)
-        Capnet.predict(input_list, flip, output_path="static/", batch_size=5)
-        pred_path = (input_list[0])[:-4] + ".npy"
-        pred_array = np.load(pred_path).astype("float16") - 1
-        pred_rgb = colorEncode(pred_array, colors)
-        img = Image.fromarray(pred_rgb)
-        img.save("static/" + picture[:-4] + "_pred.jpg")
-        pic_pred.append("/static/" + picture[:-4] + "_pred.jpg")
-        print("finished pred")
 
-        prob_path = (input_list[0])[:-4] + "_prob.npy"
-        pred_prob = np.load(prob_path)
-        plt.imshow(pred_prob, cmap="gray")
-        plt.axis('off')
-        plt.colorbar()
-        plt.savefig("static/" + picture[:-4] + "_pred_prob.jpg", bbox_inches='tight')
-        plt.clf()
-        pic_pred.append("/static/" + picture[:-4] + "_pred_prob.jpg")
-        print("finished prob")
+    if picture in ["galvanize-1.jpg",
+                   "rice_university.jpg",
+                   "sichuan_neijiang_street.jpg",
+                   "uh_building.jpg"]:
+        pic_pred = ["/static/" + picture,
+                    "/static/" + picture[:-4] + "_pred.jpg",
+                    "/static/" + picture[:-4] + "_pred_prob.jpg",
+                    "/static/" + picture[:-4] + "_color.jpg"]
+    else:
+        with sess.as_default():
+            print("     AF Init Model", str(datetime.now()), datetime.now() - TIME_START)
+            Capnet = PSPNet50(nb_classes=150, input_shape=(473, 473),
+                              weights="pspnet50_ade20k")
+            print("     AF Init Model", str(datetime.now()), datetime.now() - TIME_START)
+            input_list = ["static/" + picture]
+            pic_pred.append("/" + input_list[0])
+            Capnet.predict(input_list, flip, output_path="static/", batch_size=5)
+            pred_path = (input_list[0])[:-4] + ".npy"
+            pred_array = np.load(pred_path).astype("float16") - 1
+            pred_rgb = colorEncode(pred_array, colors)
+            img = Image.fromarray(pred_rgb)
+            img.save("static/" + picture[:-4] + "_pred.jpg")
+            pic_pred.append("/static/" + picture[:-4] + "_pred.jpg")
+            print("finished pred")
 
-        pred_array = pred_array.flatten()
-        pred_array = pred_array[pred_array > 0]
-        color_list = np.array([tem[0] for tem in Counter(pred_array).most_common(6)])
-        new_im = colorlabel(color_list)
-        new_im.save("static/" + picture[:-4] + "_color.jpg")
-        print("finished color")
-    pic_pred.append("/static/" + picture[:-4] + "_color.jpg")
+            prob_path = (input_list[0])[:-4] + "_prob.npy"
+            pred_prob = np.load(prob_path)
+            plt.imshow(pred_prob, cmap="gray")
+            plt.axis('off')
+            plt.colorbar()
+            plt.savefig("static/" + picture[:-4] + "_pred_prob.jpg", bbox_inches='tight')
+            plt.clf()
+            pic_pred.append("/static/" + picture[:-4] + "_pred_prob.jpg")
+            print("finished prob")
+
+            pred_array = pred_array.flatten()
+            pred_array = pred_array[pred_array > 0]
+            color_list = np.array([tem[0] for tem in Counter(pred_array).most_common(6)])
+            new_im = colorlabel(color_list)
+            new_im.save("static/" + picture[:-4] + "_color.jpg")
+            pic_pred.append("/static/" + picture[:-4] + "_color.jpg")
+            print("finished color")
+
     return render_template('index.html',  data=pic_pred)
 
 
