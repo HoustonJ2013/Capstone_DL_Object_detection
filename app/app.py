@@ -40,7 +40,7 @@ def colorlabel(color_list):
     for im in images:
         new_im.paste(im, (x_offset, 0))
         x_offset += im.size[0]
-    new_im.save("static/color.jpg")
+    return new_im
 
 
 def colorEncode(labelmap, colors):
@@ -93,8 +93,8 @@ def run():
         pred_array = pred_array.flatten()
         pred_array = pred_array[pred_array > 0]
         color_list = np.array([tem[0] for tem in Counter(pred_array).most_common(7)])
-        colorlabel(color_list)
-        print("Num of colors is ", len(color_list))
+        new_im = colorlabel(color_list)
+        new_im.save("static/color.jpg")
     pic_pred.append("/static/color.jpg")
     return render_template('index.html',  data=pic_pred)
 
