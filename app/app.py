@@ -17,6 +17,7 @@ from PIL import Image
 from PIL import ImageFont
 from PIL import ImageDraw
 from collections import Counter
+import time
 
 app = Flask(__name__)
 DATA_MEAN = np.array([[[[123.68, 116.779, 103.939]]]])  # RGB order
@@ -98,6 +99,7 @@ def run():
         new_im = colorlabel(color_list)
         new_im.save("static/color.jpg")
     pic_pred.append("/static/color.jpg")
+    time.sleep(1)
     return render_template('index.html',  data=pic_pred)
 
 
