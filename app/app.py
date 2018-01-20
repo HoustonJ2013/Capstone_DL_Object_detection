@@ -70,7 +70,8 @@ def index():
 
 @app.route('/run', methods=['POST'])
 def run():
-    option = request.form["Prediction Options"]
+    picture = request.form["answer"]
+    print(picture)
     flip = False
     input_list = ["static/ADE_val_00001772.jpg"]
     sess = tf.Session()
