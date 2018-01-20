@@ -76,13 +76,14 @@ def run():
     flip = True
     picture = request.form["answer"]
     url = request.form["url"]
-    response = url_request.get(url)
-    if "html" in response.content:
-        raise ValueError("The url is not a image, please re-enter a valid url")
-    else:
-        url_img = Image.open(BytesIO(response.content))
-        url_img.save("static/url_img.jpg")
-        picture="url_img.jpg"
+    if len(url > 8):
+        response = url_request.get(url)
+        if "html" in response.content:
+            raise ValueError("The url is not a image, please re-enter a valid url")
+        else:
+            url_img = Image.open(BytesIO(response.content))
+            url_img.save("static/url_img.jpg")
+            picture="url_img.jpg"
     print(len(url))
     print(picture)
 
