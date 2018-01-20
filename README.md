@@ -69,17 +69,12 @@ python src/metrics_acc_iou.py --List_predict List_Prediction --List_true List_va
 ### Image Quality Check
 Image annotation quality is checked and I randomly selected 40 pictures and put the raw image and annotation image in togglable slides in a [PPT](ppts/QC_Dec_12.pptx). Overall the quality of the annotation is very good for this assessement. 
 
-### Does Gray Scale Matter?
+### Does Gray Scale Matter? It matters ~ 1%
 Seismic images only have one value in a pixel, compared to the RGB color scale in the training data sets. In this project, I used the RGB colored images. In the rest of this section, I will assess how much impact of gray image on the performance of Deep Learning using MIT [baseline model](https://github.com/hangzhaomit/semantic-segmentation-pytorch). [Gleam algorithm was found to be almost always the top performer for face and object recognition.](http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0029740#s3) Gleam method uses standard [gamma correction](https://en.wikipedia.org/wiki/Gamma_correction) on RGB channels, and takes the mean of the corrected RGB channels as grayscale intensity.  
 
   <img src="./pics/gleam_equation.png" width="200" ALIGN="center">  where <img src="./pics/R'.PNG" width="15" ALIGN="center"><img src="./pics/G'.PNG" width="12" ALIGN="center"><img src="./pics/B'.PNG" width="12" ALIGN="center"> are gamma corrected RGB channels. 
   
-To convert images from RGB to grayscale, run the code as follows,
-``` 
-python src/rgb2gray.py  --input_folder INPUT_FOLDER --output_folder OUTPUT_FOLDER
-
-options: --method (“luminance”,”gleam“)
-```
+  
 I trained a the MIT baseline model (Resnet34 with dillated modification + billinear decoder) on both RGB and Gray scale images for 5 iterations (~ 90 % of the performance are achieved in the first 5 iterations), and assessed their performance at predicting the 2000 validation images.  Based on the observation, the performance of deep neural networks trained on gray image is only ~ 1% worse than that trained on RGB image, and most of the predicting power between the two models are the same. So the deep neural network structure is adaptitable to gray images such as seismic images. 
 
 
@@ -146,13 +141,17 @@ Example 1. Capstone model is able to handle confusing labels better than MIT Bas
 
 
 
-
 ### Conclusion and demo
 
 
-## Data Sets to be used
-+ [ADE20K Dataset](http://groups.csail.mit.edu/vision/datasets/ADE20K/)
-+ [COCO 2017 Stuff Segmentation Challenge](http://cocodataset.org/#stuff-challenge2017) (Supplementary)
+## Developement Notes
+To convert images from RGB to grayscale, run the code as follows,
+``` 
+python src/rgb2gray.py  --input_folder INPUT_FOLDER --output_folder OUTPUT_FOLDER
+
+options: --method (“luminance”,”gleam“)
+```
+
 
 
 ## Reference
