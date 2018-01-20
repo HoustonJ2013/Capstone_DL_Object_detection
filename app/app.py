@@ -71,8 +71,10 @@ def index():
 
 @app.route('/run', methods=['POST'])
 def run():
+    flip = True
     picture = request.form["answer"]
-    flip = False
+    url = request.form["url"]
+    print(url)
     print(picture)
     input_list = ["static/" + picture]
     sess = tf.Session()
