@@ -1,7 +1,7 @@
 # Deep Learning Pixel-level Object Detection: One Step Toward Automatic Seismic Interpretation (In Work)
 
 ## Motivations: Bussiness Value 
-### 1. Oil and Gas E&P : Automatic Seismic [Fault](https://en.wikipedia.org/wiki/Fault_(geology))/[Horizon](http://subsurfwiki.org/wiki/Horizon) picking and interpretation 
+### Oil and Gas E&P : Automatic Seismic [Fault](https://en.wikipedia.org/wiki/Fault_(geology))/[Horizon](http://subsurfwiki.org/wiki/Horizon) picking and interpretation 
 <img src="https://raw.githubusercontent.com/HoustonJ2013/Capstone_DL_Object_detection/master/pics/Seismic_fault_horizon_picking.jpg" width="500" ALIGN="Right"> 
 
 Where to drill and when to drill is one of the most important items on stake holder worry plate in oil and gas E&P.  A well interpreted seismic image is an important tool on the table to help answer those questions. Interpreting a seismic image requires that the interpreter manually check the seismic image and draw upon his or her geological understanding to pick the most likely interpretation from the many “valid” interpretations that the data allow. 
@@ -144,7 +144,7 @@ Example 2. Capstone model is able to learn and identify object not even labeled 
 
 
 
-### Conclusion and demo
+### Summary and Future Works
 
 
 ## Developement Notes
