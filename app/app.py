@@ -72,6 +72,7 @@ def index():
 def run():
     picture = request.form["answer"]
     flip = False
+    print(picture)
     input_list = ["static/" + picture]
     sess = tf.Session()
     K.set_session(sess)
