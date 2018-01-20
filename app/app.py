@@ -76,7 +76,7 @@ def run():
     flip = True
     picture = request.form["answer"]
     url = request.form["url"]
-    if len(url > 8):
+    if len(url) > 8:
         response = url_request.get(url)
         if "html" in response.content:
             raise ValueError("The url is not a image, please re-enter a valid url")
