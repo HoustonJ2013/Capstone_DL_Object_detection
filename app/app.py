@@ -93,20 +93,23 @@ def run():
         img = Image.fromarray(pred_rgb)
         img.save("static/" + picture[:-4] + "_pred.jpg")
         pic_pred.append("/static/" + picture[:-4] + "_pred.jpg")
+        print("finished pred")
 
         prob_path = (input_list[0])[:-4] + "_prob.npy"
-        pred_prob = np.load(prob_path).astype("float16")
+        pred_prob = np.load(prob_path)
         plt.imshow(pred_prob, cmap="gray")
         plt.axis('off')
         plt.colorbar()
         plt.savefig("static/" + picture[:-4] + "_pred_prob.jpg", bbox_inches='tight')
         pic_pred.append("/static/" + picture[:-4] + "_pred_prob.jpg")
+        print("finished prob")
 
         pred_array = pred_array.flatten()
         pred_array = pred_array[pred_array > 0]
         color_list = np.array([tem[0] for tem in Counter(pred_array).most_common(10)])
         new_im = colorlabel(color_list)
         new_im.save("static/color.jpg")
+        print("finished color")
     pic_pred.append("/static/color.jpg")
     return render_template('index.html',  data=pic_pred)
 
