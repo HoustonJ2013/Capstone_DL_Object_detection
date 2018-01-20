@@ -89,11 +89,12 @@ def run():
         pred_array = np.load(pred_path).astype("float16") - 1
         pred_rgb = colorEncode(pred_array, colors)
         img = Image.fromarray(pred_rgb)
+        print(img.size)
         img.save("static/pred.jpg")
         pic_pred.append("/" + "static/pred.jpg")
         pred_array = pred_array.flatten()
         pred_array = pred_array[pred_array > 0]
-        color_list = np.array([tem[0] for tem in Counter(pred_array).most_common(7)])
+        color_list = np.array([tem[0] for tem in Counter(pred_array).most_common(10)])
         new_im = colorlabel(color_list)
         new_im.save("static/color.jpg")
     pic_pred.append("/static/color.jpg")
