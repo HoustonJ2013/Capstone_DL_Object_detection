@@ -71,9 +71,8 @@ def index():
 @app.route('/run', methods=['POST'])
 def run():
     picture = request.form["answer"]
-    print(picture)
     flip = False
-    input_list = ["static/ADE_val_00001772.jpg"]
+    input_list = ["static/" + picture]
     sess = tf.Session()
     K.set_session(sess)
     pic_pred = []
