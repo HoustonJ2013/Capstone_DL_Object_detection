@@ -99,8 +99,8 @@ def run():
         pred_prob = np.load(prob_path)
         plt.imshow(pred_prob, cmap="gray")
         plt.axis('off')
-        plt.colorbar()
         plt.savefig("static/" + picture[:-4] + "_pred_prob.jpg", bbox_inches='tight')
+        plt.clf()
         pic_pred.append("/static/" + picture[:-4] + "_pred_prob.jpg")
         print("finished prob")
 
