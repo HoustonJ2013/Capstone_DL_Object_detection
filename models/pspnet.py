@@ -124,7 +124,7 @@ class PSPNet(object):
                                           order=1, prefilter=False)
                 input_name = list_batch[i_c]
                 output_name = input_name.split("/")[-1][0:-4]
-                print(output_name)
+                print("Predicting",output_name)
                 np.save(join(output_path, output_name), pred_i)
 
     def train_one_epoch(self, input_list, label_list, n_class=150):

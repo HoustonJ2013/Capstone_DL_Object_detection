@@ -85,6 +85,7 @@ def run():
         print("     AF Init Model", str(datetime.now()), datetime.now() - TIME_START)
         Capnet.predict(input_list, flip, output_path="static/", batch_size=5)
         pred_path = (input_list[0])[:-4] + ".npy"
+        print(pred_path)
         pred_array = np.load(pred_path).astype("float16") - 1
         pred_rgb = colorEncode(pred_array, colors)
         img = Image.fromarray(pred_rgb)
