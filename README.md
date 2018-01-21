@@ -125,7 +125,7 @@ We used the 2000 labeled validation pictures to assess the perfomance of my Caps
 
 Both models worked very well, and my Capstone model has several additional features that contributed to the improvement over MIT baseline model: 1. Deeper resnets 50 vs 34; 2. PSP Module helps aggreate global context information better. 3. Flipped prediction vs non-flipped prediction; 4. Nonlinear upsampling method Cubic vs Bilinear. 
 
-Model | Important Strucutre and Features | Mean Pixel Accuray | Mean IoU     
+Model | Important Strucutre and Features | Mean Pixel Accuracy | Mean IoU     
 :---------------:|:--------------:|:--------------:|:--------------:
 MIT Baseline Model|ResNet34 + Billinear Upsampling + Multi-scale Prediction| 0.7805 | 0.360
 Capstone Model|ResNet50 + PSP Module + Cubic Upsampling + Multi-scale and Flipped Prediction| 0.7951 | 0.406
