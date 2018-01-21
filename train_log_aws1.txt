@@ -2,5 +2,16 @@ Namespace(batch_size=2, ckpt='weights/', flip=False, label_list='data/data_label
 No. 10105 of batches for each epoch
 Keras model & weights found, loading...
 The GPU memory has to be more than 4.370000 Gb
-0/10105 in 0 epoch finished at time 0:00:26.279543 from start, Loss is 1.335068 Acc is 0.564647
-1/10105 in 0 epoch finished at time 0:00:28.530298 from start, Loss is 2.572559 Acc is 0.442462
+0/10105 in 0 epoch finished at time 0:00:21.793655 from start, Loss is 1.209544 Acc is 0.685246
+1/10105 in 0 epoch finished at time 0:00:24.048763 from start, Loss is 0.333716 Acc is 0.879580
+2/10105 in 0 epoch finished at time 0:00:26.322298 from start, Loss is 3.636072 Acc is 0.453419
+3/10105 in 0 epoch finished at time 0:00:28.592986 from start, Loss is 1.330249 Acc is 0.644463
+4/10105 in 0 epoch finished at time 0:00:30.825971 from start, Loss is 5.225208 Acc is 0.169620
+5/10105 in 0 epoch finished at time 0:00:33.077996 from start, Loss is 0.862079 Acc is 0.601368
+6/10105 in 0 epoch finished at time 0:00:35.331669 from start, Loss is 2.572285 Acc is 0.543828
+7/10105 in 0 epoch finished at time 0:00:37.580053 from start, Loss is 0.457176 Acc is 0.846725
+8/10105 in 0 epoch finished at time 0:00:39.829652 from start, Loss is 2.645402 Acc is 0.355759
+9/10105 in 0 epoch finished at time 0:00:42.076081 from start, Loss is 2.107931 Acc is 0.679460
+10/10105 in 0 epoch finished at time 0:00:44.308627 from start, Loss is 5.176891 Acc is 0.425043
+11/10105 in 0 epoch finished at time 0:00:46.587235 from start, Loss is 1.132750 Acc is 0.718380
+12/10105 in 0 epoch finished at time 0:00:48.866213 from start, Loss is 0.807685 Acc is 0.646550
