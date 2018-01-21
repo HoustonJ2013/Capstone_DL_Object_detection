@@ -156,8 +156,8 @@ options: --method (“luminance”,”gleam“)
 ```
 
 I refered to two repos for this project.
-+[MIT baseline model (pytorch)](https://github.com/hangzhaomit/semantic-segmentation-pytorch)
-+[PSPNet-Keras-tensorflow](https://github.com/Vladkryvoruchko/PSPNet-Keras-tensorflow) 
++ [MIT baseline model (pytorch)](https://github.com/hangzhaomit/semantic-segmentation-pytorch)
++ [PSPNet-Keras-tensorflow](https://github.com/Vladkryvoruchko/PSPNet-Keras-tensorflow) 
 
 
 ## Reference
