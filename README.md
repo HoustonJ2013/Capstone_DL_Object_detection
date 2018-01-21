@@ -1,7 +1,7 @@
 # Deep Learning Pixel-level Object Detection: One Step Toward Automatic Seismic Interpretation (In Work)
 
 ## Motivations: Bussiness Value 
-### 1. Oil and Gas E&P : Automatic Seismic [Fault](https://en.wikipedia.org/wiki/Fault_(geology))/[Horizon](http://subsurfwiki.org/wiki/Horizon) picking and interpretation 
+### Oil and Gas E&P : Automatic Seismic [Fault](https://en.wikipedia.org/wiki/Fault_(geology))/[Horizon](http://subsurfwiki.org/wiki/Horizon) picking and interpretation 
 <img src="https://raw.githubusercontent.com/HoustonJ2013/Capstone_DL_Object_detection/master/pics/Seismic_fault_horizon_picking.jpg" width="500" ALIGN="Right"> 
 
 Where to drill and when to drill is one of the most important items on stake holder worry plate in oil and gas E&P.  A well interpreted seismic image is an important tool on the table to help answer those questions. Interpreting a seismic image requires that the interpreter manually check the seismic image and draw upon his or her geological understanding to pick the most likely interpretation from the many “valid” interpretations that the data allow. 
@@ -67,19 +67,14 @@ python src/metrics_acc_iou.py --List_predict List_Prediction --List_true List_va
 ## EDA and Image Preprocessing
 
 ### Image Quality Check
-Image annotation quality is checked and I randomly selected 40 pictures and put the raw image and annotation image in togglable slides in a [PPT](https://github.com/HoustonJ2013/Capstone_Deep_Learning_Galvanize/blob/master/ppts/QC_Dec_12.pptx). Overall the quality of the annotation is very good for this assessement. 
+Image annotation quality is checked and I randomly selected 40 pictures and put the raw image and annotation image in togglable slides in a [PPT](ppts/QC_Dec_12.pptx). Overall the quality of the annotation is very good for this assessement. 
 
-### Does Gray Scale Matter?
+### Does Gray Scale Matter? With the same network structure, gray scale has ~ 1% performance downgrade. 
 Seismic images only have one value in a pixel, compared to the RGB color scale in the training data sets. In this project, I used the RGB colored images. In the rest of this section, I will assess how much impact of gray image on the performance of Deep Learning using MIT [baseline model](https://github.com/hangzhaomit/semantic-segmentation-pytorch). [Gleam algorithm was found to be almost always the top performer for face and object recognition.](http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0029740#s3) Gleam method uses standard [gamma correction](https://en.wikipedia.org/wiki/Gamma_correction) on RGB channels, and takes the mean of the corrected RGB channels as grayscale intensity.  
 
   <img src="./pics/gleam_equation.png" width="200" ALIGN="center">  where <img src="./pics/R'.PNG" width="15" ALIGN="center"><img src="./pics/G'.PNG" width="12" ALIGN="center"><img src="./pics/B'.PNG" width="12" ALIGN="center"> are gamma corrected RGB channels. 
   
-To convert images from RGB to grayscale, run the code as follows,
-``` 
-python src/rgb2gray.py  --input_folder INPUT_FOLDER --output_folder OUTPUT_FOLDER
-
-options: --method (“luminance”,”gleam“)
-```
+  
 I trained a the MIT baseline model (Resnet34 with dillated modification + billinear decoder) on both RGB and Gray scale images for 5 iterations (~ 90 % of the performance are achieved in the first 5 iterations), and assessed their performance at predicting the 2000 validation images.  Based on the observation, the performance of deep neural networks trained on gray image is only ~ 1% worse than that trained on RGB image, and most of the predicting power between the two models are the same. So the deep neural network structure is adaptitable to gray images such as seismic images. 
 
 
@@ -128,7 +123,7 @@ The [piramid scence parsing](https://arxiv.org/abs/1612.01105) module was in the
 ## Results
 We used the 2000 labeled validation pictures to assess the perfomance of my Capstone model and MIT baseline model. The detailed layers and operations in these two models can be found in the tables. ([MITBASELINE](https://raw.githubusercontent.com/HoustonJ2013/Capstone_DL_Object_detection/master/netstructures/mitbaselin_report.txt)  [Capstone Model](https://github.com/HoustonJ2013/Capstone_DL_Object_detection/blob/master/netstructures/pspnet50_report.txt))
 
-Both models worked very well, and my Capstone model has several additional features that contributed to the improvement over MIT baseline model: 1. Deeper resnets 50 vs 34; 2. PSP Module helps aggreate gloabl context information better. 3. Flipped prediction vs non-flipped prediction; 4. Nonlinear upsampling method Cubic vs Bilinear. 
+Both models worked very well, and my Capstone model has several additional features that contributed to the improvement over MIT baseline model: 1. Deeper resnets 50 vs 34; 2. PSP Module helps aggreate global context information better. 3. Flipped prediction vs non-flipped prediction; 4. Nonlinear upsampling method Cubic vs Bilinear. 
 
 Model | Important Strucutre and Features | Mean Pixel Accuray | Mean IoU     
 :---------------:|:--------------:|:--------------:|:--------------:
@@ -144,15 +139,25 @@ Beyond the numbers and statistics, I show a few predicton examples of images to 
 Example 1. Capstone model is able to handle confusing labels better than MIT Baseline Model. In this case, building and house are very close and it is even hard for a human being to differentiate from the two.
 <img src="./pics/MIT_VS_Capstone_Case1.png" width=650 alt="Seismic interpretation" ALIGN="Middle">
 
+Example 2. Capstone model is able to learn and identify object not even labeled by human experts. In this case, the river is not labeled in the human label, but the deep learning model learned from other "experiences" and was able to delinear the river object correctly.  
+<img src="./pics/MIT_VS_Capstone_Case2.png" width=650 alt="Seismic interpretation" ALIGN="Middle">
 
 
 
-### Conclusion and demo
+### Summary and Future Works
 
 
-## Data Sets to be used
-+ [ADE20K Dataset](http://groups.csail.mit.edu/vision/datasets/ADE20K/)
-+ [COCO 2017 Stuff Segmentation Challenge](http://cocodataset.org/#stuff-challenge2017) (Supplementary)
+## Developement Notes
+To convert images from RGB to grayscale, run the code as follows,
+``` 
+python src/rgb2gray.py  --input_folder INPUT_FOLDER --output_folder OUTPUT_FOLDER
+
+options: --method (“luminance”,”gleam“)
+```
+
+I refered to two repos for this project.
++ [MIT baseline model (pytorch)](https://github.com/hangzhaomit/semantic-segmentation-pytorch)
++ [PSPNet-Keras-tensorflow](https://github.com/Vladkryvoruchko/PSPNet-Keras-tensorflow) 
 
 
 ## Reference
