@@ -69,7 +69,8 @@ def main(args):
         ## Batch Prediction
 
         input_list = [x.rstrip() for x in open(args.input_list, 'r')]
-        pspnet.predict(input_list,  args.flip, output_path="results/", batch_size=5)
+        outpath = args.output_path
+        pspnet.predict(input_list,  args.flip, output_path=outpath, batch_size=5)
 
         print("     After Model Prediction", str(datetime.now()), datetime.now() - TIME_START)
 
@@ -89,8 +90,6 @@ if __name__ == "__main__":
     parser.add_argument('-il', '--input_list', type=str, default='example_images/ade20k.jpg',
                         help='Path the input image')
 
-    parser.add_argument('-i', '--input_path', type=str, default='example_images/ade20k.jpg',
-                        help='Path the input image')
     parser.add_argument('-o', '--output_path', type=str, default='results/',
                         help='Path to output')
     parser.add_argument('-w', '--weights', type=str, default='results/',

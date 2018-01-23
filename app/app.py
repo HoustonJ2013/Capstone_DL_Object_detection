@@ -1,5 +1,6 @@
 from flask import Flask
 from flask import render_template, request
+from flask_socketio import SocketIO
 import numpy as np
 import pandas as pd
 from scipy import misc, ndimage
@@ -22,6 +23,9 @@ from io import BytesIO
 import requests as url_request
 
 app = Flask(__name__)
+app.config['SECRET_KEY'] = 'secret!'
+socketio = SocketIO(app)
+
 DATA_MEAN = np.array([[[[123.68, 116.779, 103.939]]]])  # RGB order
 TIME_START = datetime.now()
 colors = loadmat("data/color150.mat")['colors'] ## Load colormap
@@ -138,4 +142,4 @@ def run():
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000, debug=True)
+    socketio.run(app, host='0.0.0.0', port=5000)
