@@ -162,8 +162,11 @@ The two challenges above require a significant change and experiment on top of t
 
 
 ### Developement Notes
-model/ source code for deep learning model
-src/ helper function for visulization, prediction metrics, and quality control
+AWS EC2 g3x4 Large instance has almost all the packages we need to train the Neural Nets in this project. The enviroment is tensorflow_p36. 
+
+Coder folders
+- model/ source code for deep learning model
+- src/ helper function for visulization, prediction metrics, and quality control
 
 To convert images from RGB to grayscale, run the code as follows,
 ``` 
@@ -174,11 +177,22 @@ options: --method (“luminance”,”gleam“)
 
 To predict labels with your own image. Note that the output file is a .npy file which contains a 2d array of predictions
 ```
-
+python models/pspnet_train.py --input_list LIST_OF_IMAGE.txt --output_path FOLDER_TO_SAVE_PREDICTION --weights MODEL_WEIGHTS_FOR_PREDICTION 
 
 ```
+To train a neural network. Note, the training is very slow based on current implementation. For 20k images, it takes 5 hours for 1 iteration on AWS EC2 g3.4xlarge. I recommend not to train from scratch. 
+```
+python models/pspnet_train.py -train LIST_TRAIN_IMAGE.txt -lab LIST_LABEL_IMAGE.txt --weights PRE_TRAINED_WEIGHT_TO_START  --num_epoch NUM_ITER --learning_rate 0.00001 --optimizer SGD
+```
+To assess a prediction results, we calculate Pixel level accuracy and IoU, 
+```
+python src/metrics_acc_iou.py --List_predict LIST_OF_PREDICTION_NPY --List_true LIST_OF_HUMAN_LABEL --num_class 150
 
-
+```
+To visualize the predicted image and compared to human label,
+```
+python src/concat_image.py --image_predict LIST_OF_PREDICTION_NPY
+```
 
 I refered to two repos for this project.
 + [MIT baseline model (pytorch)](https://github.com/hangzhaomit/semantic-segmentation-pytorch)
