@@ -151,14 +151,14 @@ Example 2. Capstone model is able to learn and identify object not even labeled 
 In this capstone project, I trained a deep learning model (PSPNET) for image recognition at pixel level that performes slightly better than MIT baseline model. The deep learning algorithm has great potential to achieve real automatic image interpretation/delineation. With enough training samples, the deep learning algorith is able to differentiate subtle difference of objects and catch the ignored object by human experts. 
 
 Several challenges that we need to tackle in the future:
--- High-resultion: Our current deep learning implementation compress the image to 1/8 or even more of the original size, rely on interpolation algorithm to recover. Some of the resolutions are lost in the process. 
--- Memory constraints: training a deep nets with high-resolution image in the pipeline consumes a significant amount of memory. For a typical GPU of 8 GB mem and input image size of 481 x 481, training a deep nets only allows 2 pictures in a batch. 
+- High-resultion: Our current deep learning implementation compress the image to 1/8 or even more of the original size, rely on interpolation algorithm to recover. Some of the resolutions are lost in the process. 
+- Memory constraints: training a deep nets with high-resolution image in the pipeline consumes a significant amount of memory. For a typical GPU of 8 GB mem and input image size of 481 x 481, training a deep nets only allows 2 pictures in a batch. 
 
 
-The two challenges above require a significant change and experiment on top of the current network structure. There is another structure proposed by Facebook AI research ([mask RCNN(https://github.com/matterport/Mask_RCNN)] that is worth to test in the further. 
+The two challenges above require a significant change and experiment on top of the current network structure. There is another structure proposed by Facebook AI research ([mask RCNN](https://github.com/matterport/Mask_RCNN) that is worth to test in the further. 
 
 
--- Data sets: Lack of good quality data sets in each applicatoin domain is a big constraint. 
+- Data sets: Lack of good quality data sets in each applicatoin domain is a big constraint. 
 
 
 ### Developement Notes
