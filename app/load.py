@@ -18,7 +18,7 @@ def init():
 					  weights="pspnet50_ade20k")
 
 	#compile and evaluate loaded model
-	Capnet.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
+	Capnet.model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
 
 	graph = tf.get_default_graph()
 
