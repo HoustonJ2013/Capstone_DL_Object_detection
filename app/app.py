@@ -31,6 +31,10 @@ TIME_START = datetime.now()
 colors = loadmat("data/color150.mat")['colors'] ## Load colormap
 obj_df = pd.read_csv("data/object150_info.csv")
 
+sess = tf.Session()
+K.set_session(sess)
+pic_pred = []
+
 
 #helper functions
 def colorlabel(color_list):
@@ -91,9 +95,7 @@ def run():
     print(len(url))
     print(picture)
 
-    sess = tf.Session()
-    K.set_session(sess)
-    pic_pred = []
+
 
     if picture in ["galvanize-1.jpg",
                    "rice_university.jpg",
