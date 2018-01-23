@@ -2,6 +2,7 @@ data/
 literatures/
 results/
 weights/
+run_scripts/
 *.pyc
 *.prototxt
 *.h5
