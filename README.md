@@ -146,7 +146,7 @@ Example 2. Capstone model is able to learn and identify object not even labeled 
 
 
 
-### Summary and Future Works
+## Summary and Future Works
 
 In this capstone project, I trained a deep learning model (PSPNET) for image recognition at pixel level that performes slightly better than MIT baseline model. The deep learning algorithm has great potential to achieve real automatic image interpretation/delineation. With enough training samples, the deep learning algorith is able to differentiate subtle difference of objects and catch the ignored object by human experts. 
 
@@ -161,7 +161,7 @@ The two challenges above require a significant change and experiment on top of t
 -- Data sets: Lack of good quality data sets in each applicatoin domain is a big constraint. 
 
 
-## Developement Notes
+### Developement Notes
 model/ source code for deep learning model
 src/ helper function for visulization, prediction metrics, and quality control
 
