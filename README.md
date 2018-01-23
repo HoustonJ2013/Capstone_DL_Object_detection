@@ -158,7 +158,7 @@ Several challenges that we need to tackle in the future:
 The two challenges above require a significant change and experiment on top of the current network structure. There is another structure proposed by Facebook AI research ([mask RCNN](https://github.com/matterport/Mask_RCNN) that is worth to test in the further. 
 
 
-- Data sets: Lack of good quality data sets in each applicatoin domain is a big constraint. 
+- Data sets: A good quality data sets in each applicatoin domain is essential 
 
 
 ### Developement Notes
