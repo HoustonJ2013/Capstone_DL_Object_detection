@@ -76,19 +76,19 @@
                     <td>
                             <input id="url" name="url" style="width:200px;" value="http://" type="text">
                     </td>
-
+                    <div class="dtable">
+                        {% if data is not none %}
+                        <center>
+                            {% for pic in data %}
+                            <img src={{pic}} width="500" ALIGN="Center">
+                            {% endfor %}
+                        </center>
+                        {% endif %}
+                    </div>
                 </form>
             </div>
         </div>
     </div>
-    <div class="dtable">
-            {% if data is not none %}
-            <center>
-                {% for pic in data %}
-                <img src={{pic}} width="500" ALIGN="Center">
-                {% endfor %}
-            </center>
-             {% endif %}
-    </div>
+
 </body>
 </html>
