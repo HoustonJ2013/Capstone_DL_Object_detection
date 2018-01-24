@@ -161,7 +161,7 @@ Several challenges that we need to tackle in the future:
 - Memory constraints: training a deep nets with high-resolution image in the pipeline consumes a significant amount of memory. For a typical GPU of 8 GB mem and input image size of 481 x 481, training a deep nets only allows 2 pictures in a batch. 
 
 
-The two challenges above require a significant change and experiment on top of the current network structure. There is another structure proposed by Facebook AI research ([mask RCNN](https://github.com/matterport/Mask_RCNN) that is worth to test in the further. 
+The two challenges above require a significant change and experiment on top of the current network structure. There is another structure proposed by Facebook AI research ([mask RCNN](https://github.com/matterport/Mask_RCNN)) that is worth to test in the future. 
 
 
 - Data sets: A good quality data sets in each applicatoin domain is essential 
