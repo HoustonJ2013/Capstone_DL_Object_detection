@@ -162,9 +162,9 @@ The two challenges above require a significant change and experiment on top of t
 
 
 ### Developement Notes
-AWS EC2 g3x4 Large instance has almost all the packages we need to train the Neural Nets in this project. The enviroment is tensorflow_p36. 
+AWS EC2 g3x4 Large instance has almost all the packages and resource needed to train the Neural Nets in this project. The enviroment is tensorflow_p36. 
 
-Coder folders
+Code folders
 - model/ source code for deep learning model
 - src/ helper function for visulization, prediction metrics, and quality control
 
