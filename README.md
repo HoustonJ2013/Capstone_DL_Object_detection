@@ -6,7 +6,10 @@ In this two-week Capstone project, I built a deep learning model for image recog
 
 Semantic segmentation is a very active research area in deep learning forfront. I studied and assessed several state of art neural network structures in different deep learning frameworks, including tensorflow, pytorch, and keras, and selected PSPNET for my capstone project. I implemented the PSPNET in keras/tensorflow, and trained the final model on top of the pre-trained model. 
 
-For less techinical audience, here is my [presentation](https://github.com/HoustonJ2013/Capstone_DL_Object_detection/blob/master/ppts/Capstone_Presentation.pdf). If you want to know details, please keep reading.  
+For less techinical audience, here is my [presentation](https://github.com/HoustonJ2013/Capstone_DL_Object_detection/blob/master/ppts/Capstone_Presentation.pdf). If you want to know details, please keep reading. 
+
+
+Author's contact: jingbo.liu2013@gmail.com
 
 ## Motivations: Bussiness Value 
 ### Oil and Gas E&P : Automatic Seismic [Fault](https://en.wikipedia.org/wiki/Fault_(geology))/[Horizon](http://subsurfwiki.org/wiki/Horizon) picking and interpretation 
