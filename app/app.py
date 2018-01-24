@@ -76,7 +76,7 @@ def colorEncode(labelmap, colors):
 def index():
     return render_template('index.html',  data=None)
 
-
+pre_url = ""
 @app.route('/run', methods=['POST'])
 def run():
     flip = True
@@ -90,8 +90,7 @@ def run():
             url_img = Image.open(BytesIO(response.content))
             url_img.save("static/url_img.jpg")
             picture="url_img.jpg"
-    print(len(url))
-    print(picture)
+            print("saving ", picture)
 
 
 
@@ -135,7 +134,7 @@ def run():
             new_im.save("static/" + picture[:-4] + "_color.jpg")
             pic_pred.append("/static/" + picture[:-4] + "_color.jpg")
             print("finished job", str(datetime.now()), datetime.now() - TIME_START)
-
+    time.sleep(5)
     return render_template('index.html',  data=pic_pred)
 
 
