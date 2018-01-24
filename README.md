@@ -1,6 +1,12 @@
-# Image Recognition At Pixel Level By Artificial Intelligence: One Step Toward Automatic Seismic Interpretation (In Work)
+# Image Recognition At Pixel Level By Artificial Intelligence: One Step Toward Automatic Seismic Interpretation 
 
 ## Overview
+In this two-week Capstone project, I built a deep learning model for image recognition at pixel level (semantic segmentation) that slightly beat MIT baseline model by 1% in pixel accuracy and 4% in mean IoU. This algorithm has great potential to be applied in oil and gas industry to achieve truely automatic seismic image interpretation. 
+
+
+Semantic segmentation is a very active research area in deep learning forfront. I studied and assessed several state of art neural network structures in different deep learning frameworks, including tensorflow, pytorch, and keras, and selected PSPNET for my capstone project. I implemented the PSPNET in keras/tensorflow, the final model was trained on top of the pre-trained model. 
+
+For less techinical audience, here is my [presentation](https://github.com/HoustonJ2013/Capstone_DL_Object_detection/blob/master/ppts/Capstone_Presentation.pdf). If you want to know details, please keep reading.  
 
 ## Motivations: Bussiness Value 
 ### Oil and Gas E&P : Automatic Seismic [Fault](https://en.wikipedia.org/wiki/Fault_(geology))/[Horizon](http://subsurfwiki.org/wiki/Horizon) picking and interpretation 
