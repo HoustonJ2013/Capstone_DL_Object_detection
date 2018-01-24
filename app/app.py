@@ -108,7 +108,9 @@ def run():
             pic_pred = []
             input_list = ["static/" + picture]
             pic_pred.append("/" + input_list[0])
+            print("BF prediction", str(datetime.now()), datetime.now() - TIME_START)
             Capnet.predict(input_list, flip, output_path="static/", batch_size=5)
+            print("AF prediction", str(datetime.now()), datetime.now() - TIME_START)
             pred_path = (input_list[0])[:-4] + ".npy"
             pred_array = np.load(pred_path).astype("float16") - 1
             pred_rgb = colorEncode(pred_array, colors)
@@ -132,7 +134,7 @@ def run():
             new_im = colorlabel(color_list)
             new_im.save("static/" + picture[:-4] + "_color.jpg")
             pic_pred.append("/static/" + picture[:-4] + "_color.jpg")
-            print("finished color")
+            print("finished job", str(datetime.now()), datetime.now() - TIME_START)
 
     return render_template('index.html',  data=pic_pred)
 
